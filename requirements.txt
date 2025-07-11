@@ -1,0 +1,48 @@
+asgiref
+Django > 5.2, <5.3
+sqlparse
+pillow
+
+# for postgres database
+psycopg[binary]
+
+# Django Rest Framework:
+djangorestframework
+markdown 
+django-filter  
+
+# for environment variables:
+python-decouple == 3.8
+
+# For Phone numbers:
+django-phonenumber-field[phonenumbers]
+
+# Documentation:
+drf-yasg[validation]
+drf-spectacular[sidecar]
+
+# clean unused media:
+django-cleanup
+
+# Authentications
+djangorestframework-simplejwt[crypto]
+
+# Sending email with HTML Template:
+django-mail-templated
+
+# reformating:
+black
+flake8
+flake8-django
+
+# backgroun proccess
+celery
+redis
+
+# for cahcing
+requests
+django-redis
+
+
+# Random Data :
+Faker

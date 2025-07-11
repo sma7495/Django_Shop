@@ -1,0 +1,108 @@
+services:
+
+  # redis:
+  #   image: redis # Or specify a version like redis:6.2-alpine
+  #   restart: always
+  #   ports:
+  #     - "6379:6379" # Maps host port 6379 to container port 6379
+  #   volumes:
+  #     - redis_data:/data # Persist Redis data in a named volume
+  #   command: redis-server --save 60 1 --loglevel warning 
+
+  db:
+    image: postgres:17
+    container_name: django_shop_db
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydatabase
+    expose:
+      - 5432
+    ports: # for access to database in pgAdmin
+      - "5432:5432"
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/dev/django/Dockerfile
+    container_name: django_shop_backend
+    working_dir: /usr/src/app
+    # command: django-admin startproject core .  # Only for first time to make django project
+    command: python manage.py runserver 0.0.0.0:8000 # Make it command in first time
+    volumes:
+     - ./core:/usr/src/app 
+    ports:
+      - "8000:8000"
+    # environment:
+    #   - DEBUG=True
+    #   - SECRET_KEY=django-insecure-t(h&7x#0&-69paa%5+tbj104^h#^+zimycw-&h$!^6&s6gq&nc
+    env_file:
+      - ./envs/dev/django/.env
+    restart: unless-stopped
+    depends_on:
+      - db
+  
+#   worker:
+#     build: .
+#     command: celery -A core worker --loglevel=info # && celery -A core beat -l info
+#     depends_on:
+#       - redis
+#       - backend
+#     volumes:
+#       - ./core:/app
+
+#   worker_schedule:
+#     build: .
+#     command: celery -A core beat -l info
+#     depends_on:
+#       - redis
+#       - backend
+#       - worker
+#     volumes:
+#       - ./core:/app
+
+  smtp4dev:
+    image: rnwood/smtp4dev:latest
+    container_name: django_shop_smtp4dev
+    restart: unless-stopped
+    ports:
+      # Change the number before : to the port the web interface should be accessible on
+      - '5000:80'
+      # Change the number before : to the port the SMTP server should be accessible on
+      - '25:25'
+      # Change the number before : to the port the IMAP server should be accessible on
+      - '143:143'
+    volumes:
+      # This is where smtp4dev stores the database..
+        - smtp4dev-data:/smtp4dev
+    environment:
+      #Specifies the server hostname. Used in auto-generated TLS certificate if enabled.
+      - ServerOptions__HostName=smtp4dev
+
+#   locust-master:
+#     image: locustio/locust
+#     ports:
+#       - "8089:8089" # Web UI
+#       - "5557:5557" # Worker communication
+#       - "5558:5558" # Worker communication
+#     volumes:
+#       - ./core/locust:/mnt/locust # Mount your Locust test scripts
+#     command: -f /mnt/locust/locustfile.py --master -H http://backend:8080/
+
+#   locust-worker:
+#     image: locustio/locust
+#     command: -f /mnt/locust/locustfile.py --worker --master-host locust-master
+#     volumes:
+#       - ./core/locust:/mnt/locust
+#     depends_on:
+#       - locust-master
+#     deploy:
+#       replicas: 2 # Scale workers as needed
+
+volumes:
+  smtp4dev-data:
+#   redis_data:
+    
