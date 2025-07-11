@@ -1,0 +1,33 @@
+# Python bytecode and cache
+*.pyc
+__pycache__/
+
+# Virtual environment
+.env/
+venv/
+env/
+envs/*
+
+# Database
+db.sqlite3
+postgres/data/*
+
+# Local settings and logs
+local_settings.py
+*.log
+
+# Media and static files (adjust if you track these)
+media/
+static/
+
+# IDE-specific files (e.g., PyCharm)
+.idea/
+
+# Operating system specific files
+.DS_Store
+Thumbs.db
+
+# Test coverage and build artifacts
+.coverage
+.tox/
+.eggs/
