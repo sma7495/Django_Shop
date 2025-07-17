@@ -1,0 +1,1624 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block title %}{% endblock  %}
+
+    <link rel="stylesheet" href=" {% static 'css/bootstrap.rtl.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}">
+    <link rel="stylesheet" href=" {% static 'fonts/fontawesome-free-6.5.2-web/css/all.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/global.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/media.css' %}">
+
+    {% block extra_css %}{% endblock  %}
+
+</head>
+<body>
+
+<section id="navbar">
+    <div class="header_sticky ">
+        <div class="aniketrod">
+            <section id="header" class="header">
+                <div class="header-middle">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col-6 col-md-12 col-xl-2 order-1  d-flex align-items-center justify-content-xl-start justify-content-center  my-2 my-md-4 my-xl-0">
+                                <div id="logo" class="logo">
+                                    <a href="index.html" title="">
+                                        <!--<img src="logo.png' %}" alt="">-->
+                                        <div class="logo"><img src="{% static 'images/logo.png' %}"></div>
+                                    </a>
+                                </div><!-- /#logo -->
+                            </div><!-- /.col-md-3 -->
+                            <div class="order-4 order-xl-2 col-12 col-xl-6 ">
+                                <div class="top-search ">
+                                    <form action="#" method="get" class="form-search mb-4 mb-md-0"
+                                            accept-charset="utf-8">
+                                        <div class="cat-wrap">
+                                            <select name="category " class="font-vazir">
+                                                <option value="" class="font-vazir">همه</option>
+                                                <option value="" class="font-vazir">دیجیتال</option>
+                                                <option value="" class="font-vazir">موبایل</option>
+                                                <option value="" class="font-vazir">لوازم خانگی</option>
+                                            </select>
+                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+
+                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                        </div><!-- /.cat-wrap -->
+                                        <div class="box-search ">
+                                            <input type="text" name="search" class="font-vazir" placeholder="جستجو">
+                                            <span class="btn-search">
+                                                            <button type="submit" class="waves-effect"><i
+                                                                    class="fa fa-search"></i></button>
+                                                        </span>
+
+                                        </div><!-- /.box-search -->
+                                    </form><!-- /.form-search -->
+                                </div><!-- /.top-search -->
+                            </div><!-- /.col-md-6 -->
+                            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-xl-start col-xl-2 order-3 order-md-2 order-xl-3">
+
+                                <div class="box-cart">
+                                    <div class="inner-box">
+                                        <ul class="menu-compare-wishlist">
+                                            <li class="favorite position-relative" data-bs-toggle="offcanvas"
+                                                data-bs-target="#favoriteTab" aria-controls="favoriteTab">
+                                                <a href="#" title="">
+                                                    <i class="fa-regular fa-heart"></i>
+                                                </a>
+                                            </li>
+
+
+                                            </li>
+                                            <li class="wishlist">
+                                                <a href="#" title="">
+                                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                                </a>
+
+                                                <div class="dropdown-box profile  font-vazir">
+                                                    <ul class="d-flex flex-column ">
+                                                        <li><a href="#"> <i class="fa-regular fa-user"
+                                                                            aria-hidden="true"></i> پروفایل کاربری </a>
+                                                        </li>
+                                                        <li><a href="#"> <i class="fa-regular fa-heart"></i> لیست علاقه
+                                                            مندی ها</a></li>
+                                                        <li><a href=""> <i class="fa-solid fa-magnifying-glass"></i>
+                                                            پیگیری خرید </a></li>
+                                                        <li><a href="#"> <i
+                                                                class="fa-solid fa-arrow-right-to-bracket"> </i> خروج
+                                                        </a></li>
+
+
+                                                    </ul>
+
+
+                                                </div>
+                                            </li>
+                                        </ul><!-- /.menu-compare-wishlist -->
+                                    </div><!-- /.inner-box -->
+                                    <div class="inner-box">
+                                        <a href="#" title="">
+                                            <div class="icon-cart" data-bs-toggle="offcanvas"
+                                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                <span class="font-sans">2</span>
+                                            </div>
+
+                                        </a>
+
+                                    </div><!-- /.inner-box -->
+                                </div><!-- /.box-cart -->
+                            </div><!-- /.col-md-3 -->
+                            <div class="col-6  col-xl-2  d-flex justify-content-center justify-content-xl-start align-items-center my-2  my-md-3 my-md-0 order-2 order-md-3 order-xl-4">
+                                <div class="register-enter font-vazir">
+                                    <a href="signup.html" class="btn btn-light px-2 px-md-3 sign-in font-small-14"> <i
+                                            class="fa-solid fa-arrow-right-to-bracket ps-2 "></i> ثبت نام | ورود </a>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.container -->
+                </div><!-- /.header-middle -->
+                <div class="header-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 col-2 font-yekan">
+                                <div id="mega-menu">
+                                    <div class="btn-mega"><span></span>دسته بندی کالاها</div>
+                                    <ul class="menu font-yekan">
+
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">کالای دیجیتال</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        لپ تاپ
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">لپ تاپ ایسوس</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لپ تاپ لنوو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">مک بوک</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لپ تاپ HP</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لپ تاپ ایسر</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        دوربین
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">دوربین فیلمبرداری</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دوربین کنن</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دوربین سونی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پایه دوربین</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        ساعت هوشمند
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">ساعت هوشمند سامسونگ</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ساعت هوشمند شیائومی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">اپل واچ</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">بند ساعت</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto ">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">موبایل و تبلت</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        برندهای مختلف گوشی موبایل
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">گوشی آیفن</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی سامسونگ</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی شیائومی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی هواووی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی نوکیا</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی موتورولا</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی جی پلاس</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        گوشی بر اساس قیمت
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">گوشی موبایل ارزان</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی موبایل قسطی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی موبایل تا 5 میلیون</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی موبایل تا 7 میلیون</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی موبایل تا 15 میلیون</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی موبایل تا 20 میلیون</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        گوشی بر اساس عملکرد
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">گوشی گیمینگ</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی ضد آب</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشی 5G</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">لوازم خانگی برقی</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        صوتی و تصویری
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">تلویزیون</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ساندبار</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پخش کننده خانگی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ریموت</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ویدیو پروژکتور</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        یخچال و فریزر
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">یخچال فریزر ساید بای ساید</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">یخچال فریزر دوقلو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">یخچال فریزر هتلی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">یخچال فریزر کمبی</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        تهویه ،سرمایش و گرمایش
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">پنکه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کولر آبی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کولر گازی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">بخاری</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پکیج دیواری و رادیاتور</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">مد و پوشاک</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        پوشاک مردانه
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">تی شرت مردانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پیراهن مردانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لباس زیر مردانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">سویشرت مردانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">هودی مردانه</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        لباس زنانه
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">تیشرت زنانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">تاپ زنانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">بلوز و شومیز زنانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لباس راحتی زنانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">شلوارک زنانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">مانتو شلوار</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">شلوار زنانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دامن زنانه</a>
+                                                        </li>
+
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        اکسسوری دخترانه
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">شال و روسری دخترانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کلاه دخترانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">عینک دخترانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گیر سر دخترانه</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">آرایشی و بهداشتی</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        لوازم آرایشی
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title=""></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">آرایش صورت</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">آرایش چشم</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">آرایش ابرو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ابزار آرایشی</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        مراقبت پوست
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">ضد آفتاب</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کرم مرطوب کننده و نرم کننده</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">تونر</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پاک کننده صورت</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">مراقبت بدن</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        عطر و ادکلن
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">عطر و ادکلن مردانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">عطر و ادکلن زنانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">بادی اسپلش</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">عطر جیبی</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">کتاب، لوازم تحریر</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        لوازم تحریر
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">کتاب‌های درسی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کتاب‌های داستان</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دفتر و کاغذ</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">نوشت‌افزار</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لوازم هنری</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        آلات موسیقی
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">گیتار</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پیانو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">درام</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">سازهای بادی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لوازم جانبی</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        صنایع دستی
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">چرم‌دوزی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">خوشنویسی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">میناکاری</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کیف چرمی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">قالی‌بافی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">زیورآلات دست‌ساز</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">ورزش و سفر</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        پوشاک ورزشی مردانه
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">تی‌شرت و پولیور</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">شلوار ورزشی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کفش ورزشی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">جوراب ورزشی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">اکسسوری‌های ورزشی</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        پوشاک ورزشی زنانه
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title=""> تاپ و تیشرت</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">شلوار و شلوارک</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کفش ورزشی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title=""> لباس‌های گشاد</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">اکسسوری‌های ورزشی</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        لوازم کوهنوردی و کمپینگ
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">چادر و سرپناه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کیسه خواب</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کوسن‌های کمپینگ</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">تجهیزات پخت و پز</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">تجهیزات ایمنی و نجات</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">تجهیزات پزشکی و سلامت</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        تجهیزات پزشکی
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">دستگاه‌های فشار خون</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دستگاه‌های قند خون</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">تجهیزات تنفسی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">تجهیزات جراحی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لوازم کمک‌های اولیه</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        تجهیزات دندانپزشکی
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">دستگاه‌های تصویر‌برداری دندان</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ابزارهای جراحی دندان</a>
+                                                        </li>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">مواد ترمیمی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دستکش‌های پزشکی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">یونیت‌های دندانپزشکی</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        مکمل ورزشی
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">پروتئین‌های ورزشی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">مکمل‌های انرژی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ویتامین‌ها و مواد مغذی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کراتین و اسید آمینه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">مکمل‌های تقویت عضلات</a>
+                                                        </li>
+
+
+                                                    </ul>
+
+                                                    <div class="show">
+
+                                                        <a href="#" title="">
+                                                            مشاهده همه
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">طلا و نقره</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        طلا و نقره
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title=""> انگشتر طلا</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title=""> انگشتر نقره</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title=""> گوشواره طلا</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">زنجیر طلا</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">النگو طلا</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پابند طلا</a>
+                                                        </li>
+
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        زیورآلات نقره زنانه
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">دستبند نقره</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">انگشتر نقره</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">زنجیر نقره</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گوشواره نقره</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پیرسینگ نقره</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        زیورآلات طلای مردانه
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">انگشتر مردانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دستبند مردانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">گردنبند مردانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">زنجیر مردانه</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">آویز مردانه</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="dropdown"><span class="menu-img"><img src="#"
+                                                                                                                alt=""></span>
+                                                <span class="menu-title">لوازم جانبی خودرو</span>
+                                            </a>
+                                            <div class="drop-menu d-xl-flex justify-content-xl-evenly flex-wrap">
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        لوازم مصرفی خودرو
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">روغن موتور</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">روغن گیربکس</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">روغن ترمز</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ضدیخ</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">مایع شیشه شور</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">فیلتر هوا</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">فیلتر روغن</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">فیلتر بنزین</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">فیلتر کابین</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">شمع و وایر</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">باطری</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لاستیک</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لنت ترمز</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        لوازم جانبی خودرو
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">صندوق بار</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کفپوش</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">روکش صندلی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ضد آفتاب</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">آینه بغل</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">چراغ خودرو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دستگاه پخش</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دوربین دنده عقب</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">سنسور پارک</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">شارژر فندکی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">جا لیوانی</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">آچار چرخ</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <div class="cat-title">
+                                                        لوازم صوتی و تصویری خودرو
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" title="">دستگاه پخش خودرو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">اسپیکر خودرو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">ساب ووفر خودرو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">آمپلی فایر خودرو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">بلوتوث خودرو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">مانیتور خودرو</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">دوربین دنده عقب</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">سنسور پارک</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">سیستم صوتی حرفه ای</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">هدست بلوتوث خودرو</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="show">
+                                                        <a href="#" title="">مشاهده همه</a>
+                                                    </div>
+                                                </div>
+                                                <div class="one-third col-12 col-xl-auto">
+                                                    <ul class="banner">
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/digital%20(2).png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/kitchen.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="more-link d-flex align-items-center justify-content-center">
+                                                                <a href="#" title=""><img src="{% static 'images/cosmetic.png' %}"
+                                                                                            alt=""></a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+
+                                </div>
+                            </div><!-- /.col-md-3 col-2 -->
+                            <div class="col-md-9 col-10 d-flex align-items-center justify-content-between menu-left-section">
+                                <div class="mainmenu-container">
+                                    <div class="nav-wrap">
+                                        <div id="mainnav" class="mainnav font-vazir">
+                                            <ul class="menu" style="margin-bottom: 0">
+                                                <li class="column-1">
+                                                    <a href="#" title="">دسته بندی ویژه</a>
+                                                    <ul class="submenu">
+                                                        <li>
+                                                            <a href="#" title="">کفش‌های ورزشی </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لباس‌های زنانه </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لوازم الکترونیکی </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">عطر و ادکلن </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">محصولات آرایشی </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">محصولات دیجیتال </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">لوازم خانگی </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کتاب‌ها و مجلات </a>
+                                                        </li>
+                                                    </ul><!-- /.submenu -->
+                                                </li>  <!-- /.column-1 -->
+                                                <li class="column-1">
+                                                    <a href="#" title="">فروش ویژه</a>
+                                                    <ul class="submenu">
+                                                        <li>
+                                                            <a href="#" title="">تخفیف‌های ویژه </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">محصولات جدید </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پیشنهادات داغ </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">حراج فصلی </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">پکیج‌های ویژه </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="">کدهای تخفیف </a>
+                                                        </li>
+                                                    </ul><!-- /.submenu -->
+                                                </li>  <!-- /.column-1 -->
+                                                <li class="has-mega-menu ">
+                                                    <a href="#" title="">مگامنو</a>
+                                                    <div class="submenu">
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-lg-12">
+                                                                <h3 class="cat-title">لوازم الکترونیکی</h3>
+                                                                <ul class="submenu-child">
+                                                                    <li>
+                                                                        <a href="#" title="">گوشی‌‌های هوشمند</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">تبلت‌ها</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">لوازم جانبی</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">گجت‌های پوشیدنی</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">لوازم خانگی هوشمند</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">دوربین‌ها و تجهیزات
+                                                                            عکاسی</a>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="show">
+                                                                    <a href="#" title="">مشاهده همه</a>
+                                                                </div>
+                                                            </div><!-- /.col-lg-3 col-md-12 -->
+                                                            <div class="col-xl-3 col-lg-12">
+                                                                <h3 class="cat-title">کامپیوتر و لپ تاپ</h3>
+                                                                <ul class="submenu-child">
+                                                                    <li>
+                                                                        <a href="#" title="">لپ‌تاپ و کامپیوترهای
+                                                                            شخصی</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">صفحه نمایش‌ها</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">دستگاه‌های ذخیره‌سازی</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">پرینترها و مواد مصرفی</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">لوازم جانبی کامپیوتر</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">نرم‌افزارها</a>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="show">
+                                                                    <a href="#" title="">مشاهده همه</a>
+                                                                </div>
+                                                            </div><!-- /.col-lg-3 col-md-12 -->
+                                                            <div class="col-xl-4 col-lg-12">
+                                                                <h3 class="cat-title">صوتی و تصویری</h3>
+                                                                <ul class="submenu-child">
+                                                                    <li>
+                                                                        <a href="#" title="">هدفون و بلندگو</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">سیستم‌های سرگرمی خانگی</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">پخش‌کننده‌های MP3 و
+                                                                            مدیا</a>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="show">
+                                                                    <a href="#" title="">مشاهده همه</a>
+                                                                </div>
+                                                            </div><!-- /.col-lg-4 col-md-12 -->
+                                                            <div class="col-xl-2 col-lg-12">
+                                                                <h3 class="cat-title">لوازم خانگی</h3>
+                                                                <ul class="submenu-child">
+                                                                    <li>
+                                                                        <a href="#" title="">سیستم‌های سینمای خانگی</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">پخش‌کننده‌ها و
+                                                                            تقویت‌کننده‌ها</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">بلندگوها</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">پخش‌کننده‌های CD و
+                                                                            وینیل</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" title="">تلویزیون‌های 4K Ultra
+                                                                            HD</a>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="show">
+                                                                    <a href="#" title="">مشاهده همه</a>
+                                                                </div>
+                                                            </div><!-- /.col-lg-2 col-md-12 -->
+                                                        </div><!-- /.row -->
+
+                                                    </div><!-- /.submenu -->
+                                                </li> <!-- /.has-mega-menu -->
+                                            </ul><!-- /.menu -->
+
+                                        </div><!-- /.mainnav -->
+                                    </div><!-- /.nav-wrap -->
+
+                                    <div class="btn-menu">
+                                        <span></span>
+                                    </div><!-- //mobile menu button -->
+                                </div>
+                                <button style="background: cornflowerblue;color: #fff;" type="button"
+                                        class="btn font-vazir btn-default btn-round float-left" id="btn-cities"
+                                        data-bs-toggle="modal" data-bs-target="#cities-modal">
+                                    <span>انتخاب مکان</span>
+                                </button>
+
+                            </div><!-- /.col-md-9 -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container -->
+                </div><!-- /.header-bottom -->
+            </section><!-- /#header -->
+
+
+        </div><!-- /.aniketrod -->
+    </div>
+</section>
+
+    {% block content %}{% endblock  %}
+</body>
+
+<footer class="border-top">
+
+    <div class="footer-contact font-vazir text-color mb-5 ">
+        <div class="row d-flex justify-content-between">
+            <div class="col-auto"><a class="logo" href="index.html"><img src="{% static 'images/logo.png' %}"></a></div>
+            <div class="col-auto">
+                <a href="#">
+                    <div class="to-top btn btn-light text-color border"> بازگشت به بالا <i
+                            class="fa-solid fa-arrow-up"></i></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <span class="border-end px-2 px-md-3">تلفن پشتیبانی ۶۱۱۱۱۱۱۱ - ۰۲۱</span> <span class="px-2 px-md-3">۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم</span>
+        </div>
+    </div>
+
+    <div class="row mb-5 font-vazir d-none d-lg-flex">
+        <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+            <div class="how-to-buy"><img src="{% static 'images/instant-post.jpg' %}"></div>
+            <div class="how-to-buy-text mt-3 text-color">امکان تحویل اکسپرس</div>
+        </a></div>
+        <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+            <div class="how-to-buy"><img src="{% static 'images/pay.png' %}"></div>
+            <div class="how-to-buy-text mt-3 text-color">امکان پرداخت در محل</div>
+        </a></div>
+        <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+            <div class="how-to-buy"><img src="{% static 'images/7-24.jpg' %}"></div>
+            <div class="how-to-buy-text mt-3 text-color">7 روز هفته،24 ساعته</div>
+        </a></div>
+        <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+            <div class="how-to-buy"><img src="{% static 'images/return-policy.png' %}"></div>
+            <div class="how-to-buy-text mt-3 text-color">هفت روز ضمانت بازگشت کالا</div>
+        </a></div>
+        <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+            <div class="how-to-buy"><img src="{% static 'images/original.png' %}"></div>
+            <div class="how-to-buy-text mt-3 text-color">ﺿﻤﺎﻧﺖ اﺻﻞ ﺑﻮدن ﮐﺎﻟﺎ</div>
+        </a></div>
+    </div>
+
+
+    <div class="row row-footer font-vazir">
+        <div class="col-lg-3 footer-cols col-12 text-color">
+            <div class="link-cat" onclick="footerToggle(this)">
+                <span class="footer-toggle"></span>
+                <span class="footer-cat">راهنمای خرید</span>
+            </div>
+            <ul class="footer-cat-links">
+                <li><a href=""><span>نحوه ثبت سفارش</span></a></li>
+                <li><a href=""><span>چگونگی ارسال کالا</span></a></li>
+                <li><a href=""><span>چگونگی ثبت </span></a></li>
+                <li><a href=""><span>چگونگی پرداخت</span></a></li>
+                <li><a href=""><span>چگونگی رهگیری کالا</span></a></li>
+            </ul>
+        </div>
+        <div class="col-lg-3 footer-cols col-12 text-color ">
+            <div class="link-cat" onclick="footerToggle(this)">
+                <span class="footer-toggle"></span>
+                <span class="footer-cat">خدمات مشتریان</span>
+            </div>
+            <ul class="footer-cat-links">
+                <li><a href=""><span>معرفی تخفیف ها</span></a></li>
+                <li><a href=""><span>پرسش های متداول</span></a></li>
+                <li><a href=""><span>چگونگی بازگشت کالا</span></a></li>
+                <li><a href=""><span>حریم خصوصی</span></a></li>
+                <li><a href=""><span>قوانین فروشگاه</span></a></li>
+            </ul>
+        </div>
+        <div class="col-lg-3 footer-cols col-12 text-color">
+            <div class="link-cat" onclick="footerToggle(this)">
+                <span class="footer-toggle"></span>
+                <span class="footer-cat">مجموعه بتاکالا</span>
+            </div>
+            <ul class="footer-cat-links">
+                <li><a href=""><span>فروش در بتاکالا</span></a></li>
+                <li><a href=""><span>همکاری با سازمان ها</span></a></li>
+                <li><a href="contact-us.html"><span>تماس با بتاکالا</span></a></li>
+                <li><a href="about-us.html"><span>درباره بتاکالا</span></a></li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-12 text-color font-vazir mb-3 d-flex flex-column justify-content-between mt-3 mt-lg-0">
+            <div id="newsletter" class="footer-contact">
+                <h6>با ثبت ایمیل، از جدید‌ترین تخفیف‌ها با‌خبر شوید</h6>
+                <form id="subscribe" class="d-flex mt-3">
+                    <input type="email" id="subscriber-email" placeholder="ایمیل شما"/>
+                    <input class="p-2 px-3 mx-2 btn btn-primary" type="submit" value="ثبت" id="btn-scribe"/>
+                </form>
+
+
+            </div>
+            <div class="social-links social-1 d-flex align-items-end mt-4 mt-xl-0">
+                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-tumblr"></i></a>
+            </div>
+        </div>
+
+        <div class="row mt-4 border-top">
+            <div class="col-12 px-2 col-lg-8 app">
+                <div class="accordion accordion-flush font-vazir" id="accordionFlushExample ">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed text-center" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                دانلود اپلیکیشن
+                                <i class="fa-solid fa-cloud-arrow-down mx-3"></i>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body ">
+                                <div class="row">
+                                    <div class="col-12 mb-3 mb-md-0 col-sm-6 col-md-3"><a href="#"><img
+                                            src="{% static 'images/cafebazaar.png' %}" class="pe-2"></a></div>
+                                    <div class="col-12 mb-3 mb-md-0 col-sm-6 col-md-3"><a href="#"><img
+                                            src="{% static 'images/myket.png' %}" class="pe-2"></a></div>
+                                    <div class="col-12 mb-3 mb-md-0 col-sm-6 col-md-3"><a href="#"><img
+                                            src="{% static 'images/SIBAPP.png' %}" class="pe-2"></a></div>
+                                    <div class="col-12 mb-3 mb-md-0 col-sm-6 col-md-3"><a href="#"><img
+                                            src="{% static 'images/download-direct.png' %}" class="pe-2"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-12 px-2 col-lg-4 certificate-box d-flex justify-content-center justify-content-md-start justify-content-lg-center  align-items-start mt-3 mt-lg-0 ">
+                <div class="certificate p-3 "><a href="#"><img src="{% static 'images/namad.png' %}"></a></div>
+                <div class="certificate p-3 "><a href="#"><img src="{% static 'images/samandehi.webp' %}"></a></div>
+                <div class="certificate p-3 "><a href="#"><img src="{% static 'images/majazi.png' %}"></a></div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="copyright" class="text-color">
+        &copy; All Rights Reserved 1403-2025
+    </div>
+    <div id="owner" class="text-color">
+           <span>
+               Designed by <strong> Saeid Tohidi Pour </strong>
+           </span>
+    </div>
+</footer>
+
+
+<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+
+
+
+{% block extra_js %}{% endblock  %}
+
+</html>
+
+
+<!--
+
+
+
+
+

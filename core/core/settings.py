@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
+    
+    "account",
+    "website",
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [ BASE_DIR / "temlates" ],
+        "DIRS": [ BASE_DIR / "templates" ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -149,3 +153,12 @@ EMAIL_HOST_USER = config("EMAIL_HOST_USER", default = "")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default = "")
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast = bool, default = False)
 EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast = bool, default = False)
+
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default = 'your@email.com')
+CONTACT_EMAIL = config("CONTACT_EMAIL", default = 'contact@yourdomain.com')
+SEND_CONTACT_EMAILS = config("SEND_CONTACT_EMAILS", cast = bool, default = True)  # Set to False in development if needed
+
+
+
+# Custom User Model settings:
+AUTH_USER_MODEL = "account.User"
