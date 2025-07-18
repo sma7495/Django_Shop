@@ -5,7 +5,9 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
+
 from .forms import ContactModelForm
+from .models import AboutUs, Characteristic, FAQ, TermsConditions
 
 # website pages as class-based views
 class HomePageView(TemplateView):
@@ -20,34 +22,57 @@ class HomePageView(TemplateView):
 
 class AboutPageView(TemplateView):
     template_name = 'website/about.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add any additional context here
+        context['about_us'] = AboutUs.load()
+        return context
 
 
-class ServicesPageView(ListView):
-    template_name = 'website/services.html'
-    context_object_name = 'services'
+# class ServicesPageView(ListView):
+#     template_name = 'website/services.html'
+#     context_object_name = 'services'
 
-    def get_queryset(self):
-        # Replace with your actual services data or model
-        return [
-            {'name': 'Web Development', 'description': 'Custom web solutions'},
-            {'name': 'SEO', 'description': 'Search engine optimization'},
-            {'name': 'Consulting', 'description': 'Expert advice'},
-        ]
+#     def get_queryset(self):
+#         # Replace with your actual services data or model
+#         return [
+#             {'name': 'Web Development', 'description': 'Custom web solutions'},
+#             {'name': 'SEO', 'description': 'Search engine optimization'},
+#             {'name': 'Consulting', 'description': 'Expert advice'},
+#         ]
 
 
-class PrivacyPolicyView(TemplateView):
-    template_name = 'website/privacy_policy.html'
+# class PrivacyPolicyView(TemplateView):
+#     template_name = 'website/privacy_policy.html'
 
 
 class TermsConditionsView(TemplateView):
     template_name = 'website/terms_conditions.html'
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add any additional context here
+        context['terms'] = TermsConditions.objects.filter(is_active = True)
+        context['phone'] = Characteristic.load().mobile_number
+        return context
 
 class FAQPageView(TemplateView):
     template_name = 'website/faq.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add any additional context here
+        context['faqs'] = FAQ.objects.filter(is_active = True)
+        context['phone'] = Characteristic.load().mobile_number
+        return context
 
 
 # Error handlers (add these to your main urls.py)
+# Error handlers
+# handler404 = 'common.views.handler404'
+# handler500 = 'common.views.handler500'
+
 def handler404(request, exception):
     return render(request, 'website/404.html', status=404)
 
@@ -108,4 +133,5 @@ class ContactView(FormView):
         """Add additional context to template"""
         context = super().get_context_data(**kwargs)
         # You can add more context variables here if needed
+        context["info"] = Characteristic.load()
         return context

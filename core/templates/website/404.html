@@ -2,13 +2,28 @@
 {% load static %}
 
 
-{% block title %}{% endblock  %}
+{% block title %}<title>Error-404</title>{% endblock  %}
 
-{% block extra_css %}{% endblock  %}
+{% block extra_css %}<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>{% endblock  %}
 
-{% block content %}{% endblock  %}
+{% block content %}
+<section id="Error-404">
 
-{% block extra_js %}{% endblock  %}
+    <div class="container  rounded  ">
+        <div class="d-flex  flex-column align-items-center justify-content-center">
+            <div class="Error-box text-center mx-5">
+                <img src="{% static 'images/404.JPG' %}">
+                <div class="error-text font-vazir text-color">صفحه مورد نظر یافت نشد !</div>
+                <a href="index.html" class="btn btn-primary font-vazir my-4"> بازگشت به صفحه اصلی <i
+                        class="fa-solid fa-rotate-left font-14"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock  %}
+
+{% block extra_js %}<script src="js/frequently-question.js"></script>{% endblock  %}
 
 
 
