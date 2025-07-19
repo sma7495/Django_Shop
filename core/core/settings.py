@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -163,3 +164,4 @@ SEND_CONTACT_EMAILS = config("SEND_CONTACT_EMAILS", cast = bool, default = True)
 
 # Custom User Model settings:
 AUTH_USER_MODEL = "account.User"
+LOGIN_REDIRECT_URL = reverse_lazy("website:home")

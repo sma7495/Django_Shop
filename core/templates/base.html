@@ -14,7 +14,7 @@
     <link rel="stylesheet" href=" {% static 'css/global.css' %}">
     <link rel="stylesheet" href=" {% static 'css/swiper-bundle.min.css' %}">
     <link rel="stylesheet" href=" {% static 'css/media.css' %}">
-
+    <link rel="stylesheet" href=" {% static 'css/toastify/toastify.css' %}">
     {% block extra_css %}{% endblock  %}
 
 </head>
@@ -61,6 +61,7 @@
                                     </form><!-- /.form-search -->
                                 </div><!-- /.top-search -->
                             </div><!-- /.col-md-6 -->
+                            {% if user.is_authenticated %}
                             <div class="col-12 col-md-6 d-flex justify-content-center justify-content-xl-start col-xl-2 order-3 order-md-2 order-xl-3">
 
                                 <div class="box-cart">
@@ -71,9 +72,6 @@
                                                 <a href="#" title="">
                                                     <i class="fa-regular fa-heart"></i>
                                                 </a>
-                                            </li>
-
-
                                             </li>
                                             <li class="wishlist">
                                                 <a href="#" title="">
@@ -89,15 +87,14 @@
                                                             مندی ها</a></li>
                                                         <li><a href=""> <i class="fa-solid fa-magnifying-glass"></i>
                                                             پیگیری خرید </a></li>
-                                                        <li><a href="#"> <i
+                                                        <li><a href="{% url 'account:logout' %}"> <i
                                                                 class="fa-solid fa-arrow-right-to-bracket"> </i> خروج
                                                         </a></li>
 
 
                                                     </ul>
-
-
                                                 </div>
+                                                
                                             </li>
                                         </ul><!-- /.menu-compare-wishlist -->
                                     </div><!-- /.inner-box -->
@@ -114,12 +111,15 @@
                                     </div><!-- /.inner-box -->
                                 </div><!-- /.box-cart -->
                             </div><!-- /.col-md-3 -->
+                            {% else %}
                             <div class="col-6  col-xl-2  d-flex justify-content-center justify-content-xl-start align-items-center my-2  my-md-3 my-md-0 order-2 order-md-3 order-xl-4">
                                 <div class="register-enter font-vazir">
-                                    <a href="signup.html" class="btn btn-light px-2 px-md-3 sign-in font-small-14"> <i
+                                    <a href="{% url 'account:login' %}" class="btn btn-light px-2 px-md-3 sign-in font-small-14"> <i
                                             class="fa-solid fa-arrow-right-to-bracket ps-2 "></i> ثبت نام | ورود </a>
                                 </div>
                             </div>
+                            {%endif%}
+
                         </div><!-- /.row -->
                     </div><!-- /.container -->
                 </div><!-- /.header-middle -->
@@ -2024,8 +2024,56 @@
 <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
 <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/toastify/toastify.js' %}"></script>
 
+<script>
+    // Handle Django messages
+    {% if messages %}
+        {% for message in messages %}
+            Toastify({
+                text: "{{ message }}",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                className: "{{ message.tags }}",
+                stopOnFocus: true,
+            }).showToast();
+        {% endfor %}
+    {% endif %}
 
+    // Handle form errors
+    {% if form.errors %}
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                Toastify({
+                    text: "{{ error }}",
+                    duration: 5000,  // Longer duration for errors
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    className: "error",
+                    stopOnFocus: true,
+                }).showToast();
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    // Handle non-field errors specifically
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            Toastify({
+                text: "{{ error }}",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                className: "error",
+                stopOnFocus: true,
+            }).showToast();
+        {% endfor %}
+    {% endif %}
+</script>
 
 {% block extra_js %}{% endblock  %}
 

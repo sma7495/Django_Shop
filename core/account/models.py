@@ -35,6 +35,7 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_active", True)
+        extra_fields.setdefault("type", UserTypeChoices.SUPERUSER.value)
 
         if extra_fields.get("is_staff") is not True:
             raise ValueError(_("Superuser must have is_staff=True."))
@@ -43,12 +44,12 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 
+class UserTypeChoices(models.IntegerChoices):
+    CUSTOMER = 1, 'Customer'
+    ADMIN = 2, 'Admin'
+    SUPERUSER = 3, 'Super User'
+
 class User(AbstractBaseUser, PermissionsMixin):
-    TYPE_CHOICES = (
-        ('customer', 'Customer'),
-        ('admin', 'Admin'),
-        ('superuser', 'Superuser'),
-    )
     email = models.EmailField(
         verbose_name="email address",
         max_length=255,
@@ -60,10 +61,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    type = models.CharField(
-        max_length=10,
-        choices=TYPE_CHOICES,
-        default='customer',
+    type = models.IntegerField(
+        choices=UserTypeChoices.choices,
+        default=UserTypeChoices.CUSTOMER.value,
         verbose_name='User Type'
     )
     objects = CustomUserManager()

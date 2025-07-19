@@ -11,6 +11,7 @@ class CustomUserAdmin(UserAdmin):
         "email",
         "is_staff",
         "is_active",
+        "type",
     )
     list_filter = (
         "email",
