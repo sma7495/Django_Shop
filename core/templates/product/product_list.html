@@ -1,0 +1,720 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block title %}    <title>صفحه محصولات</title> {% endblock  %}
+
+{% block extra_css %}{% endblock  %}
+
+{% block content %}
+
+<section id="pages" class="shadow-elements my-4 py-2 d-flex align-items-center">
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-12 d-flex align-items-center">
+                <ul class="d-flex font-sans">
+                    <li class="navbar-page"><a href="">خانه</a></li>
+                    <li class="navbar-page"><a href="">فروشگاه</a></li>
+                    <li class="navbar-page"><a href="">گوشی موبایل</a></li>
+                    <li class="navbar-page"><a href="">گوشی سامسونگ</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="products-page">
+    <div class="wrapper">
+        <main class="main-content">
+            <div class="container-xxl main-container">
+                <div class="row">
+                    <!-- products Filters here  -->
+                    <div class="col-12 col-xl-3 sidebar sticky-sidebar pe-2">
+                        <div class="col-2-container border rounded-3 p-3  font-yekan mb-5">
+                            <h5 class="border-bottom pb-3">فیلترها</h5>
+                            <div class="filter-search d-block py-3">
+                                <input type="search " placeholder="نام محصول یا برند مورد نظر را بنویسید... "
+                                       class="font-14 font-vazir w-100 p-2">
+                                <div class=" btn-search bg-primary btn-filter-search "><i
+                                        class="fa-solid fa-magnifying-glass"></i></div>
+                            </div>
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="filter-color">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#filter-color-content"
+                                                aria-expanded="false" aria-controls="filter-color-content">
+                                            رنگ
+                                        </button>
+                                    </h2>
+                                    <div id="filter-color-content" class="accordion-collapse collapse"
+                                         aria-labelledby="filter-color" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="product-color   d-flex justify-content-center">
+                                                <span class="rounded-circle col-auto gray"
+                                                      onclick="selectCircle(this, 'خاکستری')">  <span class="checkmark">✔</span>  </span>
+                                                <span class="rounded-circle col-auto yellow"
+                                                      onclick="selectCircle(this, 'زرد')">  <span
+                                                        class="checkmark">✔</span>  </span>
+                                                <span class="rounded-circle col-auto purple"
+                                                      onclick="selectCircle(this, 'بنفش')">  <span
+                                                        class="checkmark">✔</span>  </span>
+                                                <span class="rounded-circle col-auto  black"
+                                                      onclick="selectCircle(this, 'مشکی')">  <span
+                                                        class="checkmark">✔</span>  </span>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            محدوده قیمت
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                         aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+
+                                            <div class="d-flex">
+                                                <div class="wrapper">
+                                                    <div class="price-input">
+                                                        <div class="field">
+                                                            <input type="number" class="input-max" value="100000000">
+                                                            <span class="font-14">تومان</span>
+                                                        </div>
+
+                                                        <div class="separator text-center w-100 ">تا</div>
+                                                        <div class="field">
+                                                            <input type="number" class="input-min" value="100000">
+                                                            <span class="font-14">تومان</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slider">
+                                                        <div class="progress"></div>
+                                                    </div>
+                                                    <div class="range-input">
+                                                        <input type="range" class="range-min" min="100000"
+                                                               max="10000000" value="100000" step="100000">
+                                                        <input type="range" class="range-max" min="1000000"
+                                                               max="100000000" value="100000000" step="100000">
+                                                        <div class="price-sort d-flex justify-content-between ">
+                                                            <span class="font-14">گران ترین</span>
+                                                            <span class="font-14">ارزانترین</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!--   Support Section -->
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingThree">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                                aria-expanded="false" aria-controls="flush-collapseThree">
+                                            برند
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                         aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <input type="search" placeholder="جستجوی برند" class="rounded-3">
+
+                                            <div class="summary font-vazir">
+
+                                                            <span>
+                                                     <ul class="mt-3 ps-0">
+                                                        <li class="mt-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                       id="brand1">
+                                                                <label class="form-check-label d-flex justify-content-between"
+                                                                       for="brand1">
+                                                                    <span>اپل</span><span>Apple</span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        <li class="mt-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                       id="brand2">
+                                                                <label class="form-check-label d-flex justify-content-between"
+                                                                       for="brand2">
+                                                                    <span>سامسونگ</span><span>Samsung</span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        <li class="mt-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                       id="brand3">
+                                                                <label class="form-check-label d-flex justify-content-between"
+                                                                       for="brand3">
+                                                                    <span>هوآوی</span><span>Huawei</span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        <li class="mt-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                       id="brand4">
+                                                                <label class="form-check-label d-flex justify-content-between"
+                                                                       for="brand4">
+                                                                    <span>شیائومی</span><span>xiaomi</span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        <li class="mt-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                       id="brand5">
+                                                                <label class="form-check-label d-flex justify-content-between"
+                                                                       for="brand5">
+                                                                    <span>ایسوس</span><span>Asus</span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        <li class="mt-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                       id="brand6">
+                                                                <label class="form-check-label d-flex justify-content-between"
+                                                                       for="brand6">
+                                                                    <span>گوگل</span><span>Google</span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+
+                                                    </ul>
+                                                            </span>
+                                                <span class="moreText" id="moreText6">
+                                                        <ul class="mt-3 ps-0">
+                                                           <li class="mt-3">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               value=""
+                                                                               id="brand7">
+                                                                        <label class="form-check-label d-flex justify-content-between"
+                                                                               for="brand7">
+                                                                            <span>جی پلاس</span><span>Gplus</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                           <li class="mt-3">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               value=""
+                                                                               id="brand8">
+                                                                        <label class="form-check-label d-flex justify-content-between"
+                                                                               for="brand8">
+                                                                            <span>نوکیا</span><span>Nokia</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                           <li class="mt-3">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               value=""
+                                                                               id="brand9">
+                                                                        <label class="form-check-label d-flex justify-content-between"
+                                                                               for="brand9">
+                                                                            <span>ال جی</span><span>LG</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                           <li class="mt-3">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               value=""
+                                                                               id="brand10">
+                                                                        <label class="form-check-label d-flex justify-content-between"
+                                                                               for="brand10">
+                                                                            <span>موتورولا</span><span>motorola</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                           <li class="mt-3">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                               value=""
+                                                                               id="brand11">
+                                                                        <label class="form-check-label d-flex justify-content-between"
+                                                                               for="brand11">
+                                                                            <span>سونی</span><span>Sony</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                           <li class="mt-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                       id="brand12">
+                                                                <label class="form-check-label d-flex justify-content-between"
+                                                                       for="brand12">
+                                                                    <span>ریل می</span><span>realme</span>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        </ul>
+
+                                                                <div class="close-button link" onclick="toggleText(6)">بستن</div>
+                                                   </span>
+                                                <div class="show-more border rounded p-1 text-center text-color"
+                                                     onclick="showMore(6)">مشاهده همه<i class="fa fa-angle-down ps-2"
+                                                                                        aria-hidden="true"></i></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="radio-filter  border-top py-3">
+                                <div class="form-check form-switch ps-3 d-flex justify-content-between">
+                                    <span class="radio-filter-text font-16">فقط کالاهای موجود</span>
+                                    <input class="form-check-input ps-3" type="checkbox" id="flexSwitchCheckDefault">
+
+                                </div>
+                            </div>
+                            <div class="radio-filter  border-top py-3">
+                                <div class="form-check form-switch ps-3 d-flex justify-content-between">
+                                    <span class="radio-filter-text font-16">ارسال امروز</span>
+                                    <input class="form-check-input ps-3" type="checkbox" id="flexSwitchCheckone">
+
+                                </div>
+                            </div>
+                            <div class="accordion accordion-flush border-top " id="filter-7-flush ">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="filter-7">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#filter-7-content"
+                                                aria-expanded="false" aria-controls="filter-7-content">
+                                            شبکه های ارتباطی
+                                        </button>
+                                    </h2>
+                                    <div id="filter-7-content" class="accordion-collapse collapse"
+                                         aria-labelledby="filter-7" data-bs-parent="#filter-7-flush">
+                                        <div class="accordion-body">
+
+                                            <ul class="mt-3 ps-0">
+                                                <li class="mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="brand13">
+                                                        <label class="form-check-label" for="brand13">
+                                                            <span>2G</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="brand14">
+                                                        <label class="form-check-label " for="brand14">
+                                                            <span>3G</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="brand15">
+                                                        <label class="form-check-label" for="brand15">
+                                                            <span>4G</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="brand16">
+                                                        <label class="form-check-label " for="brand16">
+                                                            <span>5G</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="filter-8">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#filter-8-content"
+                                                aria-expanded="false" aria-controls="filter-8-content">
+                                            میزان RAM
+                                        </button>
+                                    </h2>
+                                    <div id="filter-8-content" class="accordion-collapse collapse"
+                                         aria-labelledby="filter-8" data-bs-parent="#filter-8-flush">
+                                        <div class="accordion-body">
+
+                                            <ul class="mt-3 ps-0">
+                                                <li class="mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="brand17">
+                                                        <label class="form-check-label" for="brand17">
+                                                            <span>4 گیگابایت</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="brand18">
+                                                        <label class="form-check-label " for="brand18">
+                                                            <span>6 گیگابایت</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="brand19">
+                                                        <label class="form-check-label" for="brand19">
+                                                            <span>8 گیگابایت</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="brand20">
+                                                        <label class="form-check-label " for="brand20">
+                                                            <span>12 گیگابایت</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li class="mt-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                               id="brand21">
+                                                        <label class="form-check-label " for="brand21">
+                                                            <span>16 گیگابایت</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- products items here  -->
+                    <div class="col-12 col-xl-9 ">
+
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center gap-2 gap-lg-4 my-5 font-vazir font-small-12" id="pagination">
+                                <!-- Pagination will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="product-col ps-2">
+                            <div class="row border-bottom my-3 mx-2 font-vazir">
+                                <div class="col-12">
+                                    <div class="comment-filter d-none d-lg-flex">
+                                        <i class="fa-solid fa-arrow-down-wide-short me-2"
+                                           style="line-height: 30px;"></i> <span>مرتب سازی:</span>
+                                        <ul class="d-flex gap-3 " id="filterMenu">
+                                            <li><a href="#">پربازدیدترین</a></li>
+                                            <li><a href="#">جدیدترین</a></li>
+                                            <li><a href="#">پرفروش ترین</a></li>
+                                            <li><a href="#">ارزان ترین</a></li>
+                                            <li><a href="#">گران ترین</a></li>
+
+                                        </ul>
+                                    </div>
+                                    <div id="myModal" class="modal-filter">
+                                        <div class="modal-content-filter">
+                                            <span class="close">&times;</span>
+                                            <span class="m-2">مرتب سازی بر اساس :</span>
+                                            <ul class="modal-list mt-2">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <button id="openModal" class="d-block d-lg-none my-4 btn btn-light ">مرتب سازی <i
+                                            class="fa-solid fa-arrow-down-wide-short me-2"
+                                            style="line-height: 30px;"></i></button>
+
+                                </div>
+                            </div>
+                            <div id="productsContainer" class="row font-sans">
+                                 <!-- products loads here  -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center gap-2 gap-lg-4 my-5 font-vazir font-small-12" id="pagination">
+                                <!-- Pagination will be loaded here -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</section>
+
+{% endblock  %}
+
+{% block extra_js %}
+
+<script src="{% static 'plugins/ResizeSensor.min.js' %}"></script>
+<script src="{% static 'plugins/theia-sticky-sidebar.min.js'%}"></script>
+<script src="{% static 'js/product-page.js' %}"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        const apiUrl = '/products/api/v1/list/';
+        let currentPage = 1;
+        const productsPerPage =10;
+        let currentSearch = '';
+        let currentSort = 'newest';
+        
+        // Initial load
+        loadProducts();
+        
+        // Search handler
+        $('#searchBtn').click(function() {
+            currentSearch = $('#searchInput').val();
+            currentPage = 1;
+            loadProducts();
+        });
+        
+        // Sort handler
+        $('#sortSelect').change(function() {
+            currentSort = $(this).val();
+            currentPage = 1;
+            loadProducts();
+        });
+        
+        // Load products from API
+        function loadProducts() {
+            showLoading();
+            
+            let params = {
+                page: currentPage,
+                page_size: productsPerPage
+            };
+            
+            // Add search parameter if exists
+            if (currentSearch) {
+                params.search = currentSearch;
+            }
+            
+            // Add sorting
+            switch(currentSort) {
+                case 'price_asc':
+                    params.ordering = 'price';
+                    break;
+                case 'price_desc':
+                    params.ordering = '-price';
+                    break;
+                case 'discount':
+                    params.ordering = '-discount_percent';
+                    break;
+                default:
+                    params.ordering = '-created_date';
+            }
+            
+            $.ajax({
+                url: apiUrl,
+                method: 'GET',
+                data: params,
+                success: function(response) {
+                    renderProducts(response.results);
+                    renderPagination(response.count);
+                    hideLoading();
+                },
+                error: function(xhr) {
+                    console.error('Error loading products');
+                    $('#productsContainer').html(`
+                        <div class="col-12 text-center py-5">
+                            <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
+                            <h4>Error loading products. Please try again.</h4>
+                        </div>
+                    `);
+                    hideLoading();
+                }
+            });
+        }
+        
+        // Render products
+        function renderProducts(products) {
+            const container = $('#productsContainer');
+            container.empty();
+            
+            if (products.length === 0) {
+                container.html(`
+                                <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 my-3 product-single-card-box ">
+                                هیچ محصولی یافت نشد
+                                </div>
+
+                `);
+                return;
+            }
+            
+            products.forEach(product => {
+                const hasDiscount = product.discount_percent > 0;
+                const discountedPrice = hasDiscount ? product.discounted_price : product.price;
+                
+                const productCard = `
+                                <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 my-3 product-single-card-box ">
+                                    <div class="product-single-card d-flex flex-column align-items-center">
+                                        <div class="product-top-area d-flex ">
+                                            <span class="ribbon ribbon-product">30%</span>
+
+                                            <div class="product-img d-flex flex-column justify-content-center ">
+                                                <div class="first-view d-flex align-items-center">
+                                                    <img src="${product.image_url || '/static/images/default-product.png'}" alt="${product.title_en}" class="img-fluid"
+                                                         onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                                </div>
+                                                <div class="hover-view d-flex align-items-center justify-content-center">
+                                                    <img src="${product.image_url}" alt="logo" class="img-fluid"
+                                                         onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                                </div>
+                                            </div>
+                                            <div class="sideicons">
+
+                                                <a href="product-details.html" class="sideicons-btn">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <button class="sideicons-btn">
+                                                    <i class="fa-solid fa-heart"></i>
+                                                </button>
+                                                <button class="sideicons-btn">
+                                                    <i class="fa-solid fa-shuffle"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="product-info ">
+
+                                            <h6 class="product-title text-color"><a href="#"> ${product.title_fa} </a></h6>
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <div class="review-star me-1">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-regular fa-star-half-stroke"></i>
+                                                    <i class="fa-regular fa-star"></i>
+                                                </div>
+
+                                                <span class="review-count">(3.5)</span>
+                                            </div>
+                                            <div class="d-flex flex-wrap flex-column justify-content-center align-items-center py-2">
+                                            ${hasDiscount ? `
+                                                <div class="old-price price">
+                                                ${product.price}
+                                                </div>
+                                                <div class="new-price price">${product.discounted_price}</div>
+                                            ` 
+                                            : `<div class="new-price price">${product.price}</div>`}
+
+                                                
+
+                                            </div>
+                                        </div>
+                                        <button class="sideicons-btn btn btn-primary btn-card">
+                                            <i class="fa-solid fa-cart-plus"></i>
+                                            افزودن به سبد
+                                        </button>
+                                    </div>
+                                </div>
+
+                `;
+                
+                container.append(productCard);
+            });
+        }
+        
+        // Render pagination
+        function renderPagination(totalItems) {
+            const pagination = $('#pagination');
+            pagination.empty();
+            
+            const totalPages = Math.ceil(totalItems / productsPerPage);
+            
+            if (totalPages <= 1) return;
+            
+            // Previous button
+            if (currentPage !== 1){
+                pagination.append(`
+                <a href="#" class="page-number p-1 px-2 p-md-2 px-md-3 border " data-page="${currentPage - 1}">
+                <i class="fa-solid fa-angles-right"></i></a>
+                `);
+
+            }
+            
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                pagination.append(`
+                    <a href="#" class="page-number ${i === currentPage ? 'active-page' : ''} p-1 px-2 p-md-2 px-md-3 border " data-page="${i}">${i}</a>
+                `);
+            }
+            
+            // Next button
+            if (currentPage !== totalPages){
+                pagination.append(`
+                <a href="#" class="page-number p-1 px-2 p-md-2 px-md-3 border " data-page="${currentPage + 1}">
+                <i class="fa-solid fa-angles-left"></i></a>
+                `);
+
+            }
+
+            
+            // Add click handlers
+            $('.page-number').click(function(e) {
+                e.preventDefault();
+                const page = $(this).data('page');
+                if (page && page !== currentPage) {
+                    currentPage = page;
+                    loadProducts();
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
+                }
+            });
+        }
+        
+        // Loading state
+        function showLoading() {
+            $('#loadingSpinner').show();
+        }
+        
+        function hideLoading() {
+            $('#loadingSpinner').hide();
+        }
+    });
+    </script>
+
+{% endblock  %}
+
+
+
+

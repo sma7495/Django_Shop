@@ -14,14 +14,26 @@ User = get_user_model()
 class PersianProvider(BaseProvider):
     def persian_word(self):
         persian_words = [
-            "الکترونیک", "لباس", "کتاب", "خانه", "باغ", 
-            "ورزشی", "زیبایی", "اسباب‌بازی", "غذا", "مبلمان",
-            "جواهرات", "کامپیوتر", "موبایل", "تلویزیون", "یخچال"
+            "گجت", "ابزار", "وسیله", "دستگاه", "محصول",
+            "کالا", "آیتم", "شیء", "ماده", "چیز",
+            "مصنوعات", "ساخته", "تولید", "صنعتی", "مصرفی"
         ]
         return self.random_element(persian_words)
+    
+    def persian_sentence(self):
+        words = [
+            "این", "یک", "محصول", "است", "که", "می‌تواند", "مورد", "استفاده", "قرار", "گیرد",
+            "برای", "مصارف", "مختلف", "در", "زندگی", "روزمره", "کاربرد", "دارد", "و", "می‌توان",
+            "از", "آن", "به", "عنوان", "وسیله‌ای", "کارآمد", "استفاده", "کرد", "این", "محصول",
+            "دارای", "ویژگی‌های", "مختلفی", "است", "که", "آن", "را", "از", "سایر", "محصولات",
+            "متمایز", "می‌کند", "کیفیت", "بالا", "و", "قیمت", "مناسب", "از", "مزایای", "این",
+            "محصول", "به", "شمار", "می‌رود"
+        ]
+        sentence = ' '.join([self.random_element(words) for _ in range(random.randint(5, 15))])
+        return sentence + "."
 
 class Command(BaseCommand):
-    help = 'Generates fake products with images from local folder'
+    help = 'Generates fake Persian products with images from local folder'
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -38,7 +50,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        fake = Faker()
+        fake = Faker('fa_IR')  # Use Persian locale
         fake.add_provider(PersianProvider)
         Faker.seed(0)  # For consistent results
 
@@ -75,34 +87,29 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f'No images found in folder: {image_dir}'))
             return
 
-        # English-Persian product name pairs
-        product_pairs = [
-            ("Smartphone", "تلفن همراه هوشمند"),
-            ("Laptop", "لپ تاپ"),
-            ("T-Shirt", "تی شرت"),
-            ("Book", "کتاب"),
-            ("Watch", "ساعت"),
-            ("Headphones", "هدفون"),
-            ("Shoes", "کفش"),
-            ("Backpack", "کوله پشتی"),
-            ("Camera", "دوربین"),
-            ("Tablet", "تبلت")
+        # Persian product name prefixes
+        product_prefixes = [
+            "گجت", "دستگاه", "وسیله", "کالای", "محصول", "ابزار", "ماشین", "سیستم", "جعبه", "کیف"
+        ]
+        
+        product_suffixes = [
+            "دیجیتال", "هوشمند", "پیشرفته", "مخصوص", "حرفه‌ای", "ارزان", "لوکس", "جدید", "قدیمی", "دست‌دوم"
         ]
 
         for i in range(count):
-            # Get or create a pair (cycling through the list if count > 10)
-            title_en, title_fa = product_pairs[i % len(product_pairs)]
-
-            # Generate random product data
+            # Generate random Persian product name
+            title_fa = f"{fake.random_element(product_prefixes)} {fake.random_element(product_suffixes)} {fake.random_int(100, 999)}"
+            
+            # Generate meaningless but Persian-like data
             product_data = {
                 'user': user,
-                'title_en': f"{title_en} {fake.word().capitalize()}",
-                'title_fa': f"{title_fa} {fake.persian_word()}",
-                'description': fake.paragraph(nb_sentences=5),
-                'brief_description': fake.sentence(nb_words=10),
+                'title_en': f"Product {fake.random_int(1000, 9999)}",  # Simple English title
+                'title_fa': title_fa,
+                'description': fake.persian_sentence() * 5,  # Repeat sentence to make paragraph
+                'brief_description': fake.persian_sentence(),
                 'stock': random.randint(0, 100),
-                'price': Decimal(random.randint(10000, 1000000)),  # Assuming IRR currency
-                'discount_percent': random.choice([0, 0, 0, 5, 10, 15]),  # Mostly no discount
+                'price': Decimal(random.randint(100000, 5000000)),  # Assuming IRR currency
+                'discount_percent': random.choice([0, 0, 0, 5, 10]),  # Mostly no discount
                 'status': random.choice(['draft', 'published'])
             }
 
@@ -126,12 +133,12 @@ class Command(BaseCommand):
                 product.category.add(*random.sample(list(categories), num_categories))
 
                 created_count += 1
-                self.stdout.write(f"Created product: {product.title_en} with image {random_image}")
+                self.stdout.write(f"Created product: {product.title_fa}")
             except Exception as e:
                 self.stdout.write(self.style.ERROR(f'Error creating product: {e}'))
                 if 'product' in locals() and product.pk:
                     product.delete()  # Clean up if product was created but image failed
 
         self.stdout.write(
-            self.style.SUCCESS(f'Successfully created {created_count}/{count} fake products with images from {image_dir}.')
+            self.style.SUCCESS(f'Successfully created {created_count} Persian products with images from {image_dir}.')
         )
