@@ -1,4 +1,9 @@
-
+function formatPrice(price) {
+    // Convert price to number in case it's a string
+    const num = Number(price);
+    // Format with comma separators for thousands
+    return num.toLocaleString('fa-IR') + " " +  "تومان";
+}
 
 $(document).ready(function() {
     const apiUrl = '/products/api/v1/list/';
@@ -9,7 +14,6 @@ $(document).ready(function() {
     
     // Initial load
     loadProducts();
-    
     // Search handler
     $('#searchBtn').click(function() {
         currentSearch = $('#searchInput').val();
@@ -104,7 +108,7 @@ $(document).ready(function() {
                             <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 my-3 product-single-card-box ">
                                 <div class="product-single-card d-flex flex-column align-items-center">
                                     <div class="product-top-area d-flex ">
-                                        <span class="ribbon ribbon-product">30%</span>
+                                        <span class="ribbon ribbon-product">${product.discount_percent}%</span>
 
                                         <div class="product-img d-flex flex-column justify-content-center ">
                                             <div class="first-view d-flex align-items-center">
@@ -146,11 +150,11 @@ $(document).ready(function() {
                                         <div class="d-flex flex-wrap flex-column justify-content-center align-items-center py-2">
                                         ${hasDiscount ? `
                                             <div class="old-price price">
-                                            ${product.price}
+                                            ${formatPrice(product.price)}
                                             </div>
-                                            <div class="new-price price">${product.discounted_price}</div>
+                                            <div class="new-price price">${formatPrice(product.discounted_price)}</div>
                                         ` 
-                                        : `<div class="new-price price">${product.price}</div>`}
+                                        : `<div class="new-price price">${formatPrice(product.price)}</div>`}
 
                                             
 
@@ -181,23 +185,34 @@ $(document).ready(function() {
         // Previous button
         if (currentPage !== 1){
             pagination.append(`
-            <a href="#" class="page-number p-1 px-2 p-md-2 px-md-3 border " data-page="${currentPage - 1}">
+            <a class="page-number p-1 px-2 p-md-2 px-md-3 border " data-page="${currentPage - 1}">
             <i class="fa-solid fa-angles-right"></i></a>
             `);
 
         }
-        
-        // Page numbers
-        for (let i = 1; i <= totalPages; i++) {
+
+        if(currentPage - 3 > 1){
             pagination.append(`
-                <a href="#" class="page-number ${i === currentPage ? 'active-page' : ''} p-1 px-2 p-md-2 px-md-3 border " data-page="${i}">${i}</a>
-            `);
+            <a class="page-number p-1 px-2 p-md-2 px-md-3 border "> ... </a>
+            `);    
         }
         
+        // Page numbers
+        for (let i = Math.max(currentPage - 3, 1); i <= Math.min(currentPage + 3, totalPages); i++) {
+            pagination.append(`
+                <a class="page-number ${i === currentPage ? 'active-page' : ''} p-1 px-2 p-md-2 px-md-3 border " data-page="${i}">${i}</a>
+            `);
+        }
+        if (currentPage+5 < totalPages){
+            pagination.append(`
+            <a class="page-number p-1 px-2 p-md-2 px-md-3 border "> ... </a>
+            `);
+
+        }
         // Next button
         if (currentPage !== totalPages){
             pagination.append(`
-            <a href="#" class="page-number p-1 px-2 p-md-2 px-md-3 border " data-page="${currentPage + 1}">
+            <a class="page-number p-1 px-2 p-md-2 px-md-3 border " data-page="${currentPage + 1}">
             <i class="fa-solid fa-angles-left"></i></a>
             `);
 

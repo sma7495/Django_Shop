@@ -108,7 +108,7 @@ class Command(BaseCommand):
                 'description': fake.persian_sentence() * 5,  # Repeat sentence to make paragraph
                 'brief_description': fake.persian_sentence(),
                 'stock': random.randint(0, 100),
-                'price': Decimal(random.randint(100000, 5000000)),  # Assuming IRR currency
+                'price': Decimal(random.randint(2500 , 100000) * 100),  # Assuming IRR currency
                 'discount_percent': random.choice([0, 0, 0, 5, 10]),  # Mostly no discount
                 'status': random.choice(['draft', 'published'])
             }

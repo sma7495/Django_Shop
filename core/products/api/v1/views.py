@@ -7,7 +7,7 @@ from ...models import Product
 
 
 class ProductListAPIView(ListAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.objects.filter(status = 'published')
     serializer_class = ProductSerializer
     pagination_class = ProductPagination
     filter_backends = [filters.OrderingFilter]  # Enable ordering

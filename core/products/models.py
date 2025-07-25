@@ -70,8 +70,7 @@ class Product(models.Model):
     @property
     def discounted_price(self):
         """Calculate and return the discounted price"""
-        return 100
-        #return int(self.price * (1 - self.discount_percent / 100))
+        return self.price - self.price * self.discount_percent / 100
 
 
 def product_image_slug_upload_path(instance, filename):

@@ -11,7 +11,6 @@ User = get_user_model()
 class ProductCategorySerializer(serializers.ModelSerializer):
     # Add any computed fields if needed
     full_title = serializers.SerializerMethodField()
-    
     # For the image URL if you add image field later
     # image_url = serializers.SerializerMethodField()
     
@@ -43,7 +42,7 @@ class ProductCategorySerializer(serializers.ModelSerializer):
     def get_full_title(self, obj):
         """Returns both English and Persian titles together"""
         return f"{obj.title_en} / {obj.title_fa}"
-
+    
     # Uncomment if you add image field to the model later
     # def get_image_url(self, obj):
     #     """Return absolute URL for the category image"""
