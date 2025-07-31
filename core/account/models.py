@@ -1,4 +1,6 @@
 from django.db import models
+import random
+import string
 from django.contrib.auth.models import (
     BaseUserManager,
     AbstractBaseUser,
@@ -42,7 +44,35 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(_("Superuser must have is_superuser=True."))
         return self.create_user(email, password, **extra_fields)
-
+    
+    
+    def make_random_password(self, length=12):
+        """
+        Generates a random password with the specified length.
+        Contains at least one uppercase, one lowercase, one digit and one special character.
+        """
+        # Define character sets
+        lowercase = string.ascii_lowercase
+        uppercase = string.ascii_uppercase
+        digits = string.digits
+        special = '!@#$%^&*()_+-=[]{}|;:,.<>?'
+        
+        # Ensure at least one character from each set
+        password = [
+            random.choice(lowercase),
+            random.choice(uppercase),
+            random.choice(digits),
+            random.choice(special)
+        ]
+        
+        # Fill remaining length with random choices from all sets
+        all_chars = lowercase + uppercase + digits + special
+        password.extend(random.choice(all_chars) for _ in range(length - 4))
+        
+        # Shuffle the list to avoid predictable patterns
+        random.shuffle(password)
+        
+        return ''.join(password)
 
 class UserTypeChoices(models.IntegerChoices):
     CUSTOMER = 1, 'Customer'

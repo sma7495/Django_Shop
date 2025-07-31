@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     "django_extensions",
     'django_cleanup.apps.CleanupConfig',
     'rest_framework',
+    'drf_spectacular',
+    "drf_spectacular_sidecar",
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt",
+    "mail_templated",
     
     "account",
     "website",
@@ -167,3 +172,27 @@ SEND_CONTACT_EMAILS = config("SEND_CONTACT_EMAILS", cast = bool, default = True)
 # Custom User Model settings:
 AUTH_USER_MODEL = "account.User"
 LOGIN_REDIRECT_URL = reverse_lazy("website:home")
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    # Documentation
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# API Documentation:
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Django_Shop",
+    "DESCRIPTION": "This is a simple Django shop",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_DIST": "SIDECAR",  # shorthand to use the sidecar instead
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    "REDOC_DIST": "SIDECAR",
+}
+
