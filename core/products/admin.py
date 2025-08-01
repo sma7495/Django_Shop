@@ -7,6 +7,7 @@ from .models import Product, ProductImage, ProductCategory
 class ProductAdmin(admin.ModelAdmin):
     # Fields displayed in the admin list view
     list_display = [
+        'id',
         'title_en',
         'title_fa',
         'user',

@@ -90,11 +90,15 @@ class ProductSerializer(serializers.ModelSerializer):
     
     # Nested serializers for related fields
     #user = UserSerializer(read_only=True)
-    category = ProductCategorySerializer(many=True, read_only=True)
+    #category = ProductCategorySerializer(many=True, read_only=True)
     
     # Custom field for image URL
     image_url = serializers.SerializerMethodField()
-    
+    user = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        # Optional: specify how users should be displayed
+        label='Select User'
+    )
     class Meta:
         model = Product
         fields = [
@@ -123,10 +127,21 @@ class ProductSerializer(serializers.ModelSerializer):
             'updated_date',
             'discounted_price',
             'image_url',
+            
         ]
         extra_kwargs = {
             'image': {'write_only': True},  # Only used for uploads, not in responses
+            'user' : {'read_only': True}, 
         }
+        
+    def get_fields(self):
+        fields = super().get_fields()
+        request = self.context.get('request')
+        
+        if request and request.method in ['PUT', 'PATCH']:
+            if request.user and (request.user.is_staff or request.user.is_superuser):
+                fields['user'].read_only = False
+        return fields
 
     def get_discounted_price(self, obj):
         """Serialize the discounted_price property"""

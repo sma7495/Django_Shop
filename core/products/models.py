@@ -3,10 +3,13 @@ from django.utils.text import slugify
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+import uuid
 
-from .validators import validate_english, validate_persian  # Import validators
+from .validators import validate_english, validate_persian, validate_positive_price # Import validators
 
 User = get_user_model()
+
+# Product model ............................
 
 def product_image_upload_path(instance, filename):
     """Upload images to: /media/products/<slug>/<filename>"""
@@ -17,6 +20,7 @@ def validate_discount_percent(value):
         raise ValidationError("Discount percentage cannot exceed 100%.")
     if value < 0:
         raise ValidationError("Discount percentage cannot be negative.")
+
 class Product(models.Model):
     # Status Choices
     STATUS_CHOICES = [
@@ -39,7 +43,7 @@ class Product(models.Model):
     description = models.TextField()
     brief_description = models.TextField()  # Fixed typo from "brif_description"
     stock = models.PositiveIntegerField(default=0)
-    price = models.DecimalField(max_digits=10, decimal_places=0)
+    price = models.DecimalField(max_digits=10, decimal_places=0, validators=[validate_positive_price])
     discount_percent = models.PositiveIntegerField(
         default=0,
         validators=[validate_discount_percent]
@@ -64,13 +68,14 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             # Create slug from English title if not provided
-            self.slug = slugify(self.title_en)
+            self.slug = slugify(self.title_en) + '-' + str(uuid.uuid4())[:100] 
         super().save(*args, **kwargs)
 
     @property
     def discounted_price(self):
         """Calculate and return the discounted price"""
         return self.price - self.price * self.discount_percent / 100
+
 
 
 def product_image_slug_upload_path(instance, filename):
@@ -97,6 +102,8 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.product.title_en} (ID: {self.id})"
+
+
 
 
 class ProductCategory(models.Model):
