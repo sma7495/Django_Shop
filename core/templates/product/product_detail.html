@@ -1,0 +1,1420 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block title %}    <title>صفحه محصولات</title> {% endblock  %}
+
+{% block extra_css %}{% endblock  %}
+
+{% block content %}
+<section id="product-details" class="my-4" data-product-id="{{pk}}" data-api-url="{% url 'products:api:detail' pk=0 %}">
+
+    <div class="container-xxl px-md-4">
+
+        <!--  product specifications................... -->
+        <div class="row">
+            <!-- product detail from detail.js come here....... -->
+            <div class="col-12 col-lg-4  gallery-box">
+                <div class="row guid-line d-flex flex-row justify-content-center  gap-3 ">
+                    <div class="col-auto " data-toggle="tooltip" data-placement="right" title="اضافه به علاقه مندی">
+                        <a href="#"><i class="fa-regular fa-heart"></i></a></div>
+                    <div class="col-auto" data-toggle="tooltip" data-placement="left" title="به اشتراک گذاری کالا">
+                        <a href="#"><i class="fa-solid fa-share-nodes"></i></a></div>
+                    <div class="col-auto" data-toggle="tooltip" data-placement="left"
+                         title="اطلاع رسانی شگفت انگیز"><a href="#"><i class="fa-regular fa-bell"></i></a></div>
+                    <div class="col-auto" data-toggle="tooltip" data-placement="left" title="نمودار قیمت"><a
+                            href="#"><i class="fa-solid fa-chart-line"></i></a></div>
+                    <div class="col-auto" data-toggle="tooltip" data-placement="left" title="مقایسه کالا"><a
+                            href="#"><i class="fa-solid fa-code-compare"></i></a></div>
+                    <div class="col-auto" data-toggle="tooltip" data-placement="left" title="افزودن به لیست"><a
+                            href="#"><i class="fa-solid fa-list"></i></a></div>
+                </div>
+                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+                     class="swiper gallery">
+                    <div id='lens'></div>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung1.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung2.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung3.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung4.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung5.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung6.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung7.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung8.jpg' %}"/>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div thumbsSlider="" class="swiper gallery-thumbs">
+
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung1.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung2.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung3.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung4.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung5.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung6.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung7.jpg' %}"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="{% static 'images/samsung8.jpg' %}"/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-lg-8  font-vazir mt-5">
+                <div class="product-detail-title-box ms-2 ms-md-5">
+                    <div class="row">
+                        <div class="col-12 col-lg-8  pb-3">
+                                <span class="product-main-title">
+                                    <h4>گوشی موبایل سامسونگ مدل Galaxy S24 Ultra</h4>
+                                </span>
+                            <span class="product-detail-title">
+                                    <h6>دو سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت - ویتنام </h6>
+                                </span>
+                            <div class="detail-2 d-flex justify-content-start ">
+                                <div class="product-brand me-5">
+                                    <span>برند:</span><a href="#">سامسونگ</a>
+                                </div>
+                                <div class="product-cat pb-4">
+                                    <span>دسته بندی:</span><a href="#">گوشی موبایل</a>
+                                </div>
+                            </div>
+                            <div class="row border-line">
+
+                                <span class="line"> گوشی موبایل سامسونگ مدل Galaxy S24 Ultra</span></div>
+
+                        </div>
+                        <div class="col-4 d-none d-lg-flex justify-content-center">
+                            <div class="product-logo"><img src="{% static 'images/Samsung_Logo.svg.png' %}"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-xl-8">
+                        <div class="product-rate d-flex ms-lg-5">
+                            <div class="review-star font-small-12 me-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star-half-stroke"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                            <span class="review-count font-small-12">(3.5)</span><span class="mx-2 font-small-12">از 48 نفر </span>
+
+                            <div class="feedback ms-2 ms-md-5">
+                                <a href="#comments ">315 دیدگاه</a>
+                            </div>
+                            <div class="feedback ms-2 ms-md-5">
+                                <a href="#questions ">212 پرسش</a>
+                            </div>
+                        </div>
+                        <div class="like ms-lg-5 my-3">
+                            <span><i class="fa-regular fa-thumbs-up"></i></span><span class="ps-3 font-small-14">۸۶% (۵۹۰ نفر) از خریداران، این کالا را پیشنهاد کرده‌اند</span>
+                        </div>
+                        <div class="product-color ms-lg-5 font-18">
+                            <span>رنگ:</span><span id="colorOutput ps-2" class="color-label"> انتخاب کنید  </span>
+                        </div>
+                        <div class="product-color ms-lg-5  d-flex">
+                                <span class="rounded-circle gray" onclick="selectCircle(this, 'خاکستری')">  <span
+                                        class="checkmark">✔</span>  </span>
+                            <span class="rounded-circle yellow" onclick="selectCircle(this, 'زرد')">  <span
+                                    class="checkmark">✔</span>  </span>
+                            <span class="rounded-circle purple" onclick="selectCircle(this, 'بنفش')">  <span
+                                    class="checkmark">✔</span>  </span>
+                            <span class="rounded-circle  black" onclick="selectCircle(this, 'مشکی')">  <span
+                                    class="checkmark">✔</span>  </span>
+                        </div>
+
+                        <div class="row ms-lg-5 my-3 d-flex flex-lg-column ">
+                            <div class="features-box border-warning font-yekan">
+                                <div class="fw-bold font-20 font-small-16 mb-3">ویژگی ها:</div>
+                                <div class="feature d-flex align-items-center justify-content-start rounded-3 my-2 p-2 ps-4">
+                                    <span class=" feature-title font-small-12">فناوری صفحه‌ نمایش :</span>
+                                    <span class="mx-2 feature font-small-12">Dynamic LTPO AMOLED 2X </span>
+                                </div>
+                                <div class="feature d-flex align-items-center justify-content-start rounded-3 my-2 p-2 ps-4">
+                                    <span class=" feature-title font-small-12">رزولوشن دوربین :</span>
+                                    <span class="mx-2 feature font-small-12">200 مگاپیکسل </span>
+                                </div>
+                                <div class="feature d-flex align-items-center justify-content-start rounded-3 my-2 p-2 ps-4">
+                                    <span class=" feature-title font-small-12">نسخه سیستم عامل :</span>
+                                    <span class="mx-2 feature font-small-12">Android 14 </span>
+                                </div>
+                                <div class="feature d-flex align-items-center justify-content-start rounded-3 my-2 p-2 ps-4">
+                                    <span class=" feature-title font-small-12">اندازه :</span>
+                                    <span class="mx-2 feature font-small-12">6.8 اینچ </span>
+                                </div>
+                                <a href="#feature"
+                                   class="feature feature-title border rounded-3 my-2 p-2 d-flex align-items-center justify-content-center font-small-14">مشاهده
+                                    همه ویژگی ها</a>
+                            </div>
+                            <div class="row my-3  ms-3  rounded-3 insurance">
+                                <div class="col-1 border rounded-3 rounded-end-0 d-flex justify-content-center align-items-center border-end ">
+                                    <input type="checkbox"></div>
+                                <div class="col-11 rounded-3 rounded-start-0 border border-start-0 py-2 ps-4">
+                                    <div class="row d-flex flex-column">
+                                        <div class="col-auto font-small-14"><span>بیمه تجهیزات دیجیتال -بانک دی</span>
+                                        </div>
+                                        <div class="col-auto d-flex justify-content-between">
+                                            <span class="price font-small-14">850,000</span>
+                                            <span><a href="#" class="font-small-13">جزئیات </a></span></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-xl-4">
+                        <div class="row d-flex flex-column border bg-light rounded-3 seller-panel-box justify-content-between justify-content-lg-center">
+                            <div class="col-auto d-none d-xl-flex justify-content-start px-3 py-3"><h4><i
+                                    class="fa-regular fa-circle-check"></i> موجود </h4></div>
+                            <div class="col-auto d-none d-xl-flex justify-content-between px-3  py-2"><h5>
+                                فروشنده</h5><span><a href="#sellers" class="font-14">15 فروشنده دیگر</a></span>
+                            </div>
+                            <div class="col-auto d-none d-xl-flex px-3  py-2"><span class="shop-icon"><i
+                                    class="fa-solid fa-shop me-3 font-18"></i></span><span class="seller-name">گالری دیجی مارکت</span>
+                            </div>
+                            <div class="col-xl-auto col-6 d-flex  gap-2 gap-xl-0 flex-column flex-xl-row justify-content-center  my-xl-3 pt-3 seller-panel-box-counter-price align-items-center justify-content-xl-between">
+                                <div class="counter cart-prd-counter">
+                                        <span class="up" onClick='increaseCount(event, this)'><i
+                                                class="fa-solid fa-circle-plus"></i></span>
+                                    <input type="text" value="1">
+                                    <span class="down" onClick='decreaseCount(event, this)'><i
+                                            class="fa-solid fa-circle-minus"></i></span></div>
+                                <span class="price font-sans font-14">60,100,000</span>
+                            </div>
+
+                            <div class="col-auto d-none d-xl-flex px-2 guarantee py-2"><span><i
+                                    class="fa-solid fa-award font-20"></i></span><span class="ps-3">گارانتی ۱۸ ماهه پایدار پردازش کوشان</span>
+                            </div>
+                            <div class="col-6 col-xl-auto d-flex justify-content-center px-1 guarantee py-3 ">
+                                <button class="sideicons-btn py-2 px-3 px-md-4 btn btn-primary btn-card font-small-14">
+                                    <i
+                                            class="fa-solid fa-cart-plus "></i>افزودن به سبد
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="row my-5 font-vazir border rounded-3 py-4 d-lg-flex">
+            <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+                <div class="how-to-buy"><img src="{% static 'images/instant-post.jpg' %}"></div>
+                <div class="how-to-buy-text mt-3 text-color font-small-10">امکان تحویل اکسپرس</div>
+            </a></div>
+            <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+                <div class="how-to-buy"><img src="{% static 'images/pay.png' %}"></div>
+                <div class="how-to-buy-text mt-3 text-color font-small-10">امکان پرداخت در محل</div>
+            </a></div>
+            <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+                <div class="how-to-buy"><img src="{% static 'images/7-24.jpg' %}"></div>
+                <div class="how-to-buy-text mt-3 text-color font-small-10">7 روز هفته،24 ساعته</div>
+            </a></div>
+            <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+                <div class="how-to-buy"><img src="{% static 'images/return-policy.png' %}"></div>
+                <div class="how-to-buy-text mt-3 text-color font-small-10">هفت روز ضمانت بازگشت کالا</div>
+            </a></div>
+            <div class="col"><a href="#" class="d-flex flex-column align-items-center">
+                <div class="how-to-buy"><img src="{% static 'images/original.png' %}"></div>
+                <div class="how-to-buy-text mt-3 text-color font-small-10">ﺿﻤﺎﻧﺖ اﺻﻞ ﺑﻮدن ﮐﺎﻟﺎ</div>
+            </a></div>
+        </div>
+
+
+        <div class="row d-flex justify-content-center border rounded-3 p-3 my-5">
+            <div class="row my-3 ">
+                <div class="col-auto  h4 font-yekan motion-line">کالاهای مشابه</div>
+            </div>
+            <div class="col-auto ">
+                <div class="col-auto mx-2 mx-md-5 mt-4 mt-xl-0">
+                    <!-- Slider main container -->
+                    <div class="swiper simple-product ">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper  font-sans">
+                            <!-- Slides -->
+                            <div class="swiper-slide">
+                                <div class="product-single-card my-3 d-flex bg-white flex-column align-items-center">
+                                    <div class="product-top-area d-flex ">
+                                        <span class="ribbon ribbon-product">40%</span>
+
+                                        <div class="product-img d-flex flex-column justify-content-center ">
+                                            <div class="first-view d-flex align-items-center">
+                                                <img src="{% static 'images/wch2.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                            <div class="hover-view d-flex align-items-center justify-content-center">
+                                                <img src="{% static 'images/wch2-hover.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                        </div>
+                                        <div class="sideicons">
+
+                                            <a href="product-details.html" class="sideicons-btn">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </button>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-shuffle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="product-info ">
+
+                                        <h6 class="product-title text-color"><a href="#">ساعت هوشمند جی تب مدل
+                                            GTX</a></h6>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="review-star me-1">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+
+                                            <span class="review-count">(3.5)</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap flex-column justify-content-center align-items-center py-2">
+                                            <div class="old-price price">1,860,000</div>
+                                            <div class="new-price price">1,800,000</div>
+
+
+                                        </div>
+                                    </div>
+                                    <button class="sideicons-btn btn btn-primary btn-card">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        افزودن به سبد
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-single-card my-3 d-flex bg-white flex-column align-items-center">
+                                    <div class="product-top-area d-flex ">
+                                        <span class="ribbon ribbon-product">30%</span>
+                                        <div class="product-img d-flex flex-column justify-content-center ">
+                                            <div class="first-view d-flex align-items-center">
+                                                <img src="{% static 'images/product_1.png' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                            <div class="hover-view d-flex align-items-center justify-content-center">
+                                                <img src="{% static 'images/product_1.png' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                        </div>
+                                        <div class="sideicons">
+
+                                            <a href="product-details.html" class="sideicons-btn">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </button>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-shuffle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="product-info ">
+
+                                        <h6 class="product-title text-color"><a href="#">لپ تاپ 15.6 اینچی لنوو مدل
+                                            IdeaPad Slim 3 15IRU8-i3 1305U 8GB 256SSD</a></h6>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="review-star me-1">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+
+                                            <span class="review-count">(3.5)</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap flex-column justify-content-center align-items-center py-2">
+                                            <div class="old-price price">
+                                                28,000,000
+                                            </div>
+                                            <div class="new-price price">
+                                                25,000,000
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <button class="sideicons-btn btn btn-primary btn-card">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        افزودن به سبد
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-single-card my-3 d-flex bg-white flex-column align-items-center">
+                                    <div class="product-top-area d-flex ">
+                                        <span class="ribbon ribbon-product">25%</span>
+
+                                        <div class="product-img d-flex flex-column justify-content-center ">
+                                            <div class="first-view d-flex align-items-center">
+                                                <img src="{% static 'images/wch3.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                            <div class="hover-view d-flex align-items-center justify-content-center">
+                                                <img src="{% static 'images/wch3-hover.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                        </div>
+                                        <div class="sideicons">
+
+                                            <a href="product-details.html" class="sideicons-btn">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </button>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-shuffle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="product-info ">
+
+                                        <h6 class="product-title text-color"><a href="#">ساعت هوشمند مدل اولترا
+                                            T900</a></h6>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="review-star me-1">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+
+                                            <span class="review-count">(3.5)</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap flex-column justify-content-center align-items-center py-2">
+                                            <div class="old-price price"> 250,000</div>
+                                            <div class="new-price price">185,000</div>
+                                        </div>
+                                    </div>
+                                    <button class="sideicons-btn btn btn-primary btn-card">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        افزودن به سبد
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-single-card my-3 d-flex bg-white flex-column align-items-center">
+                                    <div class="product-top-area d-flex ">
+                                        <span class="ribbon ribbon-product">30%</span>
+
+                                        <div class="product-img d-flex flex-column justify-content-center ">
+                                            <div class="first-view d-flex align-items-center">
+                                                <img src="{% static 'images/prd3-honor.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                            <div class="hover-view d-flex align-items-center justify-content-center">
+                                                <img src="{% static 'images/prd3-honor.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                        </div>
+                                        <div class="sideicons">
+
+                                            <a href="product-details.html" class="sideicons-btn">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </button>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-shuffle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="product-info ">
+
+                                        <h6 class="product-title text-color"><a href="#">گوشی موبایل آنر مدل X9b دو
+                                            سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت</a></h6>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="review-star me-1">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+
+                                            <span class="review-count">(3.5)</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap flex-column justify-content-center align-items-center py-2">
+                                            <div class="old-price price"> 28,000,000</div>
+                                            <div class="new-price price">25,000,000</div>
+
+
+                                        </div>
+                                    </div>
+                                    <button class="sideicons-btn btn btn-primary btn-card">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        افزودن به سبد
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-single-card my-3 d-flex bg-white flex-column align-items-center">
+                                    <div class="product-top-area d-flex ">
+                                        <span class="ribbon ribbon-product">30%</span>
+
+                                        <div class="product-img d-flex flex-column justify-content-center ">
+                                            <div class="first-view d-flex align-items-center">
+                                                <img src="{% static 'images/prd3-honor.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                            <div class="hover-view d-flex align-items-center justify-content-center">
+                                                <img src="{% static 'images/prd3-honor.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                        </div>
+                                        <div class="sideicons">
+
+                                            <a href="product-details.html" class="sideicons-btn">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </button>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-shuffle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="product-info ">
+
+                                        <h6 class="product-title text-color"><a href="#">گوشی موبایل آنر مدل X9b دو
+                                            سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت</a></h6>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="review-star me-1">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+
+                                            <span class="review-count">(3.5)</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap flex-column justify-content-center align-items-center py-2">
+                                            <div class="old-price price"> 28,000,000</div>
+                                            <div class="new-price price">25,000,000</div>
+
+
+                                        </div>
+                                    </div>
+                                    <button class="sideicons-btn btn btn-primary btn-card">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        افزودن به سبد
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-single-card my-3 d-flex bg-white flex-column align-items-center">
+                                    <div class="product-top-area d-flex ">
+                                        <span class="ribbon ribbon-product">35%</span>
+
+                                        <div class="product-img d-flex flex-column justify-content-center ">
+                                            <div class="first-view d-flex align-items-center">
+                                                <img src="{% static 'images/headset3.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                            <div class="hover-view d-flex align-items-center justify-content-center">
+                                                <img src="{% static 'images/headset3-hover.webp' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                        </div>
+                                        <div class="sideicons">
+
+                                            <a href="product-details.html" class="sideicons-btn">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </button>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-shuffle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="product-info ">
+
+                                        <h6 class="product-title text-color"><a href="#">هدست بلوتوثی مدل
+                                            BTH-F9-5_ORIG</a></h6>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="review-star me-1">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+
+                                            <span class="review-count">(3.5)</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap flex-column justify-content-center align-items-center py-2">
+                                            <div class="old-price price"> 220,000</div>
+                                            <div class="new-price price">165,000</div>
+
+
+                                        </div>
+                                    </div>
+                                    <button class="sideicons-btn btn btn-primary btn-card">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        افزودن به سبد
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="product-single-card my-3 d-flex bg-white flex-column align-items-center">
+                                    <div class="product-top-area d-flex ">
+                                        <span class="ribbon ribbon-product">30%</span>
+                                        <div class="product-img d-flex flex-column justify-content-center ">
+                                            <div class="first-view d-flex align-items-center">
+                                                <img src="{% static 'images/product_1.png' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                            <div class="hover-view d-flex align-items-center justify-content-center">
+                                                <img src="{% static 'images/product_1.png' %}" alt="logo" class="img-fluid"
+                                                     onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
+                                            </div>
+                                        </div>
+                                        <div class="sideicons">
+
+                                            <a href="product-details.html" class="sideicons-btn">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </button>
+                                            <button class="sideicons-btn">
+                                                <i class="fa-solid fa-shuffle"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="product-info ">
+
+                                        <h6 class="product-title text-color"><a href="#">لپ تاپ 15.6 اینچی لنوو مدل
+                                            IdeaPad Slim 3 15IRU8-i3 1305U 8GB 256SSD</a></h6>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="review-star me-1">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star-half-stroke"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+
+                                            <span class="review-count">(3.5)</span>
+                                        </div>
+                                        <div class="d-flex flex-wrap flex-column justify-content-center align-items-center py-2">
+                                            <div class="old-price price">
+                                                28,000,000
+                                            </div>
+                                            <div class="new-price price">
+                                                25,000,000
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <button class="sideicons-btn btn btn-primary btn-card">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        افزودن به سبد
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row border rounded-3 p-3">
+            <div class="row my-3  ">
+                <div class="col-auto  h4 font-small-16 font-yekan motion-line">ویدیو های معرفی کالا</div>
+            </div>
+            <div class="col-auto video-box font-yekan">
+                <div class="swiper video-frame pb-5 mt-3">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide swiper-video" type="button" data-bs-toggle="modal"
+                             data-bs-target="#exampleModal"><span class="video-introduction"><img
+                                class="video-thumb" src="{% static 'images/s24-int2.jpg' %}" alt="preview4"
+                                data-video="{% static 'images/s24-1.mp4' %}"/></span><span class="btn-play"><img
+                                src="{% static 'images/play-button.png' %}"></span></div>
+                        <div class="swiper-slide swiper-video" type="button" data-bs-toggle="modal"
+                             data-bs-target="#exampleModal"><span class="video-introduction"><img
+                                class="video-thumb" src="{% static 'images/s24-int5.jpg' %}" alt="preview4"
+                                data-video="{% static 'images/s24-2.mp4' %}"/></span><span class="btn-play"><img
+                                src="{% static 'images/play-button.png' %}"></span></div>
+                        <div class="swiper-slide swiper-video" type="button" data-bs-toggle="modal"
+                             data-bs-target="#exampleModal"><span class="video-introduction"><img
+                                class="video-thumb" src="{% static 'images/s24-int.jpg' %}" alt="preview4"
+                                data-video="{% static 'images/s24-3.mp4' %}"/></span><span class="btn-play"><img
+                                src="{% static 'images/play-button.png' %}"></span></div>
+                        <div class="swiper-slide swiper-video" type="button" data-bs-toggle="modal"
+                             data-bs-target="#exampleModal"><span class="video-introduction"><img
+                                class="video-thumb" src="{% static 'images/s24-int3.jpg' %}" alt="preview4"
+                                data-video="{% static 'images/s24-2.mp4' %}"/></span><span class="btn-play"><img
+                                src="{% static 'images/play-button.png' %}"></span></div>
+                        <div class="swiper-slide swiper-video" type="button" data-bs-toggle="modal"
+                             data-bs-target="#exampleModal"><span class="video-introduction"><img
+                                class="video-thumb" src="{% static 'images/s24-int4.jpg' %}" alt="preview4"
+                                data-video="{% static 'images/s24-1.mp4' %}"/></span><span class="btn-play"><img
+                                src="{% static 'images/play-button.png' %}"></span></div>
+                        <div class="swiper-slide swiper-video" type="button" data-bs-toggle="modal"
+                             data-bs-target="#exampleModal"><span class="video-introduction"><img
+                                class="video-thumb" src="{% static 'images/s24-int6.jpg' %}" alt="preview4"
+                                data-video="{% static 'images/s24-2.mp4' %}"/></span><span class="btn-play"><img
+                                src="{% static 'images/play-button.png' %}"></span></div>
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal my-3 fade videos-introduction" id="exampleModal" tabindex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-body d-flex flex-column align-items-center">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+
+
+                        <div class="story-videos-box mt-3">
+                            <video id="video-slider" controls loop="loop">
+                                <source src="{% static 'images/s24-2.mp4' %}" type="video/mp4"/>
+                            </video>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-5  ">
+            <div class="col-auto  h4 font-yekan motion-line">تگ های مرتبط</div>
+        </div>
+        <div class="row my-3  ">
+            <div class="col-auto my-4 d-flex gap-2 font-yekan ">
+                <div class="tags border rounded-pill d-flex justify-content-center font-small-12 p-2"><a href="">گوشی
+                    سامسونگ</a>
+                </div>
+                <div class="tags border rounded-pill d-flex justify-content-center font-small-12 p-2"><a href="">s24
+                    ultra</a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="product-navbar d-flex align-items-center py-3  border-bottom  font-yekan">
+            <ul class=" d-flex text-color gap-2 gap-md-4">
+                <li class="motion-line font-small-12"><a href="#introduction1">معرفی</a></li>
+                <li class="motion-line font-small-12"><a href="#specially-review">بررسی تخصصی</a></li>
+                <li class="motion-line font-small-12"><a href="#feature">مشخصات</a></li>
+                <li class="motion-line font-small-12"><a href="#comments">دیدگاه ها</a></li>
+                <li class="motion-line font-small-12"><a href="#questions">پرسش ها</a></li>
+            </ul>
+        </nav>
+
+        <div class="summary font-vazir" id="introduction1" style=" padding-top: 50px; margin-top: -50px; ">
+            <div class="row my-3 ">
+                <div class="col-auto  h5 font-yekan motion-line">معرفی</div>
+            </div>
+            <p class="text-justify font-small-14 px-2">
+                همواره گوشی‌های هوشمند پرچمدار سامسونگ توانسته‌اند با بهره بردن از مشخصات فنی قدرتمند، توجه هر بیننده‌ای
+                را به خود جلب کنند و همواره رقیبان سرسختی برای برند‌های دیگر فعال در این عرصه بودند و این بار نوبت به
+                قدرت‌نمایی سامسونگ Galaxy S24 Ultra رسیده است. پرچمداری تا دندان مسلح که خط و نشان جدی برای رقیبان کشیده
+                است. سامسونگ در زمینه طراحی تغییرات چشم‌گیری برای این گوشی در نظر نگرفته است و تنها خبری از خمیدگی
+                صفحه‌نمایش در قسمت کناری نیست و این با را صفحه‌نمایش تخت و جذاب رو‌به‌رو هستیم. صفحه‌نمایش 6.8 اینچی این
+                گوشی با رزولوشن 1440×3120 که توانایی نمایش 505 پیکسل در هر اینچ را دارد، وضوح تصویر دقیق، جذاب و
+                چشم‌نوازی را در اختیارتان قرار می‌دهد.
+            </p>
+            <span class="moreText text-justify font-small-14 px-2" id="moreText1">
+                      نرخ بروزرسانی 120 هرتز هم سبب شده تا نه‌تنها در فعالیت‌های روزمره، بلکه برای مثال در اجرای بازی‌های سنگین و تماشای ویدیو‌های باکیفیت، عملکرد بسیار روان و بدون لگ را شاهد باشید. یک سنسور دوربین اصلی با رزولوشن 200 مگاپیکسل در کنار سنسور 12 مگاپیسل پریسکوپ با قابلیت زوم 5 برابری اپتیکال (زوم بدون کم شدن کیفیت) به همراه سنسور 10 مگاپیکسل تله‌فوتو با قابلیت زوم 3 برابری اپتیکال و سنسور 12 مگاپیکسل فوق‌عریض یا همان اولترا واید برای قسمت پشتی سامسونگ Galaxy S24 Ultra در نظر گرفته شده است. در بخش عکاسی خیالتان راحت باشد، چون با گوشی پرچمداری رو‌به‌رو هستید که بدون شک حتی نیاز‌های یک عکاس حرفه‌ای را هم بر‌آورده می‌کند. برای دوربین سلفی هم سنسور با رزولوشن 12 مگاپیکسل در نظر گرفته شده است. اما بدون شک اصلی‌ترین تغییر این گوشی به نسبت نسل قبلی، حضور پردازنده اسنپدراگون 8 نسل 3 شرکت کوالکام است. پردازنده‌ای که تاثیر مستقیم در تک‌تک عملکرد‌های بخش‌های مختلف این گوشی دارد. از نظر اجرای بازی‌های سنگین هم خیالتان کاملا راحت باشد که عملکردی روان، با‌کیفیت و بدون لگ را شاهد خواهید بود. باتری با میزان ظرفیت 5000 میلی‌آمپرساعت در کنار پشتیبانی از فناوری شارژ سریع 45 وات، از دیگر مشخصات در نظر گرفته شده هستند. در مجموع باید بگوییم که اگر به دنبال یک پرچمدار با اصالت هستید که نیاز‌های شما را به‌خوبی در حد و اندازه یک پرچمدار بر‌آورده کند، سامسونگ Galaxy S24 Ultra می‌تواند گزینه بسیار مناسبی برای شما باشد.
+                      <div class="close-button link" onclick="toggleText(1)">بستن</div>
+                  </span>
+            <div class="show-more" onclick="showMore(1)">مشاهده بیشتر...</div>
+        </div>
+
+        <div class="summary font-vazir border-top  my-5" id="specially-review"
+             style=" padding-top: 80px; margin-top: -80px; ">
+            <div class="row mb-3 ">
+                <div class="col-auto  h5 font-yekan motion-line">بررسی تخصصی</div>
+            </div>
+            <p class="text-justify font-small-14 px-2">
+                گوشی موبایل Samsung Galaxy S24 Ultra یکی از گوشی‌های پرچمدار و قدرتمند سامسونگ است که با امکانات و
+                قابلیت‌های بسیار با کیفیت، برای استفاده روزمره و همچنین عملکردهای حرفه‌ای مانند عکاسی و بازی طراحی
+                شده است. با ظرفیت 256 گیگابایت حافظه داخلی و رم 12 گیگابایت، این گوشی قدرتمند و کارآمد، برای اجرای
+                برنامه‌ها و بازی‌های سنگین مناسب است. همچنین، این گوشی دارای دو سیم کارت است که امکان استفاده همزمان
+                از دو شماره در یک گوشی را فراهم می‌کند. گفتنی‌ست که همراه این گوشی یک شارژر سامسونگ وجود دارد. در
+                این مطلب، قصد داریم به بررسی جزئیات طراحی و ساخت، نمایشگر، دوربین، عملکرد سخت افزاری، باتری و دیگر
+                بخش‌های این گوشی بپردازیم.
+            </p>
+            <div class="moreText " id="moreText2">
+                <div class=" fw-bold border-top py-4">طراحی و صفحه نمایش</div>
+                <div class="row d-flex">
+                    <div class="col-12 col-lg-8">
+                        <p class="text-justify font-small-14 px-2">
+                            گوشی Samsung Galaxy S24 Ultra با طراحی شیک و زیبا، از جنس مواد با کیفیت ساخته شده است.
+                            بدنه این گوشی از جنس تیتانیوم ساخته شده است که به آن ظاهری لوکس و مقاوم می‌بخشد. طراحی
+                            نمایشگر این گوشی همچنین بسیار شگفت انگیز است. با صفحه نمایش Dynamic LTPO AMOLED 2X 6.8
+                            اینچی و رزولوشن بالا، تماشای ویدئوها و عکس‌ها در این گوشی بسیار لذت‌بخش است. همچنین، این
+                            گوشی دارای حسگر اثر انگشت زیر نمایشگر است که راحتی و امنیت در استفاده را بهبود می‌بخشد.
+                            در کل، طراحی و ساخت گوشی Samsung Galaxy S24 Ultra بسیار حرفه‌ای و جذاب است و قطعاً توجه
+                            هر کاربری را جلب خواهد کرد. گوشی Samsung Galaxy S24 Ultra دارای صفحه نمایش 6.8 اینچی
+                            Dynamic LTPO AMOLED 2X با رزولوشن بالا است. تصاویر و متن‌ها با جزئیات بالا و رنگ‌های
+                            زنده و واقعی در این صفحه نمایش به نمایش در می‌آیند. همچنین، صفحه نمایش این گوشی دارای
+                            نسبت تصویر ۱۹.۵:9 است که به تماشای ویدئوها و بازی‌ها در حالت تمام صفحه کمک می‌کند. صفحه
+                            نمایش Samsung Galaxy S24 Ultra همچنین از نرخ نوسازی 120 هرتزی بهره می‌برد که منجر به
+                            تجربه‌ای بسیار شفاف و روان می‌شود. همچنین، این گوشی دارای حسگر اثر انگشت زیر صفحه نمایش
+                            است که عملکرد سریع و دقیقی در شناسایی اثر انگشت دارد. در کل، صفحه نمایش گوشی Samsung
+                            Galaxy S24 Ultra با کیفیت بالا و قابلیت‌های برجسته، از جمله نرخ نوسازی بالا و حسگر اثر
+                            انگشت زیر نمایشگر، تجربه‌ی بصری بی‌نظیری را برای کاربران به ارمغان می‌آورد.
+                        </p>
+                    </div>
+                    <div class="col-12 col-lg-4 d-flex justify-content-center">
+                        <img src="{% static 'images/samsung1.jpg' %}">
+                    </div>
+                </div>
+
+
+                <span class="close-button link" onclick="toggleText(2)">بستن</span>
+            </div>
+            <span class="show-more pt-3" onclick="showMore(2)">مشاهده بیشتر...</span>
+        </div>
+
+        <div class="summary font-vazir border-top  my-5" id="feature"
+             style=" padding-top: 50px; margin-top: -50px; ">
+            <div class="row mb-5 ">
+                <div class="col-auto  h5 font-yekan motion-line">مشخصات</div>
+            </div>
+            <div class="row my-4 d-flex flex-column flex-md-row">
+                <div class="col-12 col-md-3 mb-4">
+                    <span>مشخصات کلی</span>
+                </div>
+                <div class="col-12 col-md-9 feature-detail-box">
+                    <div class="row p-2 border-bottom">
+                        <div class="col-4  text-color p-1 p-md-3 d-flex justify-content-start font-small-11">نوع گوشی
+                            موبایل
+                        </div>
+                        <div class="col-8   p-1 p-md-3  font-small-11">سیستم عامل اندروید</div>
+                    </div>
+                    <div class="row p-2 border-bottom">
+                        <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">ابعاد</div>
+                        <div class="col-8   p-1 p-md-3  font-small-11">۸.۶×۷۹×۱۶۲.۳ میلی‌متر</div>
+                    </div>
+                    <div class="row p-2 border-bottom">
+                        <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">وزن</div>
+                        <div class="col-8   p-1 p-md-3  font-small-11">۲۳۳ گرم</div>
+                    </div>
+                    <div class="row p-2 border-bottom">
+                        <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">توضیحات سیم
+                            کارت
+                        </div>
+                        <div class="col-8   p-1 p-md-3  font-small-11">سایز نانو (۸.۸ × ۱۲.۳ میلی‌متر)</div>
+                    </div>
+                    <div class="row p-2 border-bottom">
+                        <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">تعداد سیم
+                            کارت
+                        </div>
+                        <div class="col-8   p-1 p-md-3  font-small-11">دو عدد</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="moreText " id="moreText3">
+                <div class="row mt-4 d-flex flex-column flex-md-row">
+                    <div class="col-12 col-md-3 mb-4">
+
+                    </div>
+                    <div class="col-12 col-md-9 feature-detail-box">
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">مدل
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">Galaxy S۲۴ Ultra</div>
+                        </div>
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">دسته
+                                ‌بندی
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">پرچم‌دار</div>
+                        </div>
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">محدوده
+                                وزنی
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">۲۰۱ تا ۲۵۰ گرم (معمولی)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-4 d-flex flex-column flex-md-row">
+                    <div class="col-12 col-md-3 mb-4">
+                        <span>صفحه نمایش</span>
+                    </div>
+                    <div class="col-12 col-md-9 feature-detail-box">
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">فناوری
+                                صفحه‌ نمایش
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">Dynamic LTPO AMOLED ۲X</div>
+                        </div>
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">بازه‌
+                                اندازه صفحه نمایش
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">۶.۰ تا ۸.۰ اینچ</div>
+                        </div>
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">اندازه
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">۶.۸ اینچ</div>
+                        </div>
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">رزولوشن
+                                صفحه نمایش
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">۱۴۴۰×۳۱۲۰</div>
+                        </div>
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">تراکم
+                                پیکسلی
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">۵۰۵ پیکسل بر اینچ</div>
+                        </div>
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">نرخ
+                                بروزرسانی تصویر
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">۱۲۰ هرتز</div>
+                        </div>
+                        <div class="row p-2 border-bottom">
+                            <div class="col-4 text-color p-1 p-md-3 d-flex justify-content-start font-small-11">نسبت
+                                صفحه‌ نمایش به
+                                بدنه
+                            </div>
+                            <div class="col-8  p-1 p-md-3  font-small-11">۸۹.۱۲</div>
+                        </div>
+
+                    </div>
+                </div>
+                <span class="close-button link" onclick="toggleText(3)">بستن</span>
+            </div>
+            <span class="show-more pt-3" onclick="showMore(3)">مشاهده بیشتر...</span>
+        </div>
+
+        <div class="row border-top pt-4">
+            <div class="row mb-5 d-flex justify-content-between ">
+                <div class="col-auto  h5 font-yekan motion-line comment-title font-small-14">دیدگاه کاربران</div>
+                <div class="col-auto font-yekan comment-count text-color font-small-14">47 دیدگاه</div>
+            </div>
+            <div class="col-12 col-lg-3 font-vazir ">
+                <div class="comment-register">
+                    <div class="product-rate d-flex ms-5">
+                        <div class="review-star me-1 font-small-12">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star-half-stroke"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <span class="review-count font-small-12">(3.5)</span><span
+                            class="mx-2 font-small-12">از 48 نفر </span>
+                    </div>
+                    <div class="font-14 mt-3 ms-5 font-small-14">دیدگاه خود را درباره این کالا ثبت کنید</div>
+                    <div class="btn btn-outline-primary d-flex justify-content-center mx-3 mt-3 font-small-14">ثبت
+                        دیدگاه
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-9">
+                <div class="summary font-vazir border-top  my-5" id="comments"
+                     style=" padding-top: 50px; margin-top: -50px; ">
+
+                    <div class="comment-filter d-none d-lg-flex">
+                        <i class="fa-solid fa-arrow-down-wide-short me-2" style="line-height: 30px;"></i> <span>مرتب سازی:</span>
+                        <ul class="comment-filter-list d-flex gap-3">
+                            <li><a href="#"> جدیدترین</a></li>
+                            <li><a href="#"> دیدگاه خریداران</a></li>
+                            <li><a href="#"> مفیدترین</a></li>
+                        </ul>
+                    </div>
+                    <div id="myModal" class="modal-filter">
+                        <div class="modal-content-filter">
+                            <span class="close">&times;</span>
+                            <span class="m-2">مرتب سازی بر اساس :</span>
+                            <ul class="modal-list mt-2">
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <button id="openModal" class="d-block d-lg-none my-4 btn btn-light font-small-14">مرتب سازی <i
+                            class="fa-solid fa-arrow-down-wide-short me-2" style="line-height: 30px;"></i></button>
+                    <div class="filter-subject border-bottom pb-4 mt-4">
+                        <h5 class="font-small-14">فیلتر بر اساس موضوع</h5>
+                        <div class="row my-3  ">
+                            <div class="col-auto my-4 d-flex gap-2 font-yekan ">
+                                <div class="tags border rounded-pill d-flex justify-content-center text-color px-3 py-2">
+                                    <a href="" class="font-small-12">گارانتی</a></div>
+                                <div class="tags border rounded-pill d-flex justify-content-center text-color px-3 py-2">
+                                    <a href="" class="font-small-12">کیفیت و کارایی</a></div>
+                                <div class="tags border rounded-pill d-flex justify-content-center text-color px-3 py-2">
+                                    <a href="" class="font-small-12">قیمت و ارزش خرید</a></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-auto d-flex gap-3 mt-3">
+                            <div class="comment-writer text-color font-14 font-small-12">سعید توحیدی پور</div>
+                            <div class="comment-type"><span
+                                    class="border px-2 rounded-pill text-green font-small-12">خریدار</span></div>
+                            <div class="comment-time"><span class="font-14 text-color font-small-12">10 ساعت پیش</span>
+                            </div>
+
+                        </div>
+                        <div class="col-auto">
+                            <div class="review-star me-1 font-small-12">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+
+                        </div>
+                        <div class="col-auto">
+                            <div class="like">
+                                <span><i class="fa-regular fa-thumbs-up pe-3 "></i></span><span class="font-small-12">توصیه می کنم</span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <h5 class="font-small-12">خییییلی عالیه</h5>
+                        </div>
+                        <div class="col-auto">
+                            <p class="font-small-12 text-justify px-2">
+                                گوشی فوق العاده هستش از همه نظر مخصوصا هوش مصنوعی که نسبت به نسل های قبلی اضافه شده
+                                که روی تمام قابلیتهاش تاثیر گذاشته مخصوصا عملکرد قلمش ولی با اینکه ظاهرش خوب هست ولی
+                                نسلهای قبلی به خاطر لبه های گرد صفحه نمایش جذابیت خوبی واسه من داشت گوشی قبلیم اس ۲۲
+                                بود
+                            </p>
+                            <ul class="comment-feature font-small-12">
+                                <li>طراحی عالی</li>
+                                <li>بدنه با کیفیت</li>
+                                <li>قابلیت های هوش مصنوعی</li>
+                                <li>توان بالای سخت افزاری</li>
+                                <li>قلم نرم تر و بهتر نسب به نسخه ها نوت</li>
+                                <li>کیفیت صفحه عالی</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row d-flex flex-column border-top my-4 gap-2">
+                        <div class="col-auto d-flex gap-3 mt-3">
+                            <div class="comment-writer text-color font-14 font-small-12">سعید توحیدی پور</div>
+                            <div class="comment-type"><span
+                                    class="border px-2 rounded-pill text-green font-small-12">خریدار</span></div>
+                            <div class="comment-time"><span class="font-14 text-color font-small-12">10 ساعت پیش</span>
+                            </div>
+
+                        </div>
+                        <div class="col-auto">
+                            <div class="review-star me-1 font-small-12">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+
+                        </div>
+                        <div class="col-auto">
+                            <div class="like">
+                                <span><i class="fa-regular fa-thumbs-up pe-3 "></i></span><span class="font-small-12">توصیه می کنم</span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <h5 class="font-small-12">خییییلی عالیه</h5>
+                        </div>
+                        <div class="col-auto">
+                            <p class="font-small-12 text-justify px-2">
+                                گوشی فوق العاده هستش از همه نظر مخصوصا هوش مصنوعی که نسبت به نسل های قبلی اضافه شده
+                                که روی تمام قابلیتهاش تاثیر گذاشته مخصوصا عملکرد قلمش ولی با اینکه ظاهرش خوب هست ولی
+                                نسلهای قبلی به خاطر لبه های گرد صفحه نمایش جذابیت خوبی واسه من داشت گوشی قبلیم اس ۲۲
+                                بود
+                            </p>
+                            <ul class="comment-feature font-small-12">
+                                <li>طراحی عالی</li>
+                                <li>بدنه با کیفیت</li>
+                                <li>قابلیت های هوش مصنوعی</li>
+                                <li>توان بالای سخت افزاری</li>
+                                <li>قلم نرم تر و بهتر نسب به نسخه ها نوت</li>
+                                <li>کیفیت صفحه عالی</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="moreText " id="moreText4">
+
+                        <div class="row d-flex flex-column border-top my-4 gap-2">
+                            <div class="col-auto d-flex gap-3 mt-3">
+                                <div class="comment-writer text-color font-14 font-small-12">سعید توحیدی پور</div>
+                                <div class="comment-type"><span
+                                        class="border px-2 rounded-pill text-green font-small-12">خریدار</span></div>
+                                <div class="comment-time"><span
+                                        class="font-14 text-color font-small-12">10 ساعت پیش</span></div>
+
+                            </div>
+                            <div class="col-auto">
+                                <div class="review-star me-1 font-small-12">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                            </div>
+                            <div class="col-auto">
+                                <div class="like">
+                                    <span><i class="fa-regular fa-thumbs-up pe-3"></i></span><span
+                                        class="font-small-12">توصیه می کنم</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <h5 class="font-small-12">خییییلی عالیه</h5>
+                            </div>
+                            <div class="col-auto">
+                                <p class="font-small-12 text-justify px-2">
+                                    گوشی فوق العاده هستش از همه نظر مخصوصا هوش مصنوعی که نسبت به نسل های قبلی اضافه
+                                    شده که روی تمام قابلیتهاش تاثیر گذاشته مخصوصا عملکرد قلمش ولی با اینکه ظاهرش خوب
+                                    هست ولی نسلهای قبلی به خاطر لبه های گرد صفحه نمایش جذابیت خوبی واسه من داشت گوشی
+                                    قبلیم اس ۲۲ بود
+                                </p>
+                                <ul class="comment-feature font-small-12">
+                                    <li>طراحی عالی</li>
+                                    <li>بدنه با کیفیت</li>
+                                    <li>قابلیت های هوش مصنوعی</li>
+                                    <li>توان بالای سخت افزاری</li>
+                                    <li>قلم نرم تر و بهتر نسب به نسخه ها نوت</li>
+                                    <li>کیفیت صفحه عالی</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row d-flex flex-column border-top my-4 gap-2">
+                            <div class="col-auto d-flex gap-3 mt-3">
+                                <div class="comment-writer text-color font-14 font-small-12">سعید توحیدی پور</div>
+                                <div class="comment-type"><span
+                                        class="border px-2 rounded-pill text-green font-small-12">خریدار</span></div>
+                                <div class="comment-time"><span
+                                        class="font-14 text-color font-small-12">10 ساعت پیش</span></div>
+
+                            </div>
+                            <div class="col-auto">
+                                <div class="review-star me-1 font-small-12">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                            </div>
+                            <div class="col-auto">
+                                <div class="like">
+                                    <span><i class="fa-regular fa-thumbs-up pe-3"></i></span><span
+                                        class="font-small-12">توصیه می کنم</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <h5 class="font-small-12">خییییلی عالیه</h5>
+                            </div>
+                            <div class="col-auto">
+                                <p class="font-small-12 text-justify px-2">
+                                    گوشی فوق العاده هستش از همه نظر مخصوصا هوش مصنوعی که نسبت به نسل های قبلی اضافه
+                                    شده که روی تمام قابلیتهاش تاثیر گذاشته مخصوصا عملکرد قلمش ولی با اینکه ظاهرش خوب
+                                    هست ولی نسلهای قبلی به خاطر لبه های گرد صفحه نمایش جذابیت خوبی واسه من داشت گوشی
+                                    قبلیم اس ۲۲ بود
+                                </p>
+                                <ul class="comment-feature font-small-12">
+                                    <li>طراحی عالی</li>
+                                    <li>بدنه با کیفیت</li>
+                                    <li>قابلیت های هوش مصنوعی</li>
+                                    <li>توان بالای سخت افزاری</li>
+                                    <li>قلم نرم تر و بهتر نسب به نسخه ها نوت</li>
+                                    <li>کیفیت صفحه عالی</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <span class="close-button link" onclick="toggleText(4)">بستن</span>
+                    </div>
+                    <span class="show-more mt-5 font-small-12" onclick="showMore(4)">مشاهده همه دیدگاه ها...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border-top pt-4">
+            <div class="row mb-5 d-flex justify-content-between ">
+                <div class="col-auto  h5 font-yekan motion-line question-title font-small-12">پرسش ها</div>
+                <div class="col-auto font-yekan comment-count text-color font-small-12">134 پرسش</div>
+            </div>
+            <div class="col-12 col-lg-3 font-vazir ">
+                <div class="question-register">
+                    <div class="font-14 mt-3 ms-5 font-small-12">شما هم درباره این کالا پرسش ثبت کنید</div>
+                    <div class="btn btn-outline-primary d-flex justify-content-center mx-3 mt-3 font-small-12">ثبت
+                        پرسش
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="summary font-vazir border-top  my-5" id="questions"
+                     style=" padding-top: 50px; margin-top: -50px; ">
+
+                    <div class="question-filter d-none d-lg-flex">
+                        <i class="fa-solid fa-arrow-down-wide-short me-2" style="line-height: 30px;"></i> <span
+                            class="font-small-12">مرتب سازی:</span>
+                        <ul class="question-filter-list d-flex gap-3">
+                            <li><a href="#" class="font-small-12"> جدیدترین</a></li>
+                            <li><a href="#" class="font-small-12">بیشترین پرسش</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div id="myModal2" class="modal-filter">
+                        <div class="modal-content-filter">
+                            <span class="close">&times;</span>
+                            <span class="m-2 font-small-12">مرتب سازی بر اساس :</span>
+                            <ul class="modal-list mt-2">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <button id="openModal2" class="d-block d-lg-none my-4 btn btn-light font-small-12">مرتب سازی <i
+                            class="fa-solid fa-arrow-down-wide-short me-2" style="line-height: 30px;"></i></button>
+                    <div class="filter-subject border-bottom pb-4 mt-4">
+                        <h5 class="font-small-12">فیلتر بر اساس موضوع</h5>
+                        <div class="row my-3  ">
+                            <div class="col-auto my-4 d-flex gap-2 font-yekan ">
+                                <div class="tags border rounded-pill d-flex justify-content-center text-color px-3 py-2">
+                                    <a href="" class="font-small-12">گارانتی</a></div>
+                                <div class="tags border rounded-pill d-flex justify-content-center text-color px-3 py-2">
+                                    <a href="" class="font-small-12">کیفیت و ساختار</a></div>
+                                <div class="tags border rounded-pill d-flex justify-content-center text-color px-3 py-2">
+                                    <a href="" class="font-small-12">تنظیمات</a></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-auto d-flex gap-3 mt-3">
+                            <div class="comment-writer text-color font-14 font-small-12">سعید توحیدی پور</div>
+                            <div class="comment-type"><span
+                                    class="border px-2 rounded-pill text-green font-small-12">خریدار</span></div>
+                            <div class="comment-time"><span class="font-14 text-color font-small-12">10 ساعت پیش</span>
+                            </div>
+
+                        </div>
+                        <div class="col-auto">
+                            <p class="border-bottom p-3 font-small-12">
+                                <i class="fa-regular text-blue pe-2 font-18 fa-circle-question"></i> سلام. بهترین
+                                مارک گلس و قاب برای s24 ultra در بازار چی هست ؟ </p>
+                            <div class="answer my-3">
+                                <div class="answer-user">
+                                    <span class="font-14 font-small-12">پاسخ: </span><span
+                                        class="text-color font-14 font-small-12">اسپیگن و نیلکین </span>
+                                </div>
+                                <div class="row d-flex my-4 font-small-12">
+                                    <div class="font-yekan d-flex justify-content-end pe-4">
+                                        <div class="col-auto">آیا این پاسخ مفید بود؟</div>
+                                        <div class="col-auto"><span class="px-2">3</span><i
+                                                class="fa-regular fa-thumbs-up "></i></div>
+                                        <div class="col-auto"><span class="px-2">0</span><i
+                                                class="fa-regular text-red fa-thumbs-down"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn btn-primary font-small-12"> ثبت پاسخ جدید</div>
+                        </div>
+                    </div>
+                    <div class="row d-flex border-top my-4  flex-column gap-2">
+                        <div class="col-auto d-flex gap-3 mt-3">
+                            <div class="comment-writer text-color font-14 font-small-12">سعید توحیدی پور</div>
+                            <div class="comment-type"><span
+                                    class="border px-2 rounded-pill text-green font-small-12">خریدار</span></div>
+                            <div class="comment-time"><span class="font-14 text-color font-small-12">10 ساعت پیش</span>
+                            </div>
+
+                        </div>
+                        <div class="col-auto">
+                            <p class="border-bottom p-3 font-small-12"><i
+                                    class="fa-regular pe-2 text-blue font-18 fa-circle-question "></i> موقع درآوردن و
+                                جازدن قلم نوکش سایش ایجاد شده و رنگ اطراف نوک قلم رفته! طبیعیه یا گوشی فیک دادن بهم؟
+                            </p>
+                            <div class="btn btn-primary font-small-12">ثبت پاسخ</div>
+                        </div>
+                    </div>
+
+                    <div class="moreText " id="moreText5">
+
+                        <div class="row d-flex border-top flex-column gap-2">
+                            <div class="col-auto d-flex gap-3 mt-3">
+                                <div class="comment-writer text-color font-14 font-small-12">سعید توحیدی پور</div>
+                                <div class="comment-type"><span
+                                        class="border px-2 rounded-pill text-green font-small-12">خریدار</span></div>
+                                <div class="comment-time"><span
+                                        class="font-14 text-color font-small-12">10 ساعت پیش</span></div>
+
+                            </div>
+                            <div class="col-auto">
+                                <p class="border-bottom p-3 font-small-12"><i
+                                        class="fa-regular text-blue pe-2 font-18 fa-circle-question "></i>هوش مصنوعی
+                                    چجوری کار میکنه؟ نرم افزارش کدومه؟ </p>
+                                <div class="btn btn-primary font-small-12">ثبت پاسخ</div>
+                            </div>
+                        </div>
+                        <div class="row d-flex border-top my-4 flex-column gap-2">
+                            <div class="col-auto d-flex gap-3 mt-3">
+                                <div class="comment-writer text-color font-14 font-small-12">سعید توحیدی پور</div>
+                                <div class="comment-type"><span
+                                        class="border px-2 rounded-pill text-green font-small-12">خریدار</span></div>
+                                <div class="comment-time"><span
+                                        class="font-14 text-color font-small-12">10 ساعت پیش</span></div>
+
+                            </div>
+                            <div class="col-auto">
+                                <p class="border-bottom p-3 font-small-12"><i
+                                        class="fa-regular text-blue pe-2 font-18 fa-circle-question "></i> آیا میشه
+                                    بجای شارژر 45 و 25 وات سامسونگ از شارژر 18 وات اصلی سامسونگ استفاده کرد؟</p>
+                                <div class="answer my-3">
+                                    <div class="answer-user">
+                                        <span class="font-14 font-small-12">پاسخ: </span><span
+                                            class="text-color font-14 font-small-12">بله میشه ولی به جای یکساعت دو ساعت طول میکشه فول شارژ شه </span>
+                                    </div>
+                                    <div class="row d-flex my-4 ">
+                                        <div class="font-yekan d-flex justify-content-end pe-4 font-small-12">
+                                            <div class="col-auto">آیا این پاسخ مفید بود؟</div>
+                                            <div class="col-auto"><span class="px-2">3</span>
+                                                <i class="fa-regular fa-thumbs-up "></i></div>
+                                            <div class="col-auto"><span class="px-2">0</span>
+                                                <i
+                                                        class="fa-regular text-red fa-thumbs-down"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn btn-primary font-small-12"> ثبت پاسخ جدید</div>
+                            </div>
+                        </div>
+                        <div class="row d-flex border-top my-4 flex-column gap-2">
+                            <div class="col-auto d-flex gap-3 mt-3">
+                                <div class="comment-writer text-color font-14 font-small-12">سعید توحیدی پور</div>
+                                <div class="comment-type"><span
+                                        class="border px-2 rounded-pill text-green font-small-12">خریدار</span></div>
+                                <div class="comment-time"><span
+                                        class="font-14 text-color font-small-12">10 ساعت پیش</span></div>
+
+                            </div>
+                            <div class="col-auto">
+                                <p class="border-bottom p-3 font-small-12">
+                                    <i class="fa-regular pe-2 text-blue font-18 fa-circle-question "></i> هوش مصنوعی
+                                    اش به چه کاری میاد و چه استفاده ای داره؟! </p>
+                                <div class="answer my-3">
+                                    <div class="answer-user">
+                                        <span class="font-14 font-small-12">پاسخ: </span><span
+                                            class="text-color font-14 font-small-12">بخر چون معلوم نیست نرخ ارز اون موقع چقدر باشه و گوشی ها با چه تعرفه ای وارد بشن </span>
+                                    </div>
+                                    <div class="row d-flex my-4 font-small-12">
+                                        <div class="font-yekan d-flex justify-content-end pe-4">
+                                            <div class="col-auto">آیا این پاسخ مفید بود؟</div>
+                                            <div class="col-auto"><span class="px-2">3</span><i
+                                                    class="fa-regular fa-thumbs-up "></i></div>
+                                            <div class="col-auto"><span class="px-2">0</span><i
+                                                    class="fa-regular text-red fa-thumbs-down"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn btn-primary font-small-12"> ثبت پاسخ جدید</div>
+                            </div>
+                        </div>
+
+
+                        <span class="close-button link" onclick="toggleText(5)">بستن</span>
+                    </div>
+                    <span class="show-more mt-5 font-small-12" onclick="showMore(5)">پرسش های بیشتر...</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock  %}
+
+{% block extra_js %}
+<script src=" {% static 'js/product-details.js' %}"></script>
+<script src="{% static 'products/detail.js' %}"></script>
+{% endblock  %}

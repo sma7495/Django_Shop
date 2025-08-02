@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .product-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        .product-price {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+        .discounted-price {
+            color: #e53935;
+            font-weight: bold;
+        }
+        .product-meta {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+        .product-description {
+            margin: 20px 0;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+        .error {
+            color: #e53935;
+            padding: 20px;
+            border: 1px solid #e53935;
+            border-radius: 4px;
+            background-color: #ffebee;
+        }
+    </style>
+</head>
+<body>
+    <div id="product-details"      data-product-id="{{pk}}" data-api-url="{% url 'products:api:detail' pk=0 %}" >
+        <div class="loading">Loading product details...</div>
+    </div>
+
+<script src="{% static 'products/detail.js' %}"></script>
+
+</body>
+</html>

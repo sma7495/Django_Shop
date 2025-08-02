@@ -15,6 +15,7 @@ def product_image_upload_path(instance, filename):
     """Upload images to: /media/products/<slug>/<filename>"""
     return f"products/{instance.slug}/{filename}"
 
+
 def validate_discount_percent(value):
     if value > 100:
         raise ValidationError("Discount percentage cannot exceed 100%.")
@@ -40,6 +41,8 @@ class Product(models.Model):
     )
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     image = models.ImageField(upload_to=product_image_upload_path)  # Uses slug in path
+    color = models.ManyToManyField(to='ProductColor', null=True)
+    guarantee = models.ForeignKey(to='ProductGuarantee',on_delete=models.PROTECT, null=True)
     description = models.TextField()
     brief_description = models.TextField()  # Fixed typo from "brif_description"
     stock = models.PositiveIntegerField(default=0)
@@ -77,7 +80,6 @@ class Product(models.Model):
         return self.price - self.price * self.discount_percent / 100
 
 
-
 def product_image_slug_upload_path(instance, filename):
     """Upload path: products/<product_slug>/images/<filename>"""
     return f"products/{instance.product.slug}/images/{filename}"
@@ -102,8 +104,6 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.product.title_en} (ID: {self.id})"
-
-
 
 
 class ProductCategory(models.Model):
@@ -142,4 +142,148 @@ class ProductCategory(models.Model):
         super().save(*args, **kwargs)
 
 
+class ProductGuarantee(models.Model):
+    title_en = models.CharField(
+        max_length=255,
+        verbose_name='English Title',
+        validators=[validate_english]  # English validator
+    )
+    title_fa = models.CharField(
+        max_length=255,
+        verbose_name='Persian Title',
+        validators=[validate_persian]  # Persian validator
+    )
+    slug = models.SlugField(
+        max_length=255,
+        unique=True,
+        blank=True,
+        allow_unicode=True  # Supports Persian characters in slugs
+    )
+    description = models.TextField(null=True, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Product Guarantee'
+        verbose_name_plural = 'Product Guarantees'
+        ordering = ['-created_date']
+        unique_together = [['slug',]]  # Slug must be unique per product
+
+    def __str__(self):
+        return f"{self.title_en}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            # Generate slug from English title if not provided
+            self.slug = slugify(self.title_en)
+        super().save(*args, **kwargs)
+
+class ProductColor(models.Model):
+    title_en = models.CharField(
+        max_length=255,
+        verbose_name='English Title',
+        validators=[validate_english]  # English validator
+    )
+    title_fa = models.CharField(
+        max_length=255,
+        verbose_name='Persian Title',
+        validators=[validate_persian]  # Persian validator
+    )
+    slug = models.SlugField(
+        max_length=255,
+        unique=True,
+        blank=True,
+        allow_unicode=True  # Supports Persian characters in slugs
+    )
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Product color'
+        verbose_name_plural = 'Product colors'
+        ordering = ['-created_date']
+        unique_together = [['slug',]]  # Slug must be unique per product
+
+    def __str__(self):
+        return f"{self.title_en}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            # Generate slug from English title if not provided
+            self.slug = slugify(self.title_en)
+        super().save(*args, **kwargs)
+
+class ProductSpecifications(models.Model):
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
+    title_en = models.CharField(
+        max_length=255,
+        verbose_name='English Title',
+        validators=[validate_english]  # English validator
+    )
+    title_fa = models.CharField(
+        max_length=255,
+        verbose_name='Persian Title',
+        validators=[validate_persian]  # Persian validator
+    )
+    value = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Product Specification'
+        verbose_name_plural = 'Product Specifications'
+        ordering = ['-created_date']
+
+    def __str__(self):
+        return f"{self.title_en}"
+
+
+
+def video_image_slug_upload_path(instance, filename):
+    """Upload path: products/videos/<video_slug>/cover/<filename>"""
+    return f"products/{instance.slug}/images/{filename}"
+
+class ProductVideos(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.PROTECT)
+    product = models.ManyToManyField(to=Product)
+    title_en = models.CharField(
+        max_length=255,
+        verbose_name='English Title',
+        validators=[validate_english]  # English validator
+    )
+    title_fa = models.CharField(
+        max_length=255,
+        verbose_name='Persian Title',
+        validators=[validate_persian]  # Persian validator
+    )
+    slug = models.SlugField(
+        max_length=255,
+        unique=True,
+        blank=True,
+        allow_unicode=True  # Supports Persian characters in slugs
+    )
+    cover = models.ImageField(
+        upload_to=video_image_slug_upload_path,
+        verbose_name='Product Image',
+    )
+    video_url = models.URLField() #for external videos
+    description = models.TextField(null=True, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Product VIdeo'
+        verbose_name_plural = 'Product Videos'
+        ordering = ['-created_date']
+        unique_together = [['slug',]]  # Slug must be unique per product
+
+    def __str__(self):
+        return f"{self.title_en}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            # Generate slug from English title if not provided
+            self.slug = slugify(self.title_en)
+        super().save(*args, **kwargs)
+ 
 # Create your models here.
