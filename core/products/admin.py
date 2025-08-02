@@ -9,7 +9,7 @@ from .models import Product
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title_en', 'title_fa', 'status', 'price', 'discount_percent', 'stock', 'created_date')
+    list_display = ('id' , 'title_en', 'title_fa', 'status', 'price', 'discount_percent', 'stock', 'created_date')
     list_filter = ('status', 'created_date', 'category')
     search_fields = ('title_en', 'title_fa', 'description')
     prepopulated_fields = {'slug': ('title_en',)}
@@ -134,7 +134,7 @@ class ProductSpecificationsAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {
-            'fields': ('title_en', 'title_fa')
+            'fields': ('title_en', 'title_fa', 'product')
         }),
         ('Timestamps', {
             'fields': ('created_date', 'updated_date'),

@@ -6,7 +6,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 import tempfile
 from io import BytesIO
 
-from ...models import Product, ProductCategory
+from ...models import Product, ProductCategory, ProductColor, ProductGuarantee
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -32,8 +32,16 @@ class ProductCreateAPIViewTests(APITestCase):
         )
         cls.test_category = ProductCategory.objects.create(
             title_en='Test Category',
+            title_fa='دسته بندی تستی'
+        )
+        cls.test_color = ProductColor.objects.create(
+            title_en='Test Category',
+            title_fa='دسته بندی تستی'
+        )
+        cls.test_guarantee = ProductGuarantee.objects.create(
+            title_en='Test Category',
             title_fa='دسته بندی تستی',
-            slug='test-category'
+            description = 'test'
         )
         
         # Sample valid product data with image
@@ -46,7 +54,11 @@ class ProductCreateAPIViewTests(APITestCase):
             'price': 1000,
             'discount_percent': 10,
             'status': 'published',
-            'category': cls.test_category.id  # Add category ID
+            'category': cls.test_category.id, # Add category ID
+            'color': cls.test_color.id, 
+            'guarantee': cls.test_guarantee.id  
+
+
         }
 
     def setUp(self):
@@ -98,7 +110,6 @@ class ProductCreateAPIViewTests(APITestCase):
         invalid_data['image'] = self.create_test_image()
         
         response = self.client.post(self.url, invalid_data, format='multipart')
-        
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('category', response.data)  # Check that error mentions category field
         

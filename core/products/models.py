@@ -56,7 +56,7 @@ class Product(models.Model):
         choices=STATUS_CHOICES,
         default='draft'
     )
-    category = models.ManyToManyField(to="ProductCategory", null=True)
+    category = models.ManyToManyField(to="ProductCategory")
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
@@ -78,6 +78,7 @@ class Product(models.Model):
     def discounted_price(self):
         """Calculate and return the discounted price"""
         return self.price - self.price * self.discount_percent / 100
+
 
 
 def product_image_slug_upload_path(instance, filename):
