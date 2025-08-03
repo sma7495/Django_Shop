@@ -267,7 +267,8 @@ class ProductSerializer(serializers.ModelSerializer):
     other_images = serializers.SerializerMethodField()
     specifications = serializers.SerializerMethodField()
     videos_urls = serializers.SerializerMethodField()
-
+    color = serializers.SerializerMethodField(required=False)
+    guarantee = serializers.SerializerMethodField(required=False)
     # Custom field for image URL
     image_url = serializers.SerializerMethodField()
     user = serializers.PrimaryKeyRelatedField(
@@ -313,6 +314,8 @@ class ProductSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'image': {'write_only': True},  # Only used for uploads, not in responses
             'user' : {'read_only': True}, 
+            'color': {'required': False},
+            'guarantee': {'required': False},
         }
         
     def get_fields(self):
@@ -336,7 +339,17 @@ class ProductSerializer(serializers.ModelSerializer):
                 return request.build_absolute_uri(obj.image.url)
             return obj.image.url
         return None
+    
+    def get_color(self, obj):
+        if obj.color.exists():  # Assuming color is a ManyToManyField
+            return ProductColorSerializer(obj.color.all(), many=True).data
+        return None  # or [] for empty list
 
+    def get_guarantee(self, obj):
+        if obj.guarantee:  # Assuming guarantee is a ForeignKey and can be None
+            return ProductGuaranteeSerializer(obj.guarantee).data
+        return None
+    
     def get_other_images(self, obj):
         
         images = ProductImage.objects.filter(product = obj.id)
@@ -364,9 +377,20 @@ class ProductSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep =  super().to_representation(instance)
         
-        rep["category"] = ProductCategorySerializer(instance.category, many = True).data
-        rep["guarantee"] = ProductGuaranteeSerializer(instance.guarantee).data
-        rep["color"] = ProductColorSerializer(instance.color, many = True).data
+        # Handle category
+        rep["category"] = ProductCategorySerializer(
+            instance.category.all(), many=True
+        ).data if hasattr(instance, 'category') else []
+        
+        # Handle guarantee
+        rep["guarantee"] = ProductGuaranteeSerializer(
+            instance.guarantee
+        ).data if instance.guarantee else None
+        
+        # Handle color
+        rep["color"] = ProductColorSerializer(
+            instance.color.all(), many=True
+        ).data if hasattr(instance, 'color') else []
         
         return rep
     

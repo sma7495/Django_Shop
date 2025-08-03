@@ -55,8 +55,8 @@ class ProductCreateAPIViewTests(APITestCase):
             'discount_percent': 10,
             'status': 'published',
             'category': cls.test_category.id, # Add category ID
-            'color': cls.test_color.id, 
-            'guarantee': cls.test_guarantee.id  
+            # 'color': cls.test_color.id, 
+            # 'guarantee': cls.test_guarantee.id  
 
 
         }
