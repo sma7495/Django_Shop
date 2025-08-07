@@ -54,7 +54,6 @@ class ProductListAPIViewTests(APITestCase):
         # This runs before every test method
         self.url = reverse('products:api:list')
         
-        
     def test_get_published_products_only(self):
         """Test that only published products are returned"""
         url = self.url
@@ -64,9 +63,19 @@ class ProductListAPIViewTests(APITestCase):
         self.assertEqual(len(response.data['results']), 2)  # Only 2 published products
         
         products = Product.objects.filter(status='published')
-        serializer = ProductSerializer(products, many=True)
+        
+        # Create a request object for the serializer context
+        request = response.wsgi_request  # Get the request from the test client response
+        
+        # Pass the request in the context
+        serializer = ProductSerializer(
+            products, 
+            many=True,
+            context={'request': request}  # Add request to context
+        )
+        
         self.assertEqual(response.data['results'], serializer.data)
-
+        
     def test_default_ordering(self):
         """Test that products are ordered by -created_date by default"""
         url = self.url

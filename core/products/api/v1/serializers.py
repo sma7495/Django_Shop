@@ -321,7 +321,14 @@ class ProductSerializer(serializers.ModelSerializer):
     def get_fields(self):
         fields = super().get_fields()
         request = self.context.get('request')
-        
+        # For list view, remove certain fields
+        if request and getattr(request, 'action', None) == 'list':
+            fields.pop('other_images', None)
+            fields.pop('guarantee', None)
+            fields.pop('color', None)
+            fields.pop('specifications', None)
+            fields.pop('videos_urls')
+            
         if request and request.method in ['PUT', 'PATCH']:
             if request.user and (request.user.is_staff or request.user.is_superuser):
                 fields['user'].read_only = False
@@ -393,6 +400,7 @@ class ProductSerializer(serializers.ModelSerializer):
         ).data if hasattr(instance, 'color') else []
         
         return rep
+
     
     # def validate_category(self, value):
     #     if not value:  # Check if the list is empty

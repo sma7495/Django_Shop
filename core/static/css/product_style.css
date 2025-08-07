@@ -1,0 +1,68 @@
+/* Old Price (Strikethrough + Gray) */
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9em;
+    margin-left: 8px; /* Space between old and new price */
+    display: block ;
+}
+
+/* New Price (Bold + Highlighted) */
+.new-price {
+    color: rgba(10, 70, 7, 1); /* Red for emphasis */
+    font-weight: bold;
+    font-size: 1.1em;
+    display: block;
+
+}
+
+
+
+.margin_5px_15px{
+    margin: 5px 15px;
+}
+
+/* for video less than 3 */
+.flex-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+.video-link {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+}
+
+.video-thumb-container {
+    position: relative;
+    display: inline-block;
+    margin: 5px 20px;
+}
+
+.video-thumb {
+    display: block;
+    width: 100%; /* Adjust as needed */
+    max-width: 300px; /* Example size */
+    border-radius: 8px; /* Optional */
+}
+
+.play-icon-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.play-icon {
+    width: 50px; /* Adjust size */
+    height: 50px;
+}
+
+/* Hover effect */
+.video-link:hover .play-icon-overlay {
+    opacity: 1;
+}

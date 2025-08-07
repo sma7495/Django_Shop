@@ -67,7 +67,14 @@ class ProductDetailAPIViewTests(APITestCase):
         self.assertEqual(response.data['title_en'], self.product.title_en)
         
         # Check if serializer data matches
-        serializer = ProductSerializer(self.product)
+        # Create a request object for the serializer context
+        request = response.wsgi_request  # Get the request from the test client response
+        
+        # Pass the request in the context
+        serializer = ProductSerializer(
+            self.product, 
+            context={'request': request}  # Add request to context
+        )
         self.assertEqual(response.data, serializer.data)
 
 
