@@ -6,7 +6,6 @@ from .models import Product
 from .api.v1.serializers import ProductSerializer
 
 
-
 class ProductListTemplateView(TemplateView):
     template_name = 'products/product_list.html'
     

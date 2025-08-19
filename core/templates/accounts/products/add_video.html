@@ -1,0 +1,403 @@
+{% extends "accounts/base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title> {{page_title}} </title>
+{% endblock  %}
+
+{% block css %}
+
+	<!--plugins-->
+	<link href="{% static 'accounts/plugins/Drag-And-Drop/dist/imageuploadify.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'accounts/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
+	<link href="{% static 'accounts/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
+	<link href="{% static 'accounts/plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
+	<!-- loader-->
+	<link href="{% static 'accounts/css/pace.min.css' %}" rel="stylesheet" />
+	<script src="{% static 'accounts/js/pace.min.js' %}"></script>
+	<!-- Bootstrap CSS -->
+	<link href="{% static 'accounts/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'accounts/css/bootstrap-extended.css' %}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+	<link href="{% static 'accounts/css/app.css' %}" rel="stylesheet">
+	<link href="{% static 'accounts/css/icons.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block content  %}
+	<div class="page-content">
+
+		<!--breadcrumb-->
+		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+			<div class="breadcrumb-title pe-3">تجارت الکترونیک</div>
+			<div class="ps-3">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mb-0 p-0">
+						<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">افزودن محصول جدید</li>
+					</ol>
+				</nav>
+			</div>
+			<div class="ms-auto">
+				<div class="btn-group">
+					<button type="button" class="btn btn-light">تنظیمات</button>
+					<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">فعال کردن منو</span>
+					</button>
+					<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">عمل</a>
+						<a class="dropdown-item" href="javascript:;">یک اقدام دیگر</a>
+						<a class="dropdown-item" href="javascript:;">یه چیز دیگه اینجا</a>
+						<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">لینک جدا شده</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end breadcrumb-->
+		<div class="card">
+			<div class="card-body p-4">
+				<h5 class="card-title">{% if form.instance.pk %}ویرایش ویدیو{% else %}افزودن ویدیو جدید{% endif %}</h5>
+				<hr/>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								{% if messages %}
+								<div class="alert-container">
+									{% for message in messages %}
+									<div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+										{{ message }}
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+									</div>
+									{% endfor %}
+								</div>
+								{% endif %}
+
+								{% if form.non_field_errors %}
+								<div class="alert alert-danger">
+									{% for error in form.non_field_errors %}
+									<p>{{ error }}</p>
+									{% endfor %}
+								</div>
+								{% endif %}
+
+								<form id="videoForm" method="post" enctype="multipart/form-data">
+									{% csrf_token %}
+									<div class="form-body mt-4">
+										<div class="row">
+											<div class="col-lg-8">
+												<div class="border border-3 p-4 rounded">
+													<!-- User field (hidden) -->
+													<input type="hidden" name="user" value="{{ request.user.id }}">
+													
+													<!-- Cover Preview -->
+													{% if form.instance.pk and form.instance.cover %}
+													<div class="mb-3">
+														<label class="form-label">تصویر کاور فعلی:</label>
+														<div>
+															<img src="{{ form.instance.cover.url }}" alt="Current video cover" 
+																style="max-height: 150px;" class="img-thumbnail mb-2">
+															<div class="form-check">
+																<input class="form-check-input" type="checkbox" 
+																	id="clear_cover" name="cover-clear">
+																<label class="form-check-label text-danger" for="clear_cover">
+																	حذف تصویر کاور فعلی
+																</label>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+													
+													<!-- Cover Field -->
+													<div class="mb-3">
+														<label for="id_cover" class="form-label">
+															{{ form.cover.label }}
+															{% if not form.instance.pk %}*{% endif %}
+														</label>
+														<input class="form-control" type="file" id="id_cover" name="cover" 
+															accept="image/*" {% if not form.instance.pk %}required{% endif %}>
+														{% if form.cover.help_text %}
+														<small class="text-muted">{{ form.cover.help_text }}</small>
+														{% endif %}
+														{% if form.cover.errors %}
+														<div class="text-danger">{{ form.cover.errors }}</div>
+														{% endif %}
+													</div>
+													
+													<!-- Cover Preview for new upload -->
+													<div class="mb-3 d-none" id="coverPreviewContainer">
+														<label class="form-label">پیش‌نمایش کاور جدید:</label>
+														<img id="coverPreview" src="#" alt="Preview" class="img-thumbnail" style="max-height: 150px; display: none;">
+													</div>
+
+													<!-- Title Fields -->
+													<div class="mb-3">
+														<label for="id_title_en" class="form-label">{{ form.title_en.label }}*</label>
+														<input type="text" class="form-control" id="id_title_en" name="title_en" 
+															value="{{ form.title_en.value|default:'' }}" required>
+														{% if form.title_en.help_text %}
+														<small class="text-muted">{{ form.title_en.help_text }}</small>
+														{% endif %}
+														{% if form.title_en.errors %}
+														<div class="text-danger">{{ form.title_en.errors }}</div>
+														{% endif %}
+													</div>
+													
+													<div class="mb-3">
+														<label for="id_title_fa" class="form-label">{{ form.title_fa.label }}*</label>
+														<input type="text" class="form-control" id="id_title_fa" name="title_fa" 
+															value="{{ form.title_fa.value|default:'' }}" required>
+														{% if form.title_fa.help_text %}
+														<small class="text-muted">{{ form.title_fa.help_text }}</small>
+														{% endif %}
+														{% if form.title_fa.errors %}
+														<div class="text-danger">{{ form.title_fa.errors }}</div>
+														{% endif %}
+													</div>
+													
+													<!-- Slug Field -->
+													<div class="mb-3">
+														<label for="id_slug" class="form-label">{{ form.slug.label }}</label>
+														<input type="text" class="form-control" id="id_slug" name="slug" 
+															value="{{ form.slug.value|default:'' }}">
+														{% if form.slug.help_text %}
+														<small class="text-muted">{{ form.slug.help_text }}</small>
+														{% endif %}
+														{% if form.slug.errors %}
+														<div class="text-danger">{{ form.slug.errors }}</div>
+														{% endif %}
+													</div>
+													
+													<!-- Video URL Field -->
+													<div class="mb-3">
+														<label for="id_video_url" class="form-label">{{ form.video_url.label }}*</label>
+														<input type="url" class="form-control" id="id_video_url" name="video_url" 
+															value="{{ form.video_url.value|default:'' }}" required>
+														{% if form.video_url.help_text %}
+														<small class="text-muted">{{ form.video_url.help_text }}</small>
+														{% endif %}
+														{% if form.video_url.errors %}
+														<div class="text-danger">{{ form.video_url.errors }}</div>
+														{% endif %}
+													</div>
+													
+													<!-- Description Field -->
+													<div class="mb-3">
+														<label for="id_description" class="form-label">{{ form.description.label }}</label>
+														<textarea class="form-control" id="id_description" name="description" 
+																rows="4">{{ form.description.value|default:'' }}</textarea>
+														{% if form.description.help_text %}
+														<small class="text-muted">{{ form.description.help_text }}</small>
+														{% endif %}
+														{% if form.description.errors %}
+														<div class="text-danger">{{ form.description.errors }}</div>
+														{% endif %}
+													</div>
+												</div>
+											</div>
+											
+											<div class="col-lg-4">
+												<div class="border border-3 p-4 rounded">
+													<div class="row g-3">
+														
+														<!-- Product Selection -->
+														<div class="col-12">
+															<label for="id_product" class="form-label">{{ form.product.label }}*</label>
+															<select class="form-control product-select" id="id_product" name="product" multiple required>
+																{% for product in form.fields.product.queryset %}
+																<option value="{{ product.pk }}" 
+																		{% if product.pk|slugify in form.product.value or product.pk == form.product.value %}selected{% endif %}>
+																	{{ product.title_fa }} ({{ product.title_en }})
+																</option>
+																{% endfor %}
+															</select>
+															{% if form.product.help_text %}
+															<small class="text-muted">{{ form.product.help_text }}</small>
+															{% endif %}
+															{% if form.product.errors %}
+															<div class="text-danger">{{ form.product.errors }}</div>
+															{% endif %}
+														</div>
+
+														<!-- Submit Button -->
+														<div class="col-12">
+															<div class="d-grid">
+																<button type="submit" class="btn btn-primary">
+																	{% if form.instance.pk %}ذخیره تغییرات{% else %}افزودن ویدیو{% endif %}
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+{% endblock  %}
+
+{% block main_js %}
+
+	<!-- Bootstrap JS -->
+	<script src="{% static 'accounts/js/bootstrap.bundle.min.js' %}"></script>
+	<!--plugins-->
+	<script src="{% static 'accounts/js/jquery.min.js' %}"></script>
+	<script src="{% static 'accounts/plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'accounts/plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'accounts/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<script src="{% static 'accounts/plugins/Drag-And-Drop/dist/imageuploadify.min.js' %}"></script>
+	<script>
+		$(document).ready(function () {
+			$('#image-uploadify').imageuploadify();
+		})
+	</script>
+	<!--app JS-->
+	<script src="{% static 'accounts/js/app.js' %}"></script>
+
+{% endblock main_js %}
+
+{% block extra_js %}
+
+<script>
+// Cover image preview
+document.getElementById('id_cover').addEventListener('change', function(e) {
+    const coverPreviewContainer = document.getElementById('coverPreviewContainer');
+    const coverPreview = document.getElementById('coverPreview');
+    
+    if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            coverPreview.src = e.target.result;
+            coverPreview.style.display = 'block';
+            coverPreviewContainer.classList.remove('d-none');
+        }
+        
+        reader.readAsDataURL(this.files[0]);
+    } else {
+        coverPreview.src = '#';
+        coverPreview.style.display = 'none';
+        coverPreviewContainer.classList.add('d-none');
+    }
+});
+
+// Auto-generate slug from English title if slug is empty
+document.getElementById('id_title_en').addEventListener('blur', function() {
+    const slugField = document.getElementById('id_slug');
+    if (!slugField.value && this.value) {
+        // Simple slug generation - you might want to use a more robust solution
+        const slug = this.value.trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+        slugField.value = slug;
+    }
+});
+
+
+<!-- Add these scripts at the bottom of your template -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+// Initialize select2 for multiple select fields
+$(document).ready(function() {
+    $('.select2-multiple').select2({
+        placeholder: "لطفاً انتخاب کنید",
+        allowClear: true,
+        dir: "rtl"
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    // Initialize Select2 for product selection with AJAX search
+    $('.product-select').select2({
+        placeholder: "جستجو و انتخاب محصولات...",
+        allowClear: true,
+        dir: "rtl",
+        language: "fa",
+        width: '100%',
+        ajax: {
+            url: '/products/accounts/api/products/search/',  // Replace with your search endpoint
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term,  // search term
+                    page: params.page || 1
+                };
+            },
+            processResults: function(data, params) {
+                params.page = params.page || 1;
+                
+                return {
+                    results: data.results,
+                    pagination: {
+                        more: (params.page * 10) < data.total_count
+                    }
+                };
+            },
+            cache: true
+        },
+        minimumInputLength: 2,
+        templateResult: formatProduct,
+        templateSelection: formatProductSelection
+    });
+    
+    // Format how products appear in the dropdown
+    function formatProduct(product) {
+        if (product.loading) {
+            return product.text;
+        }
+        
+        var $container = $(
+            '<div class="product-item">' +
+                '<strong class="product-title-fa"></strong>' +
+                '<span class="product-title-en text-muted small"></span>' +
+            '</div>'
+        );
+        
+        $container.find('.product-title-fa').text(product.title_fa || product.text);
+        $container.find('.product-title-en').text(' (' + (product.title_en || '') + ')');
+        
+        return $container;
+    }
+    
+    // Format how selected products appear
+    function formatProductSelection(product) {
+        if (product.title_fa) {
+            return product.title_fa + (product.title_en ? ' (' + product.title_en + ')' : '');
+        }
+        return product.text;
+    }
+});
+
+// If you need to preload selected products in edit mode
+{% if form.instance.pk %}
+$(document).ready(function() {
+    var selectedProducts = [];
+    {% for product in form.instance.product.all %}
+    selectedProducts.push({
+        id: {{ product.pk }},
+        title_fa: '{{ product.title_fa }}',
+        title_en: '{{ product.title_en }}',
+        text: '{{ product.title_fa }} ({{ product.title_en }})'
+    });
+    {% endfor %}
+    
+    // Set the pre-selected values
+    var $productSelect = $('.product-select');
+    $productSelect.val(selectedProducts.map(p => p.id)).trigger('change');
+});
+{% endif %}
+</script>
+{% endblock  %}

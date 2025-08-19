@@ -1,0 +1,285 @@
+		<div class="card">
+			<div class="card-body p-4">
+				<h5 class="card-title">افزودن محصول جدید</h5>
+				<hr/>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+				
+
+						{% if messages %}
+								<div class="alert-container">
+									{% for message in messages %}
+									<div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+										{{ message }}
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+									</div>
+									{% endfor %}
+								</div>
+								{% endif %}
+
+								{% if form.non_field_errors %}
+								<div class="alert alert-danger">
+									{% for error in form.non_field_errors %}
+									<p>{{ error }}</p>
+									{% endfor %}
+								</div>
+								{% endif %}
+
+								<form id="productForm" method="post" enctype="multipart/form-data">
+									{% csrf_token %}
+									<div class="form-body mt-4">
+										<div class="row">
+											<div class="col-lg-8">
+												<div class="border border-3 p-4 rounded">
+													<!-- User field (hidden) -->
+													<input type="hidden" name="user" value="{{ request.user.id }}">
+													
+													<!-- Main Image Preview -->
+													{% if form.instance.pk and form.instance.image %}
+													<div class="mb-3">
+														<label class="form-label">تصویر اصلی فعلی:</label>
+														<div>
+															<img src="{{ form.instance.image.url }}" alt="Current product image" 
+																style="max-height: 150px;" class="img-thumbnail mb-2">
+															<div class="form-check">
+																<input class="form-check-input" type="checkbox" 
+																	id="clear_image" name="image-clear">
+																<label class="form-check-label text-danger" for="clear_image">
+																	حذف تصویر اصلی فعلی
+																</label>
+															</div>
+														</div>
+													</div>
+													{% endif %}
+													
+													<!-- Main Image Field -->
+													<div class="mb-3">
+														<label for="id_image" class="form-label">
+															{{ form.image.label }}
+															{% if not form.instance.pk %}*{% endif %}
+														</label>
+														<input class="form-control" type="file" id="id_image" name="image" 
+															accept="image/*" {% if not form.instance.pk %}required{% endif %}>
+														{% if form.image.help_text %}
+														<small class="text-muted">{{ form.image.help_text }}</small>
+														{% endif %}
+														{% if form.image.errors %}
+														<div class="text-danger">{{ form.image.errors }}</div>
+														{% endif %}
+													</div>
+
+													<!-- Additional Images Section -->
+													<div class="mb-3">
+														<label class="form-label">تصاویر اضافی محصول</label>
+														
+														<!-- Existing images for update view -->
+														{% if form.instance.pk and form.instance.images.all %}
+														<div class="mb-3">
+															<label class="form-label">تصاویر فعلی:</label>
+															<div class="row">
+																{% for img in form.instance.images.all %}
+																<div class="col-md-3 mb-3">
+																	<div class="position-relative">
+																		<img src="{{ img.image.url }}" alt="Additional product image" 
+																			class="img-thumbnail" style="height: 100px; width: 100%; object-fit: cover;">
+																		<div class="form-check position-absolute top-0 start-0 mt-1 ms-1">
+																			<input class="form-check-input" type="checkbox" 
+																				id="delete_image_{{ img.id }}" name="delete_images" value="{{ img.id }}">
+																			<label class="form-check-label text-danger" for="delete_image_{{ img.id }}" 
+																				style="background: white; padding: 2px; border-radius: 3px;">
+																				حذف
+																			</label>
+																		</div>
+																	</div>
+																</div>
+																{% endfor %}
+															</div>
+														</div>
+														{% endif %}
+														
+														<!-- Multiple file upload for new images -->
+														<div class="mb-3">
+															<input class="form-control" type="file" id="additional_images" 
+																name="additional_images" accept="image/*" multiple>
+															<small class="text-muted">می‌توانید چندین تصویر را همزمان انتخاب کنید (حداکثر 5 تصویر)</small>
+														</div>
+														
+														<!-- Preview area for newly selected images -->
+														<div id="imagePreview" class="row d-none">
+															<div class="col-12">
+																<label class="form-label">پیش‌نمایش تصاویر انتخاب شده:</label>
+															</div>
+															<!-- Preview items will be added here by JavaScript -->
+														</div>
+													</div>
+
+													<!-- Title Fields -->
+													<div class="mb-3">
+														<label for="id_title_en" class="form-label">{{ form.title_en.label }}*</label>
+														<input type="text" class="form-control" id="id_title_en" name="title_en" 
+															value="{{ form.title_en.value|default:'' }}" required>
+														{% if form.title_en.errors %}
+														<div class="text-danger">{{ form.title_en.errors }}</div>
+														{% endif %}
+													</div>
+													
+													<div class="mb-3">
+														<label for="id_title_fa" class="form-label">{{ form.title_fa.label }}*</label>
+														<input type="text" class="form-control" id="id_title_fa" name="title_fa" 
+															value="{{ form.title_fa.value|default:'' }}" required>
+														{% if form.title_fa.errors %}
+														<div class="text-danger">{{ form.title_fa.errors }}</div>
+														{% endif %}
+													</div>
+													
+													<!-- Slug Field -->
+													<div class="mb-3">
+														<label for="id_slug" class="form-label">{{ form.slug.label }}</label>
+														<input type="text" class="form-control" id="id_slug" name="slug" 
+															value="{{ form.slug.value|default:'' }}">
+														{% if form.slug.help_text %}
+														<small class="text-muted">{{ form.slug.help_text }}</small>
+														{% endif %}
+														{% if form.slug.errors %}
+														<div class="text-danger">{{ form.slug.errors }}</div>
+														{% endif %}
+													</div>
+													
+													<!-- Description Fields -->
+													<div class="mb-3">
+														<label for="id_brief_description" class="form-label">{{ form.brief_description.label }}</label>
+														<textarea class="form-control" id="id_brief_description" name="brief_description" 
+																rows="2">{{ form.brief_description.value|default:'' }}</textarea>
+														{% if form.brief_description.errors %}
+														<div class="text-danger">{{ form.brief_description.errors }}</div>
+														{% endif %}
+													</div>
+													
+													<div class="mb-3">
+														<label for="id_description" class="form-label">{{ form.description.label }}</label>
+														<textarea class="form-control" id="id_description" name="description" 
+																rows="4">{{ form.description.value|default:'' }}</textarea>
+														{% if form.description.errors %}
+														<div class="text-danger">{{ form.description.errors }}</div>
+														{% endif %}
+													</div>
+												</div>
+											</div>
+											
+											<div class="col-lg-4">
+												<div class="border border-3 p-4 rounded">
+													<div class="row g-3">
+														<!-- Price and Discount -->
+														<div class="col-md-6">
+															<label for="id_price" class="form-label">{{ form.price.label }}*</label>
+															<input type="number" class="form-control" id="id_price" name="price" 
+																value="{{ form.price.value|default:'' }}" min="0" required>
+															{% if form.price.errors %}
+															<div class="text-danger">{{ form.price.errors }}</div>
+															{% endif %}
+														</div>
+														
+														<div class="col-md-6">
+															<label for="id_discount_percent" class="form-label">{{ form.discount_percent.label }}</label>
+															<input type="number" class="form-control" id="id_discount_percent" name="discount_percent" 
+																value="{{ form.discount_percent.value|default:0 }}" min="0" max="100">
+															{% if form.discount_percent.errors %}
+															<div class="text-danger">{{ form.discount_percent.errors }}</div>
+															{% endif %}
+														</div>
+														
+														<!-- Stock -->
+														<div class="col-12">
+															<label for="id_stock" class="form-label">{{ form.stock.label }}*</label>
+															<input type="number" class="form-control" id="id_stock" name="stock" 
+																value="{{ form.stock.value|default:0 }}" min="0" required>
+															{% if form.stock.errors %}
+															<div class="text-danger">{{ form.stock.errors }}</div>
+															{% endif %}
+														</div>
+														
+														<!-- Status -->
+														<div class="col-12">
+															<label for="id_status" class="form-label">{{ form.status.label }}</label>
+															<select class="form-select" id="id_status" name="status">
+																{% for value, label in form.fields.status.choices %}
+																<option value="{{ value }}" {% if form.status.value == value %}selected{% endif %}>{{ label }}</option>
+																{% endfor %}
+															</select>
+															{% if form.status.errors %}
+															<div class="text-danger">{{ form.status.errors }}</div>
+															{% endif %}
+														</div>
+														
+														<!-- Category -->
+														<div class="col-12">
+															<label for="id_category" class="form-label">{{ form.category.label }}*</label>
+															<select class="form-select select2-multiple" id="id_category" name="category" multiple required>
+																{% for category in form.fields.category.queryset %}
+																<option value="{{ category.pk }}" 
+																		{% if category.pk|slugify in form.category.value or category.pk == form.category.value %}selected{% endif %}>
+																	{{ category }}
+																</option>
+																{% endfor %}
+															</select>
+															{% if form.category.errors %}
+															<div class="text-danger">{{ form.category.errors }}</div>
+															{% endif %}
+														</div>
+														
+														<!-- Color -->
+														<div class="col-12">
+															<label for="id_color" class="form-label">{{ form.color.label }}</label>
+															<select class="form-select select2-multiple" id="id_color" name="color" multiple>
+																{% for color in form.fields.color.queryset %}
+																<option value="{{ color.pk }}" 
+																		{% if color.pk|slugify in form.color.value or color.pk == form.color.value %}selected{% endif %}>
+																	{{ color }}
+																</option>
+																{% endfor %}
+															</select>
+															{% if form.color.errors %}
+															<div class="text-danger">{{ form.color.errors }}</div>
+															{% endif %}
+														</div>
+														
+														<!-- Guarantee -->
+														<div class="col-12">
+															<label for="id_guarantee" class="form-label">{{ form.guarantee.label }}</label>
+															<select class="form-select" id="id_guarantee" name="guarantee">
+																<option value="">بدون گارانتی</option>
+																{% for guarantee in form.fields.guarantee.queryset %}
+																<option value="{{ guarantee.pk }}" 
+																		{% if form.guarantee.value == guarantee.pk|stringformat:"s" or form.guarantee.value == guarantee.pk %}selected{% endif %}>
+																	{{ guarantee }}
+																</option>
+																{% endfor %}
+															</select>
+															{% if form.guarantee.errors %}
+															<div class="text-danger">{{ form.guarantee.errors }}</div>
+															{% endif %}
+														</div>
+														
+														<!-- Submit Button -->
+														<div class="col-12">
+															<div class="d-grid">
+																<button type="submit" class="btn btn-primary">
+																	{% if form.instance.pk %}ذخیره تغییرات{% else %}افزودن محصول{% endif %}
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>

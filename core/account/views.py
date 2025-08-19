@@ -9,6 +9,7 @@ from django.contrib.auth import logout
 from django.utils.translation import gettext as _
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 
 from .forms import CustomAuthenticationForm  # You'll need to create this
 
@@ -23,10 +24,9 @@ class PersianLoginRequiredMixin(LoginRequiredMixin):
         return super().handle_no_permission()
 
 
-
 class CustomLoginView(LoginView):
     form_class = CustomAuthenticationForm
-    template_name = 'accounts/login_signup.html'
+    template_name = 'accounts/signin.html'
     redirect_authenticated_user = True
 
     def form_valid(self, form):
@@ -51,8 +51,6 @@ class CustomLoginView(LoginView):
             form.add_error(None, "ایمیل یا رمز عبور نامعتبر است.")
             return self.form_invalid(form)
     
-    
-
 
 class CustomLogoutView(PersianLoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -61,4 +59,16 @@ class CustomLogoutView(PersianLoginRequiredMixin, View):
         return redirect('account:login')  # Redirect to your login page
     
 
+class HomeView(LoginRequiredMixin, TemplateView):
+    """Home view that requires login"""
+    template_name = 'accounts/home.html'  # specify your template path
+    
+    # Optional: You can add context data if needed
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add any additional context here
+        context['user'] = self.request.user
+        return context
+    
+    
 # continue coding..........................

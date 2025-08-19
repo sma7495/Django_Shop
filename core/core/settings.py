@@ -171,7 +171,7 @@ SEND_CONTACT_EMAILS = config("SEND_CONTACT_EMAILS", cast = bool, default = True)
 
 # Custom User Model settings:
 AUTH_USER_MODEL = "account.User"
-LOGIN_REDIRECT_URL = reverse_lazy("website:home")
+LOGIN_REDIRECT_URL = reverse_lazy("account:home")
 
 
 REST_FRAMEWORK = {

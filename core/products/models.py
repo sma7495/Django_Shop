@@ -106,7 +106,6 @@ class ProductImage(models.Model):
     def __str__(self):
         return f"Image for {self.product.title_en} (ID: {self.id})"
 
-
 class ProductCategory(models.Model):
     title_en = models.CharField(
         max_length=255,
@@ -141,7 +140,6 @@ class ProductCategory(models.Model):
             # Generate slug from English title if not provided
             self.slug = slugify(self.title_en)
         super().save(*args, **kwargs)
-
 
 class ProductGuarantee(models.Model):
     title_en = models.CharField(
@@ -237,7 +235,6 @@ class ProductSpecifications(models.Model):
 
     def __str__(self):
         return f"{self.title_en}"
-
 
 
 def video_image_slug_upload_path(instance, filename):
