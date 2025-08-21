@@ -104,7 +104,7 @@
                 <!-- Submit and Reset Buttons -->
                 <div class="col-md-3 d-flex align-items-end gap-2">
                     <button type="submit" class="btn btn-primary">اعمال فیلترها</button>
-                    <a href="{% url 'products:accounts:list_product' %}" class="btn btn-outline-secondary">حذف فیلترها</a>
+                    <a href="{% url 'products:accounts:list_product' %}" class="btn btn-outline-secondary bg_light">حذف فیلترها</a>
                 </div>
             </form>
         </div>
@@ -118,7 +118,7 @@
             <div class="card">
                 <img src="{{pro.image.url}}" class="card-img-top" alt="{{pro.title_en}}">
                 <div class="">
-                    <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">{{pro.discount_percent}}</span></div>
+                    <div class="position-absolute top-0 end-0 m-3 product-discount bg_dark_without_hover"><span class="">{{pro.discount_percent}} %</span></div>
                 </div>
                 <div class="card-body">
                     <h6 class="card-title cursor-pointer">{{pro.title_fa}}</h6>
@@ -132,6 +132,11 @@
 
                         {% endif %}
                     </div>
+                    <h6 class="card-title cursor-pointer btn btn-outline-secondary margin_top_5px bg_light"> <a href=" {% url 'products:accounts:edit_product' pk=pro.id %} "> ویرایش محصول </a> </h6>
+                    
+                    <h6 class="card-title cursor-pointer btn btn-outline-secondary margin_top_5px bg_light"> <a href=" {% url 'products:detail' pk=pro.id %} "> نمایش در سایت </a> </h6>
+
+                    
                     <div class="d-flex align-items-center mt-3 fs-6">
                         <div class="cursor-pointer">
                             <i class='bx bxs-star text-white'></i>

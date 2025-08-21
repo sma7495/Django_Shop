@@ -44,7 +44,7 @@
                 <!-- Submit and Reset Buttons -->
                 <div class="col-md-4 d-flex align-items-end gap-2">
                     <button type="submit" class="btn btn-primary">جستجو</button>
-                    <a href="{% url 'products:accounts:list_guarantee' %}" class="btn btn-outline-secondary">حذف فیلترها</a>
+                    <a href="{% url 'products:accounts:list_guarantee' %}" class="btn btn-outline-secondary bg_light">حذف فیلترها</a>
                 </div>
             </form>
         </div>
@@ -53,8 +53,8 @@
     <!-- Product Guarantee List -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
         {% for guarantee in guarantees %}
-        <div class="col">
-            <div class="card h-100">
+        <div class="col margin_top_15px">
+            <div class="card h-100 bg_light">
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ guarantee.title_fa }}</h5>
                     <p class="card-text text-muted">{{ guarantee.title_en }}</p>

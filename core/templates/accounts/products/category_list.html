@@ -45,7 +45,7 @@
                 <!-- Submit and Reset Buttons -->
                 <div class="col-md-4 d-flex align-items-end gap-2">
                     <button type="submit" class="btn btn-primary">جستجو</button>
-                    <a href="{% url 'products:accounts:list_category' %}" class="btn btn-outline-secondary">حذف فیلترها</a>
+                    <a href="{% url 'products:accounts:list_category' %}" class="btn btn-outline-secondary bg_light">حذف فیلترها</a>
                 </div>
             </form>
         </div>
@@ -54,8 +54,8 @@
     <!-- Category List -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
         {% for category in categories %}
-        <div class="col">
-            <div class="card h-100">
+        <div class="col margin_top_15px">
+            <div class="card h-100 bg_light">
                 <!-- You might want to add an image field to your model if you want images -->
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ category.title_fa }}</h5>

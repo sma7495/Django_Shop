@@ -1,0 +1,72 @@
+:root {
+    --light-color: rgba(255, 255, 255, 0.6); /* Global variable for primary color */
+
+    --dark-color: rgba(8, 98, 150, 0.75); 
+
+    --light-color-text: rgba(255, 255, 255, 1); /* Global variable for primary color */
+
+    --dark-color-text: rgba(8, 98, 150, 1); 
+}
+
+
+
+.margin_top_5px{
+    margin-top: 5px !important;
+}
+
+.margin_top_10px{
+    margin-top: 10px !important;
+}
+
+.margin_top_15px{
+    margin-top: 15px !important;
+}
+
+
+/* for BG Light.............. */
+.bg_light{
+    background-color: var(--light-color) !important;
+    color: var(--dark-color-text) !important;
+}
+.bg_light * {
+    color: var(--dark-color-text) !important;
+}
+
+.bg_light:hover {
+    background-color: var(--dark-color) !important;
+    color: var(--light-color-text) !important;
+}
+.bg_light:hover * {
+    color: var(--light-color-text) !important;
+}
+
+
+
+/* for BG Dark.............. */
+.bg_dark{
+    background-color: var(--dark-color) !important;
+    color: var(--light-color-text) !important;
+}
+.bg_dark * {
+    color: var(--light-color-text) !important;
+}
+
+.bg_dark:hover {
+    background-color: var(--light-color) !important;
+    color: var(--dark-color-text) !important;
+}
+.bg_dark:hover * {
+    color: var(--dark-color-text) !important;
+}
+
+
+/* for BG Dark without Hover.............. */
+.bg_dark_without_hover{
+    background-color: var(--dark-color) !important;
+    color: var(--light-color-text) !important;
+}
+.bg_dark_without_hover * {
+    color: var(--light-color-text) !important;
+}
+
+

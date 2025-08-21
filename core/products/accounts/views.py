@@ -164,9 +164,10 @@ class ProductUpdateView(LoginRequiredMixin,AdminOrSuperuserRequiredMixin, Update
     model = Product
     form_class = ProductForm
     template_name = 'accounts/products/add_new.html'
+    success_url = reverse_lazy('products:accounts:list_product')  # Change to your success URL
 
-    def get_success_url(self):
-        return reverse_lazy('products:accounts:edit_product', kwargs={'pk': self.object.pk})
+    # def get_success_url(self):
+    #     return reverse_lazy('products:accounts:edit_product', kwargs={'pk': self.object.pk})
     
     def form_valid(self, form):
         response = super().form_valid(form)
