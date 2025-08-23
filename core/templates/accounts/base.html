@@ -43,6 +43,14 @@
 			<!--navigation-->
 			<ul class="metismenu" id="menu">
 				<li>
+					<a href="{% url 'account:admin:home' %}">
+						<div class="parent-icon"><i class='fa fa-home'></i>
+						</div>
+						<div class="menu-title"> داشبورد </div>
+					</a>
+				</li>
+
+				<li>
 					<a href="{% url 'account:profile' %}">
 						<div class="parent-icon"><i class='fa fa-user'></i>
 						</div>
@@ -726,17 +734,18 @@
 	</div>
 	<!--end wrapper-->
 
+{% block main_js %} {% endblock main_js %}
 
-	<!--notification js -->
-	<script src="{% static 'accounts/plugins/notifications/js/lobibox.min.js'%}"></script>
-	<script src="{% static 'accounts/plugins/notifications/js/notifications.min.js'%}"></script>
-	<script src="{% static 'accounts/plugins/notifications/js/notification-custom-script.js'%}"></script>
+<!--notification js -->
+<script src="{% static 'accounts/plugins/notifications/js/lobibox.min.js'%}"></script>
+<script src="{% static 'accounts/plugins/notifications/js/notifications.min.js'%}"></script>
+<script src="{% static 'accounts/plugins/notifications/js/notification-custom-script.js'%}"></script>
 
 
 
 {% block extra_js %} {% endblock  %}	
 
-{% block main_js %} {% endblock main_js %}
+
 
 
 

@@ -49,3 +49,7 @@ Faker
 
 
 django-extensions
+
+# for persian datetime
+jalali_core
+jdatetime

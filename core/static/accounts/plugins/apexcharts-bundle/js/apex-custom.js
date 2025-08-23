@@ -78,6 +78,7 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart1"), options);
 	chart.render();
+	
 	// chart 2
 	var optionsLine = {
 		chart: {
