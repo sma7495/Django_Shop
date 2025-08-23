@@ -9,7 +9,12 @@ from django.contrib.auth import logout
 from django.utils.translation import gettext as _
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, UpdateView
+from django.forms import inlineformset_factory
+
+from .models import Profile, Address
+from .forms import ProfileForm, AddressForm
+
 
 from .forms import CustomAuthenticationForm  # You'll need to create this
 
@@ -50,6 +55,26 @@ class CustomLoginView(LoginView):
         else:
             form.add_error(None, "ایمیل یا رمز عبور نامعتبر است.")
             return self.form_invalid(form)
+        
+    def get_success_url(self):
+        """
+        Redirect users based on their type
+        Assuming user type is stored in user.user_type or similar field
+        """
+        # Get the logged-in user
+        user = self.request.user
+        
+        # Check user type and redirect accordingly
+        if hasattr(user, 'type'):
+            if user.type == 2 or user.type == 3:
+                # Redirect for user type = admin or superuser
+                return reverse_lazy("account:admin:home")
+            elif user.type == 3:
+                # Redirect for user type = customer
+                return reverse_lazy("website:home")  # Change this to your desired URL
+        
+        # Default redirect if user type doesn't match or isn't set
+        return reverse_lazy("website:home")   # Change this to your default URL
     
 
 class CustomLogoutView(PersianLoginRequiredMixin, View):
@@ -57,18 +82,97 @@ class CustomLogoutView(PersianLoginRequiredMixin, View):
         logout(request)
         messages.success(request, "شما با موفقیت از حساب کاربری خود خارج شدید.")
         return redirect('account:login')  # Redirect to your login page
-    
 
-class HomeView(LoginRequiredMixin, TemplateView):
-    """Home view that requires login"""
-    template_name = 'accounts/home.html'  # specify your template path
+
+class ProfileUpdateView(PersianLoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = ProfileForm
+    success_url = reverse_lazy('account:profile')
     
-    # Optional: You can add context data if needed
+    # Define template mapping
+    template_mapping = {
+        'admin': 'accounts/admin/profile.html',
+        'customer': 'accounts/customer/profile.html'
+    }
+    
+    def get_template_names(self):
+        """
+        Select template based on user type using mapping
+        """
+        if self.request.user.type == 2 or self.request.user.type == 3:
+            return self.template_mapping['admin']
+        else:
+            return self.template_mapping['customer']
+    
+    def get_object(self, queryset=None):
+        """
+        Return the profile object for the current user
+        """
+        try:
+            return Profile.objects.get(id=self.request.user.id)
+        except Profile.DoesNotExist:
+            return Profile.objects.create(user=self.request.user)
+    
     def get_context_data(self, **kwargs):
+        """
+        Add extra context to the template including address formset
+        """
         context = super().get_context_data(**kwargs)
-        # Add any additional context here
-        context['user'] = self.request.user
+        
+        # Create formset for addresses
+        AddressFormSet = inlineformset_factory(
+            Profile, 
+            Address, 
+            form=AddressForm,  # You'll need to create an AddressForm
+            extra=1, 
+            can_delete=True,
+            max_num=5  # Limit to 5 addresses maximum
+        )
+        
+        if self.request.POST:
+            context['address_formset'] = AddressFormSet(
+                self.request.POST, 
+                instance=self.object
+            )
+        else:
+            context['address_formset'] = AddressFormSet(instance=self.object)
+        
+        context['title'] = 'ویرایش پروفایل'
         return context
     
+    def form_valid(self, form):
+        """
+        Handle successful form submission for both profile and addresses
+        """
+        context = self.get_context_data()
+        address_formset = context['address_formset']
+        # Check if both profile form and address formset are valid
+        if address_formset:
+            if address_formset.is_valid():
+                # Save profile first
+                self.object = form.save()
+                
+                # Save addresses
+                addresses = address_formset.save(commit=False)
+                for address in addresses:
+                    address.profile = self.object
+                    address.save()
+                
+                # Delete any marked addresses
+                for obj in address_formset.deleted_objects:
+                    obj.delete()
+                    
+                messages.success(self.request, 'پروفایل و آدرس‌ها با موفقیت به‌روزرسانی شد')
+                return redirect(self.get_success_url())
+            else:
+                # If address formset is invalid, show errors
+                messages.error(self.request, 'لطفاً خطاهای مربوط به آدرس‌ها را اصلاح کنید')
+                return self.render_to_response(self.get_context_data(form=form))
     
+    def form_invalid(self, form):
+        """
+        Handle invalid form submission
+        """
+        messages.error(self.request, 'لطفاً خطاهای زیر را اصلاح کنید')
+        return super().form_invalid(form)
 # continue coding..........................

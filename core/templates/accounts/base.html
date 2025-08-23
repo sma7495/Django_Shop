@@ -1,5 +1,6 @@
 {% load static %}
-
+{% load accounts_tags %}
+{% get_user_profile as user_profile %}
 <!doctype html>
 <html lang="fa">
 
@@ -42,56 +43,10 @@
 			<!--navigation-->
 			<ul class="metismenu" id="menu">
 				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-home-alt'></i>
+					<a href="{% url 'account:profile' %}">
+						<div class="parent-icon"><i class='fa fa-user'></i>
 						</div>
-						<div class="menu-title">داشبورد</div>
-					</a>
-					<ul>
-						<li> <a href="index.html"><i class="bx bx-radio-circle"></i>پیشفرض</a>
-						</li>
-						<li> <a href="dashboard-eCommerce.html"><i class="bx bx-radio-circle"></i>تجارت الکترونیک</a>
-						</li>
-						<li> <a href="dashboard-sales.html"><i class="bx bx-radio-circle"></i>فروش ها</a>
-						</li>
-						<li> <a href="dashboard-analytics.html"><i class="bx bx-radio-circle"></i>آنالیز</a>
-						</li>
-						<li> <a href="dashboard-alternate.html"><i class="bx bx-radio-circle"></i>جایگزین</a>
-						</li>
-						<li> <a href="dashboard-digital-marketing.html"><i class="bx bx-radio-circle"></i>بازاریابی دیجیتال</a>
-						</li>
-						<li> <a href="dashboard-human-resources.html"><i class="bx bx-radio-circle"></i>منابع انسانی</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-category"></i>
-						</div>
-						<div class="menu-title">اپلیکیشن</div>
-					</a>
-					<ul>
-						<li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>ایمیل</a>
-						</li>
-						<li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>چت باکس</a>
-						</li>
-						<li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i>مدیریت فایل</a>
-						</li>
-						<li> <a href="app-contact-list.html"><i class='bx bx-radio-circle'></i>مخاطبین</a>
-						</li>
-						<li> <a href="app-to-do.html"><i class='bx bx-radio-circle'></i>لیست کارها</a>
-						</li>
-						<li> <a href="app-invoice.html"><i class='bx bx-radio-circle'></i>فاکتور</a>
-						</li>
-						<li> <a href="app-fullcalender.html"><i class='bx bx-radio-circle'></i>تقویم</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="widgets.html">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">ابزارک ها</div>
+						<div class="menu-title"> پروفایل کاربری </div>
 					</a>
 				</li>
 				<li class="menu-label">مدیریت محصولات فروشگاه</li>
@@ -737,27 +692,17 @@
 					</div>
 					<div class="user-box dropdown px-3">
 						<a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="ecommerce-add-new-products.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="{% static 'accounts/images/avatars/avatar-2.png' %}" class="user-img" alt="user avatar">
+							<img src="{{user_profile.image.url}}" class="user-img" alt="user avatar">
 							<div class="user-info">
-								<p class="user-name mb-0">مریم ایرانی</p>
-								<p class="designattion mb-0">طراح وب</p>
+								<p class="user-name mb-0"> {{user_profile.first_name}} {{user_profile.last_name}} </p>
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-user fs-5"></i><span>پروفایل</span></a>
+							<li><a class="dropdown-item d-flex align-items-center" href="{% url 'account:profile' %}"><i class="bx bx-user fs-5"></i><span>پروفایل</span></a>
 							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-cog fs-5"></i><span>تنظیمات</span></a>
-							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-home-circle fs-5"></i><span>داشبورد</span></a>
-							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-dollar-circle fs-5"></i><span>درآمد</span></a>
-							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-download fs-5"></i><span>دانلود ها</span></a>
-							</li>
-							<li>
 								<div class="dropdown-divider mb-0"></div>
 							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-log-out-circle"></i><span>خروج</span></a>
+							<li><a class="dropdown-item d-flex align-items-center" href="{% url 'account:logout' %}"><i class="bx bx-log-out-circle"></i><span>خروج</span></a>
 							</li>
 						</ul>
 					</div>
@@ -780,43 +725,7 @@
 		</footer>
 	</div>
 	<!--end wrapper-->
-	<!--start switcher-->
-	<div class="switcher-wrapper">
-		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
-		</div>
-		<div class="switcher-body">
-			<div class="d-flex align-items-center">
-				<h5 class="mb-0 text-uppercase">شخصی سازی تم</h5>
-				<button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
-			</div>
-			<hr/>
-			<p class="mb-0">بافت گاوسی</p>
-			<hr>
-			<ul class="switcher">
-				<li id="theme1"></li>
-				<li id="theme2"></li>
-				<li id="theme3"></li>
-				<li id="theme4"></li>
-				<li id="theme5"></li>
-				<li id="theme6"></li>
-			</ul>
-			<hr>
-			<p class="mb-0">پس زمینه گرادیان</p>
-			<hr>
-			<ul class="switcher">
-				<li id="theme7"></li>
-				<li id="theme8"></li>
-				<li id="theme9"></li>
-				<li id="theme10"></li>
-				<li id="theme11"></li>
-				<li id="theme12"></li>
-				<li id="theme13"></li>
-				<li id="theme14"></li>
-				<li id="theme15"></li>
-			  </ul>
-		</div>
-	</div>
-	<!--end switcher-->
+
 
 	<!--notification js -->
 	<script src="{% static 'accounts/plugins/notifications/js/lobibox.min.js'%}"></script>
