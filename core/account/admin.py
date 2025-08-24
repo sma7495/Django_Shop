@@ -1,6 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.sessions.models import Session
+from django.utils.html import format_html
+import json
+
 from .models import User, Profile, Address
+
 
 class CustomUserAdmin(UserAdmin):
     # add_form = CustomUserCreationForm
@@ -86,3 +91,21 @@ class AddressAdmin(admin.ModelAdmin):
     )
     
     readonly_fields = ('created_date', 'updated_date')  # Prevent editing of timestamps
+    
+    
+    
+# for sessions ............
+
+
+class SessionAdmin(admin.ModelAdmin):
+    def _session_data(self, obj):
+        return obj.get_decoded()
+    
+    _session_data.short_description = 'Session Data'
+    
+    list_display = ['session_key', '_session_data', 'expire_date']
+    readonly_fields = ['session_key', '_session_data', 'expire_date']
+    exclude = ['session_data']
+    ordering = ['-expire_date']
+
+admin.site.register(Session, SessionAdmin)
