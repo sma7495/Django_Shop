@@ -2,8 +2,8 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
-
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import PasswordChangeForm
 
 from .models import Profile, Address
 
@@ -176,5 +176,58 @@ class AddressForm(forms.ModelForm):
             #     raise forms.ValidationError("کد پستی معتبر نیست")
             
         return zip_code
+
+
+class PersianChangePasswordForm(PasswordChangeForm):
+    """
+    A form for changing password with Persian labels and help text
+    Includes old password field
+    """
+    old_password = forms.CharField(
+        label=_("رمز عبور فعلی"),
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'رمز عبور فعلی را وارد کنید'
+        }),
+        help_text=_("برای تغییر رمز عبور، ابتدا رمز عبور فعلی خود را وارد کنید.")
+    )
+    
+    new_password1 = forms.CharField(
+        label=_("رمز عبور جدید"),
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'رمز عبور جدید را وارد کنید'
+        }),
+        help_text=_(
+            "رمز عبور شما نمی‌تواند شبیه سایر اطلاعات شخصی شما باشد.<br>"
+            "رمز عبور شما باید حداقل شامل ۸ کاراکتر باشد.<br>"
+            "رمز عبور شما نمی‌تواند یک رمز عبور متداول باشد.<br>"
+            "رمز عبور شما نمی‌تواند کاملاً عددی باشد."
+        )
+    )
+    
+    new_password2 = forms.CharField(
+        label=_("تکرار رمز عبور جدید"),
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'رمز عبور جدید را تکرار کنید'
+        }),
+        help_text=_("لطفاً رمز عبور جدید را مجدداً وارد کنید تا از صحت آن اطمینان حاصل شود.")
+    )
+
+    class Meta:
+        model = User
+        fields = ['old_password', 'new_password1', 'new_password2']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Add Persian error messages
+        self.error_messages = {
+            'password_incorrect': _("رمز عبور فعلی وارد شده صحیح نمی‌باشد."),
+            'password_mismatch': _("دو فیلد رمز عبور جدید مطابقت ندارند."),
+            'password_too_short': _("رمز عبور بسیار کوتاه است. باید حداقل ۸ کاراکتر باشد."),
+            'password_common': _("رمز عبور بسیار متداول است."),
+            'password_entirely_numeric': _("رمز عبور نمی‌تواند کاملاً عددی باشد."),
+        }
 
 # contiue coiding ..................

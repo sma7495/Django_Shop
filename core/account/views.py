@@ -11,12 +11,15 @@ from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, UpdateView
 from django.forms import inlineformset_factory
+from django.contrib.auth import get_user_model
+from django.contrib.auth.views import PasswordChangeView
+from django.utils.translation import gettext_lazy as _
+
 
 from .models import Profile, Address
-from .forms import ProfileForm, AddressForm
+from .forms import ProfileForm, AddressForm, PersianChangePasswordForm, CustomAuthenticationForm
 
-
-from .forms import CustomAuthenticationForm  # You'll need to create this
+User = get_user_model()
 
 class PersianLoginRequiredMixin(LoginRequiredMixin):
     """Custom LoginRequiredMixin with Persian messages."""
@@ -68,7 +71,7 @@ class CustomLoginView(LoginView):
         if hasattr(user, 'type'):
             if user.type == 2 or user.type == 3:
                 # Redirect for user type = admin or superuser
-                return reverse_lazy("account:admin:home")
+                return reverse_lazy("account:admin_app:home")
             elif user.type == 3:
                 # Redirect for user type = customer
                 return reverse_lazy("website:home")  # Change this to your desired URL
@@ -175,4 +178,43 @@ class ProfileUpdateView(PersianLoginRequiredMixin, UpdateView):
         """
         messages.error(self.request, 'لطفاً خطاهای زیر را اصلاح کنید')
         return super().form_invalid(form)
+
+
+
+class PersianPasswordChangeView(PersianLoginRequiredMixin, PasswordChangeView):
+    """
+    View for changing password with Persian interface
+    Includes old password field and Lobibox success message
+    """
+    form_class = PersianChangePasswordForm
+    success_url = reverse_lazy('account:password_change')  # Redirect to same page
+
+    # Define template mapping
+    template_mapping = {
+        'admin': 'accounts/admin/change_password.html',
+        'customer': 'accounts/customer/change_password.html'
+    }
+    
+    def get_template_names(self):
+        """
+        Select template based on user type using mapping
+        """
+        if self.request.user.type == 2 or self.request.user.type == 3:
+            return self.template_mapping['admin']
+        else:
+            return self.template_mapping['customer']
+
+    def form_valid(self, form):
+        # Save the form and set success message
+        response = super().form_valid(form)
+        messages.success(self.request, _("رمز عبور شما با موفقیت تغییر یافت."))
+        return response
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = _("تغییر رمز عبور")
+        context['submit_label'] = _("ذخیره تغییرات")
+        context['cancel_url'] = reverse_lazy('account:login')  # Adjust to your profile URL
+        return context
+    
 # continue coding..........................
