@@ -7,6 +7,6 @@ urlpatterns = [
     # Other URL patterns...
     path('api/v1/', include("products.api.v1.urls")),
     path('accounts/', include("products.accounts.urls")),
-    path('list/', views.ProductListTemplateView.as_view(), name='list'),
+    path('list/', views.ProductListView.as_view(), name='list'),
     path('detail/<int:pk>', views.ProductDetailView.as_view(), name='detail'),
 ]

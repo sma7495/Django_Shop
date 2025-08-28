@@ -1,4 +1,6 @@
 {% load static %}
+{% load general_tags %}
+{% load cart_tags %}
 
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
@@ -1523,6 +1525,8 @@
 
 </div>
 
+<!-- Shopping Cart............ -->
+
 <div class="offcanvas offcanvas-end font-vazir" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header  d-flex justify-content-between">
         <h5 class="offcanvas-title me-4" id="offcanvasRightLabel">سبد خرید</h5>
@@ -1530,64 +1534,44 @@
     </div>
     <div class="offcanvas-body d-flex flex-column justify-content-between">
         <ul>
-            <li class="border-bottom my-4 pb-4">
+            
+            {% for item in cart.get_dict.items %}
+            {% get_product_data item.product_id as product %}
+                <li class="border-bottom my-4 pb-4">
 
-                <a href="#" class="product-link">
-                    <div class="info-product d-flex justify-content-evenly text-color">
-                        <div class="img-product">
-                            <img src='{% static "images/samsung-galaxy-a33-5g.jpg" %}' alt="">
+                    <a href="#" class="product-link">
+                        <div class="info-product d-flex justify-content-evenly text-color">
+                            <div class="img-product">
+                                <img src='{{product.image.url}}' alt="">
+                            </div>
+                            <div class="name ellipsis font-13"> 
+                                {{product.title_fa}}
+                            </div>
+                            <span class="delete"><i class="fas fa-times"></i></span>
                         </div>
-                        <div class="name ellipsis font-13">گوشی موبایل سامسونگ مدل Galaxy A33 5G SM-A336E/DSN <br>دو سیم
-                            کارت ظرفیت 128 گیگابایت
+                        <div class="price-Unit d-flex justify-content-evenly mt-4">
+                            <div class="counter cart-prd-counter">
+                                <span class="up" onclick="increaseCount(event, this)"><i
+                                        class="fa-solid fa-circle-plus"></i></span>
+                                <input type="text" value="{{item.quantity}}" onchange="UpdateCartDirect({{product.id}}, this)">
+                                <span class="down" onclick="decreaseCount(event, this)"><i
+                                        class="fa-solid fa-circle-minus"></i></span>
+                            </div>
+                            {% get_total_price product.discounted_price item.quantity as price%}
+                            <span class="price"> {{ price|persian_intcomma}} </span>
                         </div>
-                        <span class="delete"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="price-Unit d-flex justify-content-evenly mt-4">
-                        <div class="counter cart-prd-counter">
-                            <span class="up" onclick="increaseCount(event, this)"><i
-                                    class="fa-solid fa-circle-plus"></i></span>
-                            <input type="text" value="1">
-                            <span class="down" onclick="decreaseCount(event, this)"><i
-                                    class="fa-solid fa-circle-minus"></i></span>
-                        </div>
-                        <span class="price">۶,۰۰۰,۰۰۰ </span>
-                    </div>
-                </a>
-                <div class="clearfix"></div>
+                    </a>
+                    <div class="clearfix"></div>
 
-            </li>
-            <li class="border-bottom my-4 pb-4">
-
-                <a href="#" class="product-link">
-                    <div class="info-product d-flex justify-content-evenly text-color">
-                        <div class="img-product">
-                            <img src='{% static "images/samsung-galaxy-a33-5g.jpg" %}' alt="">
-                        </div>
-                        <div class="name ellipsis font-13">گوشی موبایل سامسونگ مدل Galaxy A33 5G SM-A336E/DSN <br>دو سیم
-                            کارت ظرفیت 128 گیگابایت
-                        </div>
-                        <span class="delete"><i class="fas fa-times"></i></span>
-                    </div>
-                    <div class="price-Unit d-flex justify-content-evenly mt-4">
-                        <div class="counter cart-prd-counter">
-                            <span class="up" onclick="increaseCount(event, this)"><i
-                                    class="fa-solid fa-circle-plus"></i></span>
-                            <input type="text" value="1">
-                            <span class="down" onclick="decreaseCount(event, this)"><i
-                                    class="fa-solid fa-circle-minus"></i></span>
-                        </div>
-                        <span class="price">۶,۰۰۰,۰۰۰ </span>
-                    </div>
-                </a>
-                <div class="clearfix"></div>
-
-            </li>
+                </li>
+            
+            {% endfor %}
         </ul>
         <div class="mobile-checkout">
             <div class="row d-flex justify-content-between align-items-center font-sans font-14">
                 <div class="col-auto f">
                     <div class="sum-title">جمع کل</div>
-                    <div class="price mt-2">12,000,000</div>
+                    <div class="price mt-2">{{cart.get_total_cart_price|persian_intcomma}}</div>
                 </div>
                 <div class="col-auto mt-2">
                     <div class="btn-cart">
@@ -1598,6 +1582,8 @@
         </div>
     </div>
 </div>
+<!-- End of Shopping Cart............ -->
+
 
 <div class="offcanvas favoriteTab offcanvas-end font-vazir" tabindex="-1" id="favoriteTab"
      aria-labelledby="favoriteTab">
@@ -2075,6 +2061,70 @@
             }).showToast();
         {% endfor %}
     {% endif %}
+</script>
+
+<script>
+$(document).ready(function() {
+    // Function to get CSRF token from cookie
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Function to handle add to cart
+    function updateCart(productId, quantity) {
+        // Get CSRF token
+        var csrfToken = getCookie('csrftoken');
+
+        // Make AJAX POST request
+        $.ajax({
+            url: `{% url 'cart:session_update_product_quantity' %}`, // Replace with your actual URL
+            type: 'POST',
+            data: {
+                'quantity' : quantity,
+                'product_id': productId,
+                'csrfmiddlewaretoken': csrfToken
+            },
+            success: function(response) {
+                console.log('Product added to cart successfully');
+                console.log(response);
+                // showMessage('Product added to cart!', 'success');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error adding product to cart:', error);
+
+                //showMessage('Failed to add product to cart', 'error');
+            }
+        });
+    }
+    
+    // Function to show messages
+    function showMessage(message, type) {
+        var messageContainer = $('#message-container');
+        messageContainer.removeClass('success error').addClass(type);
+        messageContainer.html(message).fadeIn();
+        
+        // Hide message after 3 seconds
+        setTimeout(function() {
+            messageContainer.fadeOut();
+        }, 3000);
+    }
+ 
+    // Alternative: If you want to use onclick attribute in HTML
+    window.UpdateCartDirect = function(productId, quantity) {
+        updateCart(productId, quantity);
+    };
+});
 </script>
 
 {% block extra_js %}{% endblock  %}
