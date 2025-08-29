@@ -126,6 +126,52 @@
 					</ul>
 				</li>
 
+
+				<li class="menu-label">مدیریت وبلاگ </li>
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"> <i class="fa fa-newspaper" ></i>
+						</div>
+						<div class="menu-title">پست ها</div>
+					</a>
+					<ul>
+						<li> <a href="{% url 'blog:accounts:add_post' %}"><i class='bx bx-radio-circle'></i> افزودن پست جدید </a>
+						</li>
+						<li> <a href="{% url 'blog:accounts:list_post' %}"><i class='bx bx-radio-circle'></i> نمایش لیست پست ها </a>
+						</li>
+
+					</ul>
+				</li>
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"> <i class="fa fa-object-group" ></i>
+						</div>
+						<div class="menu-title">دسته بندی </div>
+					</a>
+					<ul>
+						<li> <a href="{% url 'blog:accounts:add_category' %}"><i class='bx bx-radio-circle'></i> افزودن دسته بندی جدید </a>
+						</li>
+						<li> <a href="{% url 'blog:accounts:list_category' %}"><i class='bx bx-radio-circle'></i> نمایش دسته بندی ها </a>
+						</li>
+
+					</ul>
+				</li>
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"> <i class="fa fa-tag" ></i>
+						</div>
+						<div class="menu-title">تگ</div>
+					</a>
+					<ul>
+						<li> <a href="{% url 'blog:accounts:add_tag' %}"><i class='bx bx-radio-circle'></i> افزودن تگ جدید </a>
+						</li>
+						<li> <a href="{% url 'blog:accounts:list_tag' %}"><i class='bx bx-radio-circle'></i> نمایش تگ ها </a>
+						</li>
+
+					</ul>
+				</li>
 			</ul>
 			<!--end navigation-->
 		</div>

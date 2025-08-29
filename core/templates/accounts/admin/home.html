@@ -2,7 +2,7 @@
 
 {% load static %}
 {% load product_statasics %}
-
+{% load blog_statasics %}
 
 
 
@@ -88,7 +88,38 @@
 				</div>
 			</div>
 			<!--end row-->
-			</div> 
+
+		</div> 
+
+
+		<div class = "">
+
+
+			{% get_post_data_base_category as post_data %}
+			{{ post_data|json_script:"post-data" }}
+			<!--breadcrumb-->
+			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+				<div class="breadcrumb-title pe-3"> آمار پست های سایت</div>
+				<div class="padding_5px"> تعداد کل پست ها: {{post_data.all}}</div>
+			</div>
+			<!--end breadcrumb-->
+			<div class="row">
+				<div class="col-xl-6 mx-auto">
+
+					<h6 class="mb-0 text-uppercase">آمار پست های سایت</h6>
+					<hr/>
+					<div class="card">
+						<div class="card-body">
+							<div id="blog_post_general_statasics"></div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<!--end row-->
+			
+		</div> 
 			
 	</div>
 {% endblock  %}
@@ -245,5 +276,84 @@
     </script>
 
 
+
+
+
+	<!-- scripts for blog app charts ...................-->
+<script>
+	var postData = JSON.parse(document.getElementById('post-data').textContent);
+</script>
+<script>
+	$(function () {
+	// chart 9
+	var options = {
+		series: [{
+			name: 'پست های منتشرنشده',
+			type: 'column',
+			data: postData.not_published_posts,
+		}, {
+			name: 'پست های منتشرشده',
+			type: 'line',
+			data: postData.published_posts,
+		}],
+		chart: {
+			foreColor: 'rgba(255, 255, 255, 0.65)',
+			height: 350,
+			type: 'line',
+			zoom: {
+				enabled: false
+			},
+			toolbar: {
+				show: true
+			},
+		},
+		stroke: {
+			width: [0, 4]
+		},
+		colors: ['rgba(211, 4, 4, 0.3)', "#099e04ff"],
+		title: {
+			text: 'پست های سایت'
+		},
+		dataLabels: {
+			enabled: true,
+			enabledOnSeries: [1]
+		},
+		grid: {
+			show: true,
+			borderColor: 'rgba(255, 255, 255, 0.12)',
+			strokeDashArray: 4,
+		},
+		tooltip: {
+			theme: 'dark',
+			y: {
+				formatter: function (val) {
+					return val
+				}
+			}
+		},
+		xaxis: {
+			categories: postData.category,
+			labels: {
+				style: {
+					colors: 'rgba(255, 255, 255, 0.9)'
+				}
+			}
+		},
+		yaxis: [{
+			title: {
+				text: '',
+			},
+		}, {
+			opposite: true,
+			title: {
+				text: ''
+			}
+		}]
+	};
+	var chart = new ApexCharts(document.querySelector("#blog_post_general_statasics"), options);
+	chart.render();	
+});
+
+</script>
 
 {% endblock  %}

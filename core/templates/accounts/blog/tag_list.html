@@ -1,0 +1,126 @@
+{% extends "accounts/base.html" %}
+
+{% load static %}
+{% load general_tags %}
+
+{% block css %}
+
+	<!--plugins-->
+	<link href="{% static 'accounts/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
+	<link href="{% static 'accounts/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
+	<link href="{% static 'accounts/plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
+	<!-- loader-->
+	<link href="{% static 'accounts/css/pace.min.css' %}" rel="stylesheet" />
+	<script src="{% static 'accounts/js/pace.min.js' %}"></script>
+	<!-- Bootstrap CSS -->
+	<link href="{% static 'accounts/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'accounts/css/bootstrap-extended.css' %}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+	<link href="{% static 'accounts/css/app.css' %}" rel="stylesheet">
+	<link href="{% static 'accounts/css/icons.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}
+<title> {{page_title}} </title>
+{% endblock  %}
+
+
+{% block content  %}
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-center"> {{page_title}} </h1>
+    
+    <!-- Search Section -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <!-- Search Input -->
+                <div class="col-md-8">
+                    <label for="search" class="form-label">جستجو</label>
+                    <input type="text" class="form-control" id="search" name="search" 
+                           value="{{ search_query }}" placeholder="جستجو در دسته‌بندی‌ها...">
+                </div>
+                
+                <!-- Submit and Reset Buttons -->
+                <div class="col-md-4 d-flex align-items-end gap-2">
+                    <button type="submit" class="btn btn-primary">جستجو</button>
+                    <a href="{% url 'blog:accounts:list_tag' %}" class="btn btn-outline-secondary bg_light">حذف فیلترها</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Category List -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
+        {% for category in categories %}
+        <div class="col margin_top_15px mb-5">
+            <div class="card h-100 bg_light">
+                <!-- You might want to add an image field to your model if you want images -->
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ category.title_fa }}</h5>
+                    <p class="card-text text-muted">{{ category.title_en }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">تاریخ ایجاد: {{ category.created_date|date:"Y/m/d" }}</small>
+                        <a href="{% url 'blog:accounts:edit_tag' pk=category.id %}" class="btn btn-sm btn-outline-primary">مشاهده</a>
+                        <a href="{% url 'blog:accounts:delete_tag' pk=category.id %}" class="btn btn-sm btn-outline-primary bg-danger text-white m-1"> حذف  </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div><!--end row-->
+    
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mt-4">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">قبلی</a>
+                </li>
+            {% endif %}
+            
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">بعدی</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+{% block main_js %}
+
+	<!-- Bootstrap JS -->
+	<script src="{% static 'accounts/js/bootstrap.bundle.min.js' %}"></script>
+	<!--plugins-->
+	<script src="{% static 'accounts/js/jquery.min.js' %}"></script>
+	<script src="{% static 'accounts/plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'accounts/plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'accounts/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<!--app JS-->
+	<script src="{% static 'accounts/js/app.js' %}"></script>
+
+{% endblock main_js %}
+
+
+
+
+
+{% block extra_js %}
+
+{% endblock  %}
